@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  /* Головний бренд-колір */
+  --color-primary: #00A046;
+  /* Колір успіху / наявності товару */
+  --color-success: #00A046;
+  /* Акції, знижки, розпродажі */
+  --color-action: #F81111;
+  /* Помилки, скасування */
+  --color-danger: #F81111;
+  /* Рейтинг, попередження */
+  --color-warning: #FFA800;
+  /* Посилання, інфо-повідомлення */
+  --color-info: #3E77AA;
+
+  /* Головний текст */
+  --text-primary: #211F1F;
+  /* Другорядний текст */
+  --text-secondary: #797878;
+  /* Приглушений / неактивний текст */
+  --text-muted: #A6A5A5;
+  /* Текст поверх зелених кнопок */
+  --text-on-primary: #FFFFFF;
+
+  /* Загальний фон сторінки */
+  --bg-main: #F5F5F5;
+  /* Фон карток товарів */
+  --bg-card: #FFFFFF;
+  /* Тонкі рамки та розділювачі */
+  --border-light: #E5E5E5;
+
+  /* Шрифти */
+  --rz-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  color: var(--text-primary);
+  font-family: var(--rz-font-family);
+}
