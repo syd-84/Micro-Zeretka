@@ -1,0 +1,70 @@
+<form [formGroup]="adminFormControl">
+  <h3>Додати товар</h3>
+
+  <div>
+    <p>Назва товару</p>
+    <input type="text" formControlName="name">
+    @if (adminFormControl.controls.name.hasError('required') && adminFormControl.controls.name.touched) {
+    <p [className]="'inform'">Обов'язкове поле</p>
+    }
+    @if (adminFormControl.controls.name.hasError('pattern')) {
+    <p [className]="'inform'">Можна вводити лише літери та пробіли</p>
+    }
+  </div>
+
+
+  <div>
+    <p>Опис товару</p>
+    <textarea name="" id="" formControlName="description"></textarea>
+    @if (adminFormControl.controls.description.hasError('required') && adminFormControl.controls.description.touched) {
+    <p [className]="'inform'">Обов'язкове поле</p>
+    }
+    @if (adminFormControl.controls.description.hasError('pattern')) {
+    <p [className]="'inform'">Можна вводити лише літери, цифри та пробіли</p>
+    }
+  </div>
+
+  <div>
+    <p>Зображення</p>
+    <input type="text" formControlName="imgSrc">
+    @if (adminFormControl.controls.imgSrc.hasError('required') && adminFormControl.controls.imgSrc.touched) {
+    <p [className]="'inform'">Обов'язкове поле</p>
+    }
+    @if (adminFormControl.controls.imgSrc.hasError('imageLoadFailed')) {
+    <p [className]="'inform'">Неправильне посилання на картинку</p>
+    }
+  </div>
+
+  <div>
+    <div>
+      <p>Ціна</p>
+      <input type="text" formControlName="price">
+
+      <select name="" id="" formControlName="currency">
+        <option value="UAH" selected>UAH - ₴</option>
+        <option value="USD">USD - $</option>
+        <option value="EUR">EUR - €</option>
+      </select>
+
+      @if (adminFormControl.controls.price.hasError('required') && adminFormControl.controls.price.touched) {
+      <p [className]="'inform'">Обов'язкове поле</p>
+      }
+      @if (adminFormControl.controls.price.hasError('pattern')) {
+      <p [className]="'inform'">Введіть тільки цифри</p>
+      }
+    </div>
+
+    <div>
+      <select name="type" formControlName="category">
+        <option value="default" hidden selected>Виберіть категорію</option>
+        @for (item of categoriesGoods; track $index) {
+        <option value="{{item.category}}">{{item.name}}</option>
+        }
+      </select>
+    </div>
+
+    <div>
+      <button type="reset" [disabled]="adminFormControl.valid?false:true" (click)="onClick()">Додати</button>
+    </div>
+  </div>
+</form>

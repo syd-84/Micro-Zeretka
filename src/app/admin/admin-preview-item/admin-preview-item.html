@@ -1,0 +1,23 @@
+<div class="inline">
+  <div>
+    <img [src]="data()?.imgSrc" alt="">
+  </div>
+  <div>
+    <a href=""> {{data()?.name}} </a>
+  </div>
+</div>
+<div class="inline">
+  <svg (click)="onClick()">
+    <use href="#trash"></use>
+  </svg>
+</div>
+
+<div [className]="hidden===true?'hidden': 'specification'">
+  <div>
+    Ви справді хочете видалити {{data()?.name}}
+    <div>
+      <button (click)="delElement(data()?.id)">Так</button>
+      <button (click)="onClick()">Ні</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<h3>Товари</h3>
+@for(item of goodsList.currentGoods(); track $index){
+<app-admin-preview-item [data]="item"></app-admin-preview-item>
+}

@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  max-width: 1000px;
+  width: 60%;
+  border-radius: 12px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}

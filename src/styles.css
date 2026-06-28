@@ -27,12 +27,18 @@
   --bg-card: #FFFFFF;
   /* Тонкі рамки та розділювачі */
   --border-light: #E5E5E5;
+  /* Сірий напівпрозорий фон */
+  --bg-gray-translucent: #7978783c;
 
   /* Шрифти */
   --rz-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
   color: var(--text-primary);
+  background-color: var(--bg-main);
   font-family: var(--rz-font-family);
 }
