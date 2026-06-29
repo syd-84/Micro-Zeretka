@@ -57,19 +57,8 @@ svg {
   background-color: var(--bg-main);
 }
 
-button {
-  width: 64px;
-  padding: 8px;
-  margin: 8px;
-  border: none;
-  border-radius: 8px;
-  color: var(--text-on-primary);
-  font-size: 16px;
-  background-color: var(--color-primary);
-  transition: 0.4s;
-}
-
-button:hover {
-  scale: 1.05;
-  transition: 0.4s;
+app-button {
+  width: 80px;
+  display: inline-block;
+  margin: 0 8px;
 }

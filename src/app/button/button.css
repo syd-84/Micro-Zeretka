@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+button {
+  width: 100%;
+  height: 40px;
+  color: var(--bg-card);
+  background-color: var(--color-primary);
+  text-decoration: none;
+  line-height: normal;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition-duration: .2s;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+
+button:hover {
+  background-color: var(--color-primary-hover);
+  transition-duration: .2s;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
