@@ -75,14 +75,15 @@ button {
   transition-timing-function: ease-in-out;
 }
 
-button:disabled {
+button:disabled,
+button:disabled:hover {
   background-color: var(--text-muted);
 }
 
 button:hover {
   background-color: var(--color-primary-hover);
   transition-duration: .2s;
-  transition-property: color, background-color, border-color;
+  /* transition-property: color, background-color, border-color; */
   transition-timing-function: ease-in-out;
 }
 
