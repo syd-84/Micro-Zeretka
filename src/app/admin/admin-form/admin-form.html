@@ -64,7 +64,7 @@
     </div>
 
     <div>
-      <button type="reset" [disabled]="adminFormControl.valid?false:true" (click)="onClick()">Додати</button>
+      <app-button type="reset" [disabled]=adminFormControl.valid?false:true (click)="onClick()">Додати</app-button>
     </div>
   </div>
 </form>

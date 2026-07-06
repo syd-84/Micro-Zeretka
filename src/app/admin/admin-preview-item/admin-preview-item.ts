@@ -1,4 +1,4 @@
-import { Component, inject, input, output, Output } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Goods, GoodsType } from '../../services/goods';
 import { Button } from "../../button/button";
 

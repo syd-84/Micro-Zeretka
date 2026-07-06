@@ -9,11 +9,20 @@ export type GoodsType = {
   category: string,
 }
 
+export type CommentType = {
+  commentText: string | null,
+  date: Date,
+  productId: string | undefined,
+  userId: string,
+}
+
 @Injectable({
   providedIn: 'root',
 })
 
 export class Goods {
+
+  // -------------- goods -------------------
 
   goods: GoodsType[] = [
     {
@@ -120,9 +129,18 @@ export class Goods {
     this.currentGoods.update(goods => goods.filter(el => el.id !== id))
   }
 
-  // constructor() {
-  //   setInterval(() => {
-  //     console.log(this.curentGoods())
-  //   }, 1000)
-  // }
+
+  // ------------ comments --------------
+
+  comments: CommentType[] = [];
+
+  addComment(text: string | null, productId: string | undefined) {
+    let commmentObj = {
+      commentText: text,
+      date: new Date(),
+      productId: productId,
+      userId: "randonUserID",
+    }
+    this.comments.push(commmentObj)
+  }
 }

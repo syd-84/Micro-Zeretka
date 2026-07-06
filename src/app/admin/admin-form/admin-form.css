@@ -48,7 +48,6 @@ select {
   padding: 8px;
   margin-right: 8px;
   border-radius: 4px;
-  border-radius: 4px;
   border: 1px solid var(--text-muted);
   box-sizing: border-box;
 }
@@ -58,7 +57,7 @@ div:last-child input {
   margin-right: 8px;
 }
 
-button {
+/* button {
   padding: 8px;
   box-sizing: border-box;
   color: var(--bg-card);
@@ -89,7 +88,7 @@ button:hover {
 
 button:disabled:hover {
   scale: 1;
-}
+} */
 
 .ng-invalid.ng-touched {
   border: 1px solid var(--color-danger);

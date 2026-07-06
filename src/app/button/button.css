@@ -25,3 +25,7 @@ button:hover {
   transition-property: color, background-color, border-color;
   transition-timing-function: ease-in-out;
 }
+
+button:disabled {
+  background-color: var(--text-muted);
+}

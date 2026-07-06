@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { ɵEmptyOutletComponent } from "@angular/router";
 
 @Component({
@@ -7,4 +7,7 @@ import { ɵEmptyOutletComponent } from "@angular/router";
   templateUrl: './button.html',
   styleUrl: './button.css',
 })
-export class Button { }
+export class Button {
+  type = input()
+  disabled = input()
+}
