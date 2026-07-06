@@ -1,0 +1,27 @@
+@if(comments.length!==0){
+<div>
+  <h4>
+    Відгуки
+  </h4>
+  <div class="commentsList">
+    @for (item of comments; track $index) {
+    <app-comments-list [data]="item"></app-comments-list>
+    }
+  </div>
+</div>
+}
+
+<div>
+  <form [formGroup]="commentControl">
+    <h4>
+      Написати відгук
+    </h4>
+    <div class="addComment">
+      <textarea formControlName="comment"></textarea>
+      @if(commentControl.invalid && commentControl.touched){
+      <p class="inform">Обов'язкове поле</p>
+      }
+    </div>
+    <app-button [style.width.px]="180" (click)="addComment()" [type]="'reset'">Додати відгук</app-button>
+  </form>
+</div>

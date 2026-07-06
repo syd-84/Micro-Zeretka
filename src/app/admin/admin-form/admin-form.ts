@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, ValueChangeEvent } from '@angular/forms';
 import { imageUrlValidator } from '../../shared/image-url-validator.directive';
 import { Goods, GoodsType } from '../../services/goods';
+import { Button } from "../../button/button";
 
 @Component({
   selector: 'app-admin-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, Button],
   templateUrl: './admin-form.html',
   styleUrl: './admin-form.css',
 })

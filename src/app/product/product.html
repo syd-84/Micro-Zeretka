@@ -1,0 +1,22 @@
+<div class="data">
+  <div>
+    <img [src]="product.imgSrc" alt="image">
+  </div>
+
+  <div>
+    <h3>{{product.name}}</h3>
+    <div>
+      <p class="price">{{product.price}} ₴</p>
+      <app-button>Купити</app-button>
+      <app-button>Назад</app-button>
+    </div>
+  </div>
+</div>
+
+
+<div class="description">
+  <div>Опис</div>
+  <div>{{product.description}}</div>
+</div>
+
+<app-comments [productId]="product.id"></app-comments>
