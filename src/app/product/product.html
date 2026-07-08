@@ -1,14 +1,14 @@
 <div class="data">
   <div>
-    <img [src]="product.imgSrc" alt="image">
+    <img [src]="product?.imgSrc" alt="image">
   </div>
 
   <div>
-    <h3>{{product.name}}</h3>
+    <h3>{{product?.name}}</h3>
     <div>
-      <p class="price">{{product.price}} ₴</p>
+      <p class="price">Ціна: {{product?.price}} ₴</p>
       <app-button>Купити</app-button>
-      <app-button>Назад</app-button>
+      <app-button (click)="goToMainPage()">Назад</app-button>
     </div>
   </div>
 </div>
@@ -16,7 +16,7 @@
 
 <div class="description">
   <div>Опис</div>
-  <div>{{product.description}}</div>
+  <div>{{product?.description}}</div>
 </div>
 
-<app-comments [productId]="product.id"></app-comments>
+<app-comments [productId]="product?.id"></app-comments>

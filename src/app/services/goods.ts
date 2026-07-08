@@ -10,6 +10,7 @@ export type GoodsType = {
 }
 
 export type CommentType = {
+  id: string,
   commentText: string | null,
   date: Date,
   productId: string | undefined,
@@ -131,16 +132,16 @@ export class Goods {
 
 
   // ------------ comments --------------
-
-  comments: CommentType[] = [];
+  comments = signal<CommentType[]>([]);
 
   addComment(text: string | null, productId: string | undefined) {
     let commmentObj = {
+      id: crypto.randomUUID(),
       commentText: text,
       date: new Date(),
       productId: productId,
       userId: "randonUserID",
     }
-    this.comments.push(commmentObj)
+    this.comments.update(arr => [...arr, commmentObj])
   }
 }

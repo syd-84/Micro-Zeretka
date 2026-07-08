@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  text-align: center;
+}
+
+p:nth-child(1) {
+  color: var(--color-danger);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+p:nth-child(2) {
+  font-size: 36px;
+  font-weight: 400;
+}
+
+p:nth-child(3) {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+app-button {
+  width: 300px;
+  margin: 0 auto;
+}

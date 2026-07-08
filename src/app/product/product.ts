@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { Goods } from '../services/goods';
+import { Goods, GoodsType } from '../services/goods';
 import { Button } from "../button/button";
 import { Comments } from "./comments/comments";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -11,10 +12,20 @@ import { Comments } from "./comments/comments";
 })
 export class Product {
   goods = inject(Goods);
+  activeRoute = inject(ActivatedRoute);
+  router = inject(Router)
 
-  product = this.goods.goods[0];
+  product?: GoodsType | undefined;
 
-  // constructor() {
-  //   console.log(this.product)
-  // }
+  goToMainPage() {
+    this.router.navigate([''])
+  }
+
+  constructor() {
+    this.product = this.goods.goods[0];
+
+    this.activeRoute.params.subscribe(params => {
+      this.product = this.goods.currentGoods().find(el => el.id === params['id'])
+    })
+  }
 }

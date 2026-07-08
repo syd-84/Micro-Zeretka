@@ -1,27 +1,32 @@
 :host {}
 
 .data {
-  width: 100%;
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto 16px auto;
   display: flex;
   justify-content: center;
   gap: 16px;
-  padding: 16px;
-  box-sizing: border-box;
 }
 
 img {
-  width: 500px;
+  width: 100%;
   border-radius: 16px;
 }
 
+.data>div {
+  flex: 1 1 0;
+}
 
 h3 {
-  margin: 0;
+  width: auto;
+  margin: 0 auto;
   padding: 16px;
   box-sizing: border-box;
   background-color: var(--bg-card);
   border-radius: 16px;
   font-size: 16px;
+  text-align: center;
 }
 
 .price {

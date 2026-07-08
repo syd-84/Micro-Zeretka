@@ -7,3 +7,8 @@
   align-items: flex-start;
   gap: 24px;
 }
+
+app-admin-form,
+app-admin-list {
+  width: 50%;
+}
