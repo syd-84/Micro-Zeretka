@@ -1,10 +1,11 @@
 import { Component, inject, input } from '@angular/core';
 import { Goods, GoodsType } from '../../services/goods';
 import { Button } from "../../button/button";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-admin-preview-item',
-  imports: [Button],
+  imports: [Button, RouterLink],
   templateUrl: './admin-preview-item.html',
   styleUrl: './admin-preview-item.css',
 })

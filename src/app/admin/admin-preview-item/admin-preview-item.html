@@ -3,7 +3,7 @@
     <img [src]="data()?.imgSrc" alt="">
   </div>
   <div>
-    <a href=""> {{data()?.name}} </a>
+    <a [routerLink]="['item/', data()?.id]"> {{data()?.name}} </a>
   </div>
 </div>
 <div class="inline">
@@ -16,7 +16,9 @@
 
 <div [className]="hidden===true?'hidden': 'specification'">
   <div>
-    Ви справді хочете видалити {{data()?.name}}
+    Ви справді хочете видалити
+    <br>
+    {{data()?.name}}
     <div>
       <app-button (click)="delElement(data()?.id)">Так</app-button>
       <app-button (click)="onClick()">Ні</app-button>

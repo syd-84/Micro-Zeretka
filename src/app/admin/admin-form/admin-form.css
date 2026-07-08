@@ -57,28 +57,6 @@ div:last-child input {
   margin-right: 8px;
 }
 
-/* button {
-  padding: 8px;
-  border-radius: 4px;
-  box-sizing: border-box;
-  border: none;
-  background-color: var(--color-primary);
-  color: var(--text-on-primary);
-}
-
-button:disabled {
-  background-color: var(--text-muted);
-}
-
-button:hover {
-  scale: 1.05;
-  transition: 0.4s;
-}
-
-button:disabled:hover {
-  scale: 1;
-} */
-
 .ng-invalid.ng-touched {
   border: 1px solid var(--color-danger);
 }
@@ -101,4 +79,9 @@ div:has(textarea) {
   position: absolute;
   bottom: -20px;
   color: var(--color-danger);
+}
+
+app-svg-icon {
+  width: 14px;
+  height: 14px;
 }

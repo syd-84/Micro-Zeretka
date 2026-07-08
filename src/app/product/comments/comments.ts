@@ -24,8 +24,4 @@ export class Comments {
       this.goods.addComment(this.commentControl.controls.comment.value, this.productId())
     }
   }
-
-  ngOnInit() {
-    console.log(this.productId());
-  }
 }
