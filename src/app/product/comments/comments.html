@@ -1,10 +1,10 @@
-@if(comments.length!==0){
+@if(commentForCurrentProduct().length!==0){
 <div>
   <h4>
     Відгуки
   </h4>
   <div class="commentsList">
-    @for (item of comments; track $index) {
+    @for (item of commentForCurrentProduct(); track item.id) {
     <app-comments-list [data]="item"></app-comments-list>
     }
   </div>

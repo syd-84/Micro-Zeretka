@@ -1,7 +1,7 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, computed, inject, input, isSignal, signal } from '@angular/core';
 import { Button } from "../../button/button";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Goods } from '../../services/goods';
+import { CommentType, Goods } from '../../services/goods';
 import { CommentsList } from "./comments-list/comments-list";
 
 @Component({
@@ -13,7 +13,15 @@ import { CommentsList } from "./comments-list/comments-list";
 export class Comments {
   productId = input<string>();
   goods = inject(Goods);
-  comments = this.goods.comments;
+  comments = computed(() => this.goods.comments());
+
+  commentForCurrentProduct = computed<CommentType[]>(() => {
+    const currentId = this.productId();
+
+    if (!currentId) return [];
+
+    return this.goods.comments().filter(el => el.productId === currentId);
+  })
 
   commentControl = new FormGroup({
     comment: new FormControl('', [Validators.required])
