@@ -7,7 +7,7 @@
     <h3>{{product?.name}}</h3>
     <div>
       <p class="price">Ціна: {{product?.price}} ₴</p>
-      <app-button>Купити</app-button>
+      <app-button (click)="addToCart(product!)">{{goods.cartGoods().some(el=>el.product===product)?'Додано до кошика':'Купити'}}</app-button>
       <app-button (click)="goToMainPage()">Назад</app-button>
     </div>
   </div>

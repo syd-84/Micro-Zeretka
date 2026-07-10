@@ -21,6 +21,10 @@ export class Product {
     this.router.navigate([''])
   }
 
+  addToCart(prod: GoodsType) {
+    this.goods.addToCart(prod)
+  }
+
   constructor() {
     this.product = this.goods.goods[0];
 

@@ -126,8 +126,24 @@ export class Goods {
 
   currentGoods = signal(this.goods);
 
+  cartGoods = signal<{ id: string, product: GoodsType }[]>([]);
+
+  addToCart(item: GoodsType) {
+    const itemIndex = this.cartGoods().findIndex(el => el.product === item)
+
+    if (itemIndex == -1) {
+      const cartItem = {
+        id: crypto.randomUUID(),
+        product: item,
+      }
+
+      this.cartGoods.update(arr => [...arr, cartItem])
+    }
+  }
+
   delGoods(id: string | undefined) {
     this.currentGoods.update(goods => goods.filter(el => el.id !== id))
+    this.cartGoods.update(goods => goods.filter(el => el.product.id !== id))
   }
 
 
