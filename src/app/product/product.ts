@@ -22,7 +22,7 @@ export class Product {
   }
 
   addToCart(prod: GoodsType) {
-    this.goods.addToCart(prod)
+    this.goods.addProductToCart(prod)
   }
 
   constructor() {
@@ -31,5 +31,9 @@ export class Product {
     this.activeRoute.params.subscribe(params => {
       this.product = this.goods.currentGoods().find(el => el.id === params['id'])
     })
+
+    window.scrollTo({
+      top: 0,
+    });
   }
 }

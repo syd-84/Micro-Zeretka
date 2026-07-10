@@ -12,7 +12,7 @@ export type GoodsType = {
 export type CommentType = {
   id: string,
   commentText: string | null,
-  date: Date,
+  date: string,
   productId: string | undefined,
   userId: string,
 }
@@ -128,7 +128,7 @@ export class Goods {
 
   cartGoods = signal<{ id: string, product: GoodsType }[]>([]);
 
-  addToCart(item: GoodsType) {
+  addProductToCart(item: GoodsType) {
     const itemIndex = this.cartGoods().findIndex(el => el.product === item)
 
     if (itemIndex == -1) {
@@ -137,13 +137,16 @@ export class Goods {
         product: item,
       }
 
-      this.cartGoods.update(arr => [...arr, cartItem])
+      this.cartGoods.update(arr => [...arr, cartItem]);
     }
   }
 
   delGoods(id: string | undefined) {
-    this.currentGoods.update(goods => goods.filter(el => el.id !== id))
-    this.cartGoods.update(goods => goods.filter(el => el.product.id !== id))
+    this.currentGoods.update(goods => goods.filter(el => el.id !== id));
+    this.cartGoods.update(goods => goods.filter(el => el.product.id !== id));
+    this.comments.update(comments => comments.filter(comment => comment.productId !== id));
+    localStorage.setItem('goods', JSON.stringify(this.currentGoods()));
+    localStorage.setItem('comments', JSON.stringify(this.comments()));
   }
 
 
@@ -154,10 +157,11 @@ export class Goods {
     let commmentObj = {
       id: crypto.randomUUID(),
       commentText: text,
-      date: new Date(),
+      date: JSON.stringify(new Date()),
       productId: productId,
-      userId: "randonUserID",
+      userId: "User",
     }
     this.comments.update(arr => [...arr, commmentObj])
+    localStorage.setItem('comments',JSON.stringify(this.comments()))
   }
 }

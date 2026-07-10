@@ -11,5 +11,9 @@ import { AdminList } from './admin-list/admin-list';
 })
 
 export class Admin {
-
+  constructor() {
+    window.scrollTo({
+      top: 0,
+    });
+  }
 }
