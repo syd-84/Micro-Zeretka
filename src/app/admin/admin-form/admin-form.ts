@@ -33,7 +33,7 @@ export class AdminForm {
 
   categoriesGoods = this.goods.categoriesGoods;
 
-  onClick() {
+  addProduct() {
     let newGoods: GoodsType;
     newGoods = {
       id: crypto.randomUUID(),
