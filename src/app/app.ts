@@ -1,14 +1,24 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Admin } from './admin/admin';
-import { Product } from "./product/product";
+import { Goods } from './services/goods';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Admin, Product],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('Micro-Zeretka');
+goods=inject(Goods)
+  ngOnInit() {
+    if (!localStorage.getItem('goods')) {
+      localStorage.clear();
+      localStorage.setItem('goods', JSON.stringify(this.goods.goods));
+      localStorage.setItem('comments', '[]');
+    } else {
+      this.goods.currentGoods.set(JSON.parse(localStorage.getItem('goods')!));
+      this.goods.comments.set(JSON.parse(localStorage.getItem('comments')!));
+    }
+  }
 }
