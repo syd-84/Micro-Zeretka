@@ -108,7 +108,7 @@ export class Goods {
     },
     {
       id: crypto.randomUUID(),
-      name: "Паперові рушники Ruta Professiona",
+      name: "Паперові рушники Ruta Professional",
       description: "Виготовлені з сировини з переважанням хвойної целюлози, що надає паперовим рушникам усі необхідні якості: добре вбирають рідину, міцні, не прилипає до харчових продуктів.",
       imgSrc: "https://content.rozetka.com.ua/goods/images/big/279976798.jpg",
       price: 159,
@@ -162,6 +162,6 @@ export class Goods {
       userId: "User",
     }
     this.comments.update(arr => [...arr, commmentObj])
-    localStorage.setItem('comments',JSON.stringify(this.comments()))
+    localStorage.setItem('comments', JSON.stringify(this.comments()))
   }
 }

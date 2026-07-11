@@ -1,16 +1,17 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Goods } from './services/goods';
+import { Search } from "./search/search";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Search],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('Micro-Zeretka');
-goods=inject(Goods)
+  goods = inject(Goods)
   ngOnInit() {
     if (!localStorage.getItem('goods')) {
       localStorage.clear();

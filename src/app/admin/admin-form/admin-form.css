@@ -2,15 +2,19 @@
   max-width: 600px;
   width: 40%;
   display: block;
-  padding: 24px;
-  box-sizing: border-box;
-  background-color: var(--bg-card);
-  border-radius: 12px;
-  margin-top: 64px;
+
 }
 
 h3 {
   text-align: center;
+  margin-top: 0;
+}
+
+form {
+  background-color: var(--bg-card);
+  padding: 24px;
+  box-sizing: border-box;
+  border-radius: 12px;
 }
 
 p {
@@ -18,11 +22,16 @@ p {
 }
 
 div {
-  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+div:last-child {
+  margin-bottom: 0;
 }
 
 div:last-child div {
   display: inline-block;
+  margin-bottom: 0;
 }
 
 input {
@@ -52,6 +61,10 @@ select {
   box-sizing: border-box;
 }
 
+.currency {
+  border: 1px solid var(--color-success);
+}
+
 div:last-child input {
   width: 100px;
   margin-right: 8px;
@@ -61,7 +74,12 @@ div:last-child input {
   border: 1px solid var(--color-danger);
 }
 
-form.ng-invalid.ng-touched {
+.ng-valid.ng-touched {
+  border: 1px solid var(--color-success);
+}
+
+form.ng-invalid.ng-touched,
+form.ng-valid.ng-touched {
   border: none;
 }
 
@@ -84,4 +102,8 @@ div:has(textarea) {
 app-svg-icon {
   width: 14px;
   height: 14px;
+}
+
+textarea {
+  font-size: 13px;
 }

@@ -1,12 +1,12 @@
 :host {
   display: block;
   border-radius: 12px;
-  padding: 24px;
   box-sizing: border-box;
 }
 
 h3 {
   margin: 0;
+  text-align: center;
 }
 
 p {

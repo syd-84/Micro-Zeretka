@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  width: 400px;
+  height: auto;
+  background-color: var(--bg-card);
+  border-radius: 8px;
+}
+
+.search_block {
+  display: flex;
+  align-items: center;
+}
+
+input {
+  width: auto;
+  height: 25px;
+  flex-grow: 1;
+  border: none;
+  outline: none;
+}
+
+svg {
+  stroke: var(--text-secondary);
+}
+
+.hidden {
+  display: none;
+}

@@ -1,9 +1,9 @@
-<form [formGroup]="adminFormControl">
-  <h3>Додати товар</h3>
+<h3>Додати товар</h3>
 
+<form [formGroup]="adminFormControl">
   <div>
     <p>Назва товару</p>
-    <input type="text" formControlName="name">
+    <input type="text" formControlName="name" placeholder="Введіть назву товару">
     @if (adminFormControl.controls.name.hasError('required') && adminFormControl.controls.name.touched) {
     <p [className]="'inform'">Обов'язкове поле</p>
     }
@@ -15,7 +15,7 @@
 
   <div>
     <p>Опис товару</p>
-    <textarea name="" id="" formControlName="description"></textarea>
+    <textarea name="" id="" formControlName="description" placeholder="Опис товару"></textarea>
     @if (adminFormControl.controls.description.hasError('required') && adminFormControl.controls.description.touched) {
     <p [className]="'inform'">Обов'язкове поле</p>
     }
@@ -26,7 +26,7 @@
 
   <div>
     <p>Зображення</p>
-    <input type="text" formControlName="imgSrc">
+    <input type="text" formControlName="imgSrc" placeholder="Посилання на зображення">
     @if (adminFormControl.controls.imgSrc.hasError('required') && adminFormControl.controls.imgSrc.touched) {
     <p [className]="'inform'">Обов'язкове поле</p>
     }
@@ -38,9 +38,9 @@
   <div>
     <div>
       <p>Ціна</p>
-      <input type="text" formControlName="price">
+      <input type="text" formControlName="price" placeholder="Введіть ціну">
 
-      <select name="" id="" formControlName="currency">
+      <select class="currency" id="" formControlName="currency">
         <option value="UAH" selected>UAH - ₴</option>
         <option value="USD">USD - $</option>
         <option value="EUR">EUR - €</option>
