@@ -1,0 +1,78 @@
+<header class="rozetka-header">
+  <div class="header-container">
+
+    <button class="burger-btn" (click)="toggleMenu()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="logo">
+      <span class="logo-icon">🟢</span>
+      <span class="logo-text">ROZETKA</span>
+    </div>
+
+    <!-- Кнопка Каталог -->
+    <button class="catalog-btn">
+      <span class="catalog-icon">☰</span> Каталог
+    </button>
+
+    <!-- <div class="search-wrapper">
+      <input 
+        type="text" 
+        placeholder="Я шукаю..." 
+        [(ngModel)]="searchQuery" 
+        (keyup.enter)="onSearch()"
+        class="search-input"
+      />
+      <button class="search-btn" (click)="onSearch()">Знайти</button>
+    </div> -->
+
+    <div class="search-wrapper">
+      <app-search></app-search>
+    </div>
+
+
+    <div class="header-actions">
+      <button class="action-icon">👤</button>
+      <button class="action-icon">⚖️</button>
+      <button class="action-icon">🛒</button>
+    </div>
+
+  </div>
+</header>
+
+<div class="sidebar-backdrop" *ngIf="isMenuOpen" (click)="toggleMenu()"></div>
+
+<div class="sidebar" [class.open]="isMenuOpen">
+  <div class="sidebar-header">
+    <div class="logo">
+      <span class="logo-icon">🟢</span>
+      <span class="logo-text">ROZETKA</span>
+    </div>
+    <button class="close-btn" (click)="toggleMenu()">✕</button>
+  </div>
+
+  <div class="sidebar-content">
+    <button class="sidebar-catalog-btn">🟢 Каталог товарів</button>
+
+    <ul class="menu-list">
+      <li>🛒 Кошик</li>
+      <li>⚖️ Списки порівнянь</li>
+      <li>📍 Київ</li>
+      <li>📞 Чат з ROZETKA</li>
+      <li>🏢 Магазини Rozetka</li>
+    </ul>
+
+    <hr />
+
+    <ul class="menu-sublist">
+      <li>Інформація про компанію</li>
+      <li>Про нас</li>
+      <li>Умови використання сайту</li>
+      <li>Контакти</li>
+    </ul>
+  </div>
+</div>
