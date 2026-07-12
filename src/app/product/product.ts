@@ -26,8 +26,6 @@ export class Product {
   }
 
   constructor() {
-    this.product = this.goods.goods[0];
-
     this.activeRoute.params.subscribe(params => {
       this.product = this.goods.currentGoods().find(el => el.id === params['id'])
     })

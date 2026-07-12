@@ -61,3 +61,7 @@ app-search-item {
 app-search-item:last-child {
   border-bottom: none;
 }
+
+app-button {
+  z-index: 10;
+}

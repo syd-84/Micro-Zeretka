@@ -1,0 +1,5 @@
+<p>Результати пошуку «{{text()}}»</p>
+@for (item of searchGoods(); track $index) {
+<app-search-page-item [data]="item"></app-search-page-item>
+}
+<app-button (click)="goToMainPage()">На головну сторінку</app-button>

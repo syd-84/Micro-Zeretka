@@ -3,6 +3,7 @@ import { Admin } from './admin/admin';
 import { Product } from './product/product';
 import { Page404 } from './page404/page404';
 import { productExistsGuard } from './product-exists-guard';
+import { SearchPage } from './search-page/search-page';
 
 export const routes: Routes = [
   {
@@ -13,6 +14,10 @@ export const routes: Routes = [
     path: "item/:id",
     component: Product,
     canActivate: [productExistsGuard],
+  },
+  {
+    path: "search",
+    component: SearchPage,
   },
   {
     path: "page-404",

@@ -1,0 +1,56 @@
+:host {
+  display: flex;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-card);
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.image {
+  width: 100px;
+}
+
+.data {
+  flex-grow: 1;
+  font-size: 12px;
+}
+
+.data>p {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.data>div {
+  margin-top: 14px;
+}
+
+svg {
+  width: 14px;
+  height: 14px;
+}
+
+.price {
+  width: 70px;
+}
+
+.button {
+  width: 90px;
+}
+
+.hidden {
+  display: none;
+}

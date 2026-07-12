@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { Button } from "../button/button";
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { timeInterval } from 'rxjs';
 import { Goods, GoodsType } from '../services/goods';
 import { SearchItem } from "./search-item/search-item";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -16,14 +16,15 @@ export class Search {
   goods = inject(Goods);
   searchedGoods = signal<GoodsType[]>([]);
   hideSearchList = true;
+  router = inject(Router);
 
   timer = 0;
 
-  searchGoods(searchText: string) {
+  searchGoods(searchText: string | null) {
     let res: GoodsType[] = [];
-    if (searchText.trim() !== '') {
+    if (searchText) {
       for (const element of this.goods.currentGoods()) {
-        if (element.name.toLocaleLowerCase().includes(searchText.trim().toLocaleLowerCase())) {
+        if (element.name.toLocaleLowerCase().includes(searchText!.trim().toLocaleLowerCase())) {
           res.push(element)
         }
         if (res.length === 5) break
@@ -39,7 +40,7 @@ export class Search {
     }
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
-      this.searchedGoods.set(this.searchGoods(this.inputControl.value!));
+      this.searchedGoods.set(this.searchGoods(this.inputControl.value));
       this.searchedGoods().length === 0 ? this.hideSearchList = true : this.hideSearchList = false;
     }, 1000)
   }
@@ -51,5 +52,14 @@ export class Search {
   onItemClick() {
     this.inputControl.reset();
     this.hideSearchList = true;
+  }
+
+  goToSearch() {
+    const query = this.inputControl.value
+    if (query) {
+      this.hideSearchList = true;
+      this.inputControl.reset();
+      this.router.navigate(['search'], { queryParams: { text: query } })
+    }
   }
 }

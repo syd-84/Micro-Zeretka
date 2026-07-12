@@ -9,7 +9,7 @@
     class="{{inputControl.valid?'':'hidden'}}" (click)="inputControl.reset()">
     <path d="M18 6L6 18M18 18L6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
   </svg>
-  <app-button>Знайти</app-button>
+  <app-button (click)="goToSearch()">Знайти</app-button>
 </div>
 
 <div class="search_list" [class.hidden]="hideSearchList">

@@ -1,0 +1,35 @@
+<div class="image">
+  <img [src]="data()?.imgSrc" alt="image">
+</div>
+
+<div class="data">
+  <a [routerLink]="['../item/',data()?.id]">{{data()?.name}}</a>
+  <div>
+    <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+      <use href="icons.svg#star-icon"></use>
+    </svg>
+    <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+      <use href="icons.svg#star-icon"></use>
+    </svg>
+    <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+      <use href="icons.svg#star-icon"></use>
+    </svg>
+    <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+      <use href="icons.svg#star-icon"></use>
+    </svg>
+    <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+      <use href="icons.svg#star-icon"></use>
+    </svg>
+  </div>
+  <p>Готовий до відправлення</p>
+</div>
+
+<div class="price">
+  <p>{{data()?.price}} грн</p>
+</div>
+
+<div>
+  <app-button class="button" (click)="addToCart(data())">
+    {{goods.cartGoods().some(el=>el.product===data())?'В кошику':'Купити'}}
+  </app-button>
+</div>
