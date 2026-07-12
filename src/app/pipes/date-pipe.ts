@@ -4,12 +4,14 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'date',
 })
 export class DatePipe implements PipeTransform {
-  transform(date: String | undefined): string {
-    const year = date?.slice(1, 5);
-    const month = date?.slice(6, 8);
-    const day = date?.slice(9, 11);
-    const time=date?.slice(12,17)
-    
+  transform(num: String | undefined): string {
+    const date = new Date(Number(num))
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
     const monthStr = [
       'січ',
       'лют',
@@ -25,6 +27,6 @@ export class DatePipe implements PipeTransform {
       'гру',
     ]
 
-    return `${year}-${monthStr[Number(month)-1]}-${day} ${time}`;
+    return `${year}-${monthStr[Number(month)]}-${day}, ${hours}:${minutes}`;
   }
 }

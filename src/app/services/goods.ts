@@ -12,7 +12,7 @@ export type GoodsType = {
 export type CommentType = {
   id: string,
   commentText: string | null,
-  date: string,
+  date: number,
   productId: string | undefined,
   userId: string,
 }
@@ -154,10 +154,11 @@ export class Goods {
   comments = signal<CommentType[]>([]);
 
   addComment(text: string | null, productId: string | undefined) {
+    const date = Date.now();
     let commmentObj = {
       id: crypto.randomUUID(),
       commentText: text,
-      date: JSON.stringify(new Date()),
+      date: date,
       productId: productId,
       userId: "User",
     }
