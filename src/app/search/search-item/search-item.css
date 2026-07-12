@@ -15,7 +15,8 @@ img {
 }
 
 a {
-  display: block;
+  display: flex;
+  gap: 8px;
   width: 100%;
   text-decoration: none;
   color: var(--text-primary);

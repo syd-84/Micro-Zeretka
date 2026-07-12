@@ -11,11 +11,17 @@
 }
 
 img {
-  height: 100px;
+  width: 50px;
 }
 
 a {
   color: var(--text-primary);
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .inline:nth-child(2) {
