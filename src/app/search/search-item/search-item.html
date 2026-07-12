@@ -1,0 +1,10 @@
+<a [routerLink]="['/item', data()?.id]">
+  <div>
+    <img [src]="data()?.imgSrc" alt="image">
+  </div>
+
+  <div>
+    <p>{{data()?.name}}</p>
+    <p>{{data()?.price}}</p>
+  </div>
+</a>
