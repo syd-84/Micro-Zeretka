@@ -29,14 +29,14 @@
   /* Тонкі рамки та розділювачі */
   --border-light: #E5E5E5;
   /* Сірий напівпрозорий фон */
-  --bg-gray-translucent: #7978783c;
+  --bg-gray-translucent: #79787879;
 
   /* Шрифти */
   --rz-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-  max-width: 1600px;
+  /* max-width: 1600px; */
   width: 100%;
   margin: 0 auto;
   color: var(--text-primary);

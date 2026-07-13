@@ -10,8 +10,12 @@
     </button>
 
     <div class="logo">
-      <span class="logo-icon">🟢</span>
-      <span class="logo-text">ROZETKA</span>
+      <span class="logo-icon">
+        <svg>
+          <use href="icons.svg#logo"></use>
+        </svg>
+      </span>
+      <span class="logo-text">Micro-ZERETKA</span>
     </div>
 
     <!-- Кнопка Каталог -->
@@ -49,14 +53,23 @@
 <div class="sidebar" [class.open]="isMenuOpen">
   <div class="sidebar-header">
     <div class="logo">
-      <span class="logo-icon">🟢</span>
+      <span class="logo-icon">
+        <svg>
+          <use href="icons.svg#logo"></use>
+        </svg>
+      </span>
       <span class="logo-text">ROZETKA</span>
     </div>
     <button class="close-btn" (click)="toggleMenu()">✕</button>
   </div>
 
   <div class="sidebar-content">
-    <button class="sidebar-catalog-btn">🟢 Каталог товарів</button>
+    <button class="sidebar-catalog-btn">
+      <svg>
+        <use href="icons.svg#logo"></use>
+      </svg>
+      Каталог товарів
+    </button>
 
     <ul class="menu-list">
       <li>🛒 Кошик</li>

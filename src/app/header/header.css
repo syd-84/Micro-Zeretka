@@ -1,3 +1,9 @@
+:host {
+  width: 100vw;
+  height: auto;
+  background-color: #221f1f;
+}
+
 .rozetka-header {
   background-color: #221f1f;
   color: white;
@@ -12,6 +18,7 @@
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 20px;
 }
@@ -27,10 +34,9 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-weight: bold;
-  font-size: 22px;
-  letter-spacing: 1px;
+  gap: 4px;
+  font-weight: 600;
+  font-size: 20px;
 }
 
 .catalog-btn {
@@ -47,10 +53,10 @@
 }
 
 .search-wrapper {
-  flex-grow: 1;
+  flex: 1 1 0;
   display: flex;
   border-radius: 4px;
-  max-width: 700px;
+  /* max-width: 700px; */
 }
 
 /* .search-input {
@@ -152,6 +158,9 @@
   font-weight: bold;
   cursor: pointer;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .menu-list,
@@ -178,4 +187,16 @@
 .menu-list li:hover,
 .menu-sublist li:hover {
   color: #00a046;
+}
+
+.logo-icon>svg {
+  width: 20px;
+  height: 20px;
+  transform: translateY(2px);
+}
+
+.sidebar-catalog-btn>svg {
+  width: 20px;
+  height: 20px;
+  transform: translateX(-4px);
 }
