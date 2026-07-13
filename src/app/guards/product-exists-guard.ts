@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { Goods } from './services/goods';
+import { Goods } from '../services/goods';
 
 export const productExistsGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);

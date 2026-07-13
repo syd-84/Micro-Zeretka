@@ -2,14 +2,15 @@ import { Routes } from '@angular/router';
 import { Admin } from './admin/admin';
 import { Product } from './product/product';
 import { Page404 } from './page404/page404';
-import { productExistsGuard } from './product-exists-guard';
+import { productExistsGuard } from './guards/product-exists-guard';
 import { SearchPage } from './search-page/search-page';
 import { Login } from './login/login';
+import { passGuard } from './guards/password-guard';
 
 export const routes: Routes = [
   {
     path: "",
-    component: Admin
+    component: Login
   },
   {
     path: "item/:id",
@@ -27,6 +28,7 @@ export const routes: Routes = [
   {
     path: "admin",
     component: Admin,
+    canActivate: [passGuard],
   },
   {
     path: "page-404",
