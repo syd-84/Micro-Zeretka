@@ -25,6 +25,10 @@ export const routes: Routes = [
     component: Login,
   },
   {
+    path: "admin",
+    component: Admin,
+  },
+  {
     path: "page-404",
     component: Page404
   },

@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="wrapper">
+  <div class="head">
+    <h3>Вхід</h3>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4L4 20M20 20L4 4" stroke="black" stroke-width="2" stroke-linecap="round" />
+    </svg>
+  </div>
+
+  <hr>
+
+  <div>
+    <p>Пароль</p>
+    <input type="password" [formControl]="passwordControl">
+    <app-button (click)="enter()"> Увійти </app-button>
+  </div>
+</div>
