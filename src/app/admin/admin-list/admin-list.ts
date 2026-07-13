@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Goods } from '../../services/goods';
 import { AdminPreviewItem } from '../admin-preview-item/admin-preview-item';
 

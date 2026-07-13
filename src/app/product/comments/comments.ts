@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, isSignal, signal } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { Button } from "../../button/button";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommentType, Goods } from '../../services/goods';

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminForm } from './admin-form/admin-form';
 import { AdminList } from './admin-list/admin-list';

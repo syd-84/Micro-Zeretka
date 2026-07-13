@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators, ValueChangeEvent } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { imageUrlValidator } from '../../shared/image-url-validator.directive';
 import { Goods, GoodsType } from '../../services/goods';
 import { Button } from "../../button/button";

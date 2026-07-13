@@ -1,7 +1,7 @@
 import { Component, computed, inject, Query, signal } from '@angular/core';
 import { Button } from "../button/button";
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, queue, Subscribable, Subscriber, Subscription } from 'rxjs';
+import { map } from 'rxjs';
 import { Goods, GoodsType } from '../services/goods';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { SearchPageItem } from "./search-page-item/search-page-item";
