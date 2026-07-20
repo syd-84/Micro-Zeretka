@@ -44,7 +44,7 @@
             <use href="icons.svg#icon-wallet"></use>
           </svg>
         </div>
-        <div class="payment-item-text">
+        <div class="payment-item-text" (mouseenter)="changeHeight($event)" (mouseleave)="changeHeightBack($event)">
           <span>Оплата.</span> Оплата під час отримання товару, Оплатити зараз Карткою Rozetka, Карткою онлайн, Apple
           Pay, Google Pay, Безготівковими для юридичних осіб, Оплата карткою державної
           допомоги «Пакунок малюка» або «Допомога до року 7000 грн», Безготівковий для фізичних осіб, Visa, Mastercard
@@ -59,7 +59,7 @@
             <use href="icons.svg#icon-warranty"></use>
           </svg>
         </div>
-        <div class="payment-item-text">
+        <div class="payment-item-text" (mouseenter)="changeHeight($event)" (mouseleave)="changeHeightBack($event)">
           <span>Гарантія.</span> 12 місяців офіційної гарантії від виробника. Обмін/повернення товару впродовж 14 днів.
         </div>
       </div>

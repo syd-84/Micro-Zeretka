@@ -95,7 +95,7 @@ h3 {
   padding: 16px;
   box-sizing: border-box;
   background-color: var(--bg-card);
-  border: 2px solid var(--text-primary);
+  border: 2px solid var(--text-secondary);
   border-radius: 16px;
 }
 
@@ -112,17 +112,34 @@ h3 {
 .payment-item-svg svg {
   width: 32px;
   height: 32px;
+  fill: var(--text-secondary);
 }
 
 .payment-item-text {
+  height: 54px;
+  overflow: hidden;
   padding: 8px;
   box-sizing: border-box;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  transition: height 0.5s ease-in-out;
+}
+
+.payment-item-text:hover {
+  display: block;
+  -webkit-line-clamp: unset;
 }
 
 .payment hr {
   height: 2px;
   border: none;
-  background-color: var(--text-primary);
+  background-color: var(--text-secondary);
+}
+
+.payment span {
+  font-weight: 600;
 }
 
 .description {

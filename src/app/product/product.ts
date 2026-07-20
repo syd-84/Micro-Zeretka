@@ -25,6 +25,22 @@ export class Product {
     this.goods.addProductToCart(prod)
   }
 
+  changeHeight(e: MouseEvent) {
+    const element = e.currentTarget as HTMLElement;
+    const styles = window.getComputedStyle(element);
+
+    const paddingTop = parseFloat(styles.paddingTop);
+
+    if (!(element.scrollHeight - paddingTop <= element.clientHeight)) {
+      element.style.height = element.scrollHeight + 'px';
+    }
+  }
+
+  changeHeightBack(e: MouseEvent) {
+    const element = e.currentTarget as HTMLElement;
+    element.style.height = 54 + 'px';
+  }
+
   constructor() {
     this.activeRoute.params.subscribe(params => {
       this.product = this.goods.currentGoods().find(el => el.id === params['id'])
