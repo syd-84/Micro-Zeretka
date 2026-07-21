@@ -1,23 +1,24 @@
-<app-slider
+<div class="client-page">
 
-title="Популярні"
+    <app-category></app-category>
 
-[products]="firstSlider">
+    <div class="content">
 
-</app-slider>
+        <app-slider
+            title="Популярні"
+            [products]="firstSlider">
+        </app-slider>
 
-<app-slider
+        <app-slider
+            title="Новинки"
+            [products]="secondSlider">
+        </app-slider>
 
-title="Новинки"
+        <app-slider
+            title="Усі товари"
+            [products]="thirdSlider">
+        </app-slider>
 
-[products]="secondSlider">
+    </div>
 
-</app-slider>
-
-<app-slider
-
-title="Усі товари"
-
-[products]="thirdSlider">
-
-</app-slider>
+</div>

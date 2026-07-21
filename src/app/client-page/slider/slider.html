@@ -1,31 +1,29 @@
 <div class="slider">
 
-    <button
-        class="left"
-        (click)="previous()">
-
+    <button class="left" (click)="previous()">
         ❮
-
     </button>
 
-    <div class="cards">
+    <div class="viewport">
 
-        @for(product of visibleProducts(); track product.id){
+        <div
+            class="track"
+            [style.transform]="'translateX(-' + offset() + 'px)'">
 
-            <app-product-card
-                [product]="product">
-            </app-product-card>
+            @for(product of products(); track product.id){
 
-        }
+                <app-product-card
+                    [product]="product">
+                </app-product-card>
+
+            }
+
+        </div>
 
     </div>
 
-    <button
-        class="right"
-        (click)="next()">
-
+    <button class="right" (click)="next()">
         ❯
-
     </button>
 
 </div>

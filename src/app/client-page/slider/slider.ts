@@ -18,6 +18,11 @@ export class SliderComponent {
     currentIndex = signal(0);
 
     visibleCount = 3;
+    cardWidth = 300;
+
+    offset = computed(() => {
+         return this.currentIndex() * this.cardWidth;
+    });
     visibleProducts = computed(() => {
 
     return this.products().slice(
@@ -57,5 +62,6 @@ export class SliderComponent {
     }
 
 }
+
 
 }

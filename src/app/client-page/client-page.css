@@ -1,0 +1,26 @@
+.client-page{
+
+    display:flex;
+    width:100%;
+    /* padding:30px 30px 0px 30px; */
+    padding-top: 30px;
+
+
+}
+
+app-category{
+
+    width:240px;
+    flex-shrink:0;
+    padding-left: 30px;
+
+}
+
+.content{
+
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:40px;
+
+}

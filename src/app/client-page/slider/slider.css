@@ -1,13 +1,9 @@
 .slider{
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     gap:20px;
-
     width:100%;
 
 }
@@ -15,12 +11,10 @@
 .cards{
 
     display:flex;
-
     gap:20px;
-
     overflow:hidden;
-
     flex:1;
+    justify-content: center;
 
 }
 
@@ -28,15 +22,28 @@
 .right{
 
     width:45px;
-
     height:45px;
-
     border:none;
-
     border-radius:50%;
-
     cursor:pointer;
-
     font-size:24px;
+    margin: 10px;
+
+}
+
+
+
+.viewport{
+
+    overflow:hidden;
+    width:720px; 
+
+}
+
+.track{
+
+    display:flex;
+    gap:20px;
+    transition:transform .4s ease;
 
 }
