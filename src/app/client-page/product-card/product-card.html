@@ -1,0 +1,17 @@
+<div class="card" (click)="openProduct()">
+
+    <img
+        [src]="product().imgSrc"
+        [alt]="product().name">
+
+    <h3>
+        {{product().name}}
+    </h3>
+
+    <p class="price">
+
+        {{product().price}} ₴
+
+    </p>
+
+</div>

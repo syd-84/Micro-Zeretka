@@ -1,1 +1,31 @@
-слайдер
+<div class="slider">
+
+    <button
+        class="left"
+        (click)="previous()">
+
+        ❮
+
+    </button>
+
+    <div class="cards">
+
+        @for(product of visibleProducts(); track product.id){
+
+            <app-product-card
+                [product]="product">
+            </app-product-card>
+
+        }
+
+    </div>
+
+    <button
+        class="right"
+        (click)="next()">
+
+        ❯
+
+    </button>
+
+</div>

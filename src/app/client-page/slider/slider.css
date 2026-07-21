@@ -1,0 +1,42 @@
+.slider{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:20px;
+
+    width:100%;
+
+}
+
+.cards{
+
+    display:flex;
+
+    gap:20px;
+
+    overflow:hidden;
+
+    flex:1;
+
+}
+
+.left,
+.right{
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:24px;
+
+}
