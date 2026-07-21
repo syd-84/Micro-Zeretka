@@ -2,10 +2,9 @@
 <div class="wrapper">
   <router-outlet></router-outlet>
 </div>
+<button (click)="onClick()">fetch</button>
 
 
-
-<main class="store-body">
-  <!-- <app-details *ngIf="storeService.getSelectedProduct()"></app-details> -->
-  <!-- <app-list *ngIf="!storeService.getSelectedProduct()"></app-list> -->
-</main>
+@for(item of goods.currentGoods(); track $index){
+<p>{{item.name}}</p>
+}

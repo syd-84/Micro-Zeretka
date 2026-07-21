@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Goods } from './services/goods';
 import { HeaderComponent } from './header/header';
@@ -11,15 +11,25 @@ import { HeaderComponent } from './header/header';
 })
 export class App {
   protected readonly title = signal('Micro-Zeretka');
-  goods = inject(Goods)
-  ngOnInit() {
-    if (!localStorage.getItem('goods')) {
-      localStorage.clear();
-      localStorage.setItem('goods', JSON.stringify(this.goods.goods));
-      localStorage.setItem('comments', '[]');
-    } else {
-      this.goods.currentGoods.set(JSON.parse(localStorage.getItem('goods')!));
-      this.goods.comments.set(JSON.parse(localStorage.getItem('comments')!));
-    }
+  goods = inject(Goods);
+
+  constructor() {
+    effect(() => {
+      const data = this.goods.goods.value();
+      if (data) {
+        this.goods.currentGoods.set(data);
+      }
+    });
+
+    effect(() => {
+      const data = this.goods._comments.value();
+      if (data) {
+        this.goods.comments.set(data);
+      }
+    });
+  }
+
+  onClick() {
+    console.log('OK');
   }
 }

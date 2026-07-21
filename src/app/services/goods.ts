@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { RequestApi } from './request';
 
 export type GoodsType = {
   id: string,
@@ -25,96 +26,7 @@ export class Goods {
 
   // -------------- goods -------------------
 
-  goods: GoodsType[] = [
-    {
-      id: crypto.randomUUID(),
-      name: "Пральна машина вузька Electrolux EWS6406BU",
-      description: "Програма протиаллергічного очищення парою видаляє 99.99 відсотків бактерій і вірусів Одяг виглядає як новий удвічі довше Завдяки цьому одяг зберігає свій вигляд довше, а вода і електроенергія витрачаються економніше.",
-      imgSrc: "https://content.rozetka.com.ua/goods/images/big/627101185.webp",
-      price: 14864,
-      category: "technics"
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Графічний планшет Wacom Intuos S Black",
-      description: "Графічний планшет Wacom Intuos, обладнаний легким надточним цифровим пером і завантажуваним програмним забезпеченням*, яке відповідає вашому стилю роботи. Виріб створений для того, щоб втілити ваші найсміливіші ідеї в життя.",
-      imgSrc: "https://content2.rozetka.com.ua/goods/images/big/12233025.jpg",
-      price: 3359,
-      category: "technics"
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Однокамерний холодильник INTERLUX ILR-0095S",
-      description: "Завдяки зручному однокамерному дизайну, він займає мінімум місця, але при цьому має достатній об'єм для зберігання продуктів — 83 л у холодильній камері та 10 л у морозильній. ",
-      imgSrc: "https://content1.rozetka.com.ua/goods/images/big/374735795.jpg",
-      price: 6199,
-      category: "technics"
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Чоловічі крокси Crocs Echo Clog",
-      description: "Чоловічі крокси Crocs Echo Clog в сучасному спортивному дизайні з масивною підошвою. Легкі та зручні, вони забезпечують комфорт при щоденному носінні.",
-      imgSrc: "https://content1.rozetka.com.ua/goods/images/big/665027641.jpg",
-      price: 3319,
-      category: "clothes"
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Дощовик-пончо з капюшоном у чохлі oversize оливковий ",
-      description: "Дощовик-пончо з капюшоном у чохлі – ідеальний аксесуар для подорожей. Легкий та компактний, він легко поміщається у рюкзак або сумку, забезпечуючи надійний захист від дощу під час подорожі.",
-      imgSrc: "https://content.rozetka.com.ua/goods/images/big/618526082.png",
-      price: 190,
-      category: "clothes"
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Кавовий напій 3в1 MacCoffee ",
-      description: "Розчинна MacCoffee Original 3 в 1 - це суміш добірних кавових зерен, немолочних вершків і цукру.",
-      imgSrc: "https://content.rozetka.com.ua/goods/images/big/299026746.jpg",
-      price: 378,
-      category: "food"
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Цукерки в коробці Волинські солодощі Чорнослив з ядром волоського горіха",
-      description: "Глазур кондитерська (вміст: цукор-пісок білий, жир кондитерський, какао-порошок, лецитин, ароматизатор шоколад, ванілін), чорнослив вялений, ядро волоського горіха обсмажене, цукор-пісок білий, вода.",
-      imgSrc: "https://content1.rozetka.com.ua/goods/images/big/385685153.png",
-      price: 179,
-      category: "food"
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Корм для хвилястих папужок Versele-Laga Prestige Budgies",
-      description: "Versele-Laga Prestige Вudgies ВЕРСЕЛЕ-ЛАГА ПРЕСТИЖ ПАПУЖКА — це традиційне повноцінне харчування для хвилястих та інших маленьких папужок.",
-      imgSrc: "https://content1.rozetka.com.ua/goods/images/big/10694243.jpg",
-      price: 225,
-      category: "pet supplies"
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Переноска MP Bergamo Gipsy XS",
-      description: "Зручна пластикова переноска MP Bergamo Gipsy XS smal для транспортування котів і невеликих собак. Дає змогу легко та з мінімальним стресом перевозити улюбленця, водночас убезпечивши його від можливих травм чи втечі.",
-      imgSrc: "https://content1.rozetka.com.ua/goods/images/big/442561151.jpg",
-      price: 387,
-      category: "pet supplies"
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Упаковка капсул для прання Persil Power Caps Universal Deep Clean",
-      description: "Гелеві капсули для прання Persil - трикамерні капсули з дозованою кількістю концентрованого засобу. Капсули Universal використовують для прання білих та світлих речей. ",
-      imgSrc: "https://content1.rozetka.com.ua/goods/images/big/567968795.jpg",
-      price: 938,
-      category: "household chemicals"
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Паперові рушники Ruta Professional",
-      description: "Виготовлені з сировини з переважанням хвойної целюлози, що надає паперовим рушникам усі необхідні якості: добре вбирають рідину, міцні, не прилипає до харчових продуктів.",
-      imgSrc: "https://content.rozetka.com.ua/goods/images/big/279976798.jpg",
-      price: 159,
-      category: "household chemicals"
-    },
-  ]
+  request = inject(RequestApi);
 
   categoriesGoods = [
     { category: 'technics', name: 'Техніка та інструменти' },
@@ -124,7 +36,32 @@ export class Goods {
     { category: 'household chemicals', name: 'Побутова хімія' }
   ]
 
-  currentGoods = signal(this.goods);
+  goods = this.request.getGoodsAll();
+  currentGoods = signal<GoodsType[]>(this.goods.value()!);
+
+  addGoods(product: GoodsType) {
+    const req = this.request.addGoods(product).subscribe({
+      next: () => {
+        this.goods.reload();
+      }
+    });
+  }
+
+  delGoods(id: string | undefined) {
+    const delGoods = this.request.deleteGoodsById(id!).subscribe({
+      next: () => {
+        this.goods.reload();
+      }
+    })
+    const delComments = this.request.deleteCommentsByProductId(id!).subscribe({
+      next: () => {
+        this._comments.reload();
+      }
+    })
+    this.cartGoods.update(goods => goods.filter(el => el.product.id !== id));
+  }
+
+
 
   cartGoods = signal<{ id: string, product: GoodsType }[]>([]);
 
@@ -141,28 +78,24 @@ export class Goods {
     }
   }
 
-  delGoods(id: string | undefined) {
-    this.currentGoods.update(goods => goods.filter(el => el.id !== id));
-    this.cartGoods.update(goods => goods.filter(el => el.product.id !== id));
-    this.comments.update(comments => comments.filter(comment => comment.productId !== id));
-    localStorage.setItem('goods', JSON.stringify(this.currentGoods()));
-    localStorage.setItem('comments', JSON.stringify(this.comments()));
-  }
-
 
   // ------------ comments --------------
-  comments = signal<CommentType[]>([]);
+  _comments = this.request.getCommentsAll();
+  comments = signal<CommentType[]>(this._comments.value()!);
 
   addComment(text: string | null, productId: string | undefined) {
     const date = Date.now();
     let commmentObj = {
       id: crypto.randomUUID(),
       commentText: text,
-      date: date,
+      date: Number(date),
       productId: productId,
       userId: "User",
     }
-    this.comments.update(arr => [...arr, commmentObj])
-    localStorage.setItem('comments', JSON.stringify(this.comments()))
+    this.request.addComment(commmentObj).subscribe({
+      next: () => {
+        this._comments.reload();
+      }
+    })
   }
 }

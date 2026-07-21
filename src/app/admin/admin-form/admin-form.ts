@@ -43,7 +43,6 @@ export class AdminForm {
       price: Number(this.adminFormControl.controls.price.value!),
       category: this.adminFormControl.controls.category.value!
     };
-    this.goods.currentGoods.update(good => [...good, newGoods])
-    localStorage.setItem('goods', JSON.stringify(this.goods.currentGoods()));
+    this.goods.addGoods(newGoods);
   }
 }
