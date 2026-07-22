@@ -5,6 +5,6 @@
 
   <div>
     <p>{{data()?.name}}</p>
-    <p>{{data()?.price}}</p>
+    <p>{{data()?.price! | currencyPipe}}</p>
   </div>
 </a>

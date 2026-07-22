@@ -3,10 +3,11 @@ import { Goods, GoodsType } from '../services/goods';
 import { Button } from "../button/button";
 import { Comments } from "./comments/comments";
 import { ActivatedRoute, Router } from '@angular/router';
+import { CurrencyPipe } from '../pipes/currency-pipe-pipe';
 
 @Component({
   selector: 'app-product',
-  imports: [Button, Comments],
+  imports: [Button, Comments, CurrencyPipe],
   templateUrl: './product.html',
   styleUrl: './product.css',
 })

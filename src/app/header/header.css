@@ -61,7 +61,7 @@
 .header-actions {
   display: flex;
   gap: 15px;
-  font-size: 22px;
+  /* font-size: 22px; */
 }
 
 .action-icon {

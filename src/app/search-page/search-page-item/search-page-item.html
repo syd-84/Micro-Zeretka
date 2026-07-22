@@ -25,7 +25,7 @@
 </div>
 
 <div class="price">
-  <p>{{data()?.price}} грн</p>
+  <p>{{data()?.price! | currencyPipe}}</p>
 </div>
 
 <div>

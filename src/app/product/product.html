@@ -15,7 +15,7 @@
       </p>
       <hr>
       <p class="present">Є в наявності</p>
-      <p class="price"> {{product?.price}} ₴</p>
+      <p class="price"> {{product!.price | currencyPipe}}</p>
       <app-button (click)="addToCart(product!)">
         {{goods.cartGoods().some(el=>el.product===product)?'Додано до кошика':'Купити'}}
       </app-button>
