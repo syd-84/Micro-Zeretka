@@ -80,6 +80,18 @@ app.delete('/delete_comments/:id', async (req, res) => {
   res.end();
 })
 
+app.get('/currency', async (req, res) => {
+  try {
+    const response = await fetch('https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11');
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('Помилка завантаження валют:', error);
+    res.status(500).json({ error: 'Не вдалося отримати дані про курс валют' });
+  }
+});
+
+
 const connection = async () => {
   try {
     console.log("connection init");

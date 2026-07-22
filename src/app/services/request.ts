@@ -1,6 +1,7 @@
 import { HttpClient, HttpContext, httpResource } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { CommentType, GoodsType } from './goods';
+import { CurrencyType } from './currency';
 
 @Injectable({
   providedIn: 'root',
@@ -35,5 +36,9 @@ export class RequestApi {
 
   deleteCommentsByProductId(id: string) {
     return this.httpClient.delete(`${this.SERVER_URI}/delete_comments/${id}`);
+  }
+
+  getCurrency() {
+    return httpResource<CurrencyType[]>(() => `${this.SERVER_URI}/currency`);
   }
 }
