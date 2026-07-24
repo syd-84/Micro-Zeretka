@@ -2,13 +2,13 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Search } from '../search/search';
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { Exchange } from "../exchange/exchange";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, FormsModule, Search, Exchange],
+  imports: [CommonModule, FormsModule, Search, Exchange, RouterLink],
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })

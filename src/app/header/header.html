@@ -10,29 +10,20 @@
     </button>
 
     <div class="logo">
-      <span class="logo-icon">
-        <svg>
-          <use href="icons.svg#logo"></use>
-        </svg>
-      </span>
-      <span class="logo-text">Micro-ZERETKA</span>
+      <a [routerLink]="''">
+        <span class="logo-icon">
+          <svg>
+            <use href="icons.svg#logo"></use>
+          </svg>
+        </span>
+        <span class="logo-text">Micro-ZERETKA</span>
+      </a>
+
     </div>
 
-    <!-- Кнопка Каталог -->
     <button class="catalog-btn">
       <span class="catalog-icon">☰</span> Каталог
     </button>
-
-    <!-- <div class="search-wrapper">
-      <input 
-        type="text" 
-        placeholder="Я шукаю..." 
-        [(ngModel)]="searchQuery" 
-        (keyup.enter)="onSearch()"
-        class="search-input"
-      />
-      <button class="search-btn" (click)="onSearch()">Знайти</button>
-    </div> -->
 
     <div class="search-wrapper">
       <app-search></app-search>
