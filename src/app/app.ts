@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { Goods } from './services/goods';
 import { HeaderComponent } from './header/header';
 import { Currency } from './services/currency';
+import { LoadingScreen } from "./loading-screen/loading-screen";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent],
+  imports: [RouterOutlet, HeaderComponent, LoadingScreen],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -14,6 +15,7 @@ export class App {
   protected readonly title = signal('Micro-Zeretka');
   goods = inject(Goods);
   currency = inject(Currency);
+  loadingDisplay = signal('block');
 
   constructor() {
     effect(() => {
@@ -22,6 +24,10 @@ export class App {
         this.currency.currency.set(data);
       }
     })
+
+    setTimeout(() => {
+      this.loadingDisplay.set('none');
+    }, 2000)
   }
 
   ngOnInit() {
