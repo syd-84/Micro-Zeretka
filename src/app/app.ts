@@ -28,16 +28,32 @@ export class App {
     setTimeout(() => {
       this.loadingDisplay.set('none');
     }, 2000)
-  }
 
-  ngOnInit() {
+
     if (!localStorage.getItem('goods')) {
       localStorage.clear();
       localStorage.setItem('goods', JSON.stringify(this.goods.goods));
       localStorage.setItem('comments', '[]');
+      localStorage.setItem('cart', '[]');
     } else {
       this.goods.currentGoods.set(JSON.parse(localStorage.getItem('goods')!));
       this.goods.comments.set(JSON.parse(localStorage.getItem('comments')!));
+      // this.goods.cartGoods.set(JSON.parse(localStorage.getItem('cart')!));
     }
   }
+
+  // ngOnInit() {
+  //   if (!localStorage.getItem('goods')) {
+  //     localStorage.clear();
+  //     localStorage.setItem('goods', JSON.stringify(this.goods.goods));
+  //     localStorage.setItem('comments', '[]');
+  //     localStorage.setItem('cart', '[]');
+  //   } else {
+  //     this.goods.currentGoods.set(JSON.parse(localStorage.getItem('goods')!));
+  //     this.goods.comments.set(JSON.parse(localStorage.getItem('comments')!));
+  //     this.goods.cartGoods.set(JSON.parse(localStorage.getItem('cart')!));
+
+  //     console.log(this.goods.cartGoods);
+  //   }
+  // }
 }

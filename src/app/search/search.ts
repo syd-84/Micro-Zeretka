@@ -62,4 +62,8 @@ export class Search {
       this.router.navigate(['search'], { queryParams: { text: query } })
     }
   }
+
+  keyEnter(e: KeyboardEvent) {
+    if (e.key === 'Enter') this.goToSearch();
+  }
 }

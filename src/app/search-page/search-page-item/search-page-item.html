@@ -30,6 +30,6 @@
 
 <div>
   <app-button class="button" (click)="addToCart(data())">
-    {{goods.cartGoods().some(el=>el.product===data())?'В кошику':'Купити'}}
+    {{goods.cartGoods().some(el=>el.product.id===data()?.id)?'В кошику':'Купити'}}
   </app-button>
 </div>

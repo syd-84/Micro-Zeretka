@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 
 export type GoodsType = {
   id: string,
@@ -126,10 +126,10 @@ export class Goods {
 
   currentGoods = signal(this.goods);
 
-  cartGoods = signal<{ id: string, product: GoodsType, number: number }[]>([]);
+  cartGoods = signal<{ id: string, product: GoodsType, number: number }[]>(JSON.parse(localStorage.getItem('cart')!) || []);
 
   addProductToCart(item: GoodsType) {
-    const itemIndex = this.cartGoods().findIndex(el => el.product === item)
+    const itemIndex = this.cartGoods().findIndex(el => el.product.id === item.id)
 
     if (itemIndex == -1) {
       const cartItem = {
@@ -139,6 +139,7 @@ export class Goods {
       }
 
       this.cartGoods.update(arr => [...arr, cartItem]);
+      localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
     }
   }
 
