@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { goodsModel } from "./models/goods";
 import { commentsModel } from "./models/comments";
+import { cartGoodsModel } from "./models/cart";
 
 dotenv.config();
 
@@ -90,6 +91,23 @@ app.get('/currency', async (req, res) => {
     res.status(500).json({ error: 'Не вдалося отримати дані про курс валют' });
   }
 });
+
+app.get('/cart', async (req, res) => {
+  const searchRes = await cartGoodsModel.find({}).select("-_id -createdAt -updatedAt -__v");
+  res.end(JSON.stringify(searchRes));
+})
+
+app.post('/add_to_cart', jsonParser, async (req, res) => {
+  try {
+    const cartData = req.body;
+    console.log(req.body);
+    const cartProduct = new cartGoodsModel(cartData);
+    await cartProduct.save();
+    res.end();
+  } catch (error) {
+    console.log(error);
+  }
+})
 
 
 const connection = async () => {

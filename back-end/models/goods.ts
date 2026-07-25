@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 const goodsSchema = new Schema({
   id: {
     type: String,
-    require: true,
+    required: true,
     immutable: true,
   },
   name: String,

@@ -18,31 +18,32 @@ export class App {
   loadingDisplay = signal('block');
 
   onClick() {
+    console.log(this.goods.cartGoods())
     console.log('OK');
   }
 
   constructor() {
     effect(() => {
-      const data = this.currency._currency;
-      if (data) {
-        this.currency.currency.set(data);
+      const currencyData = this.currency._currency.value();
+      // const currencyData = this.currency._currency;
+      if (currencyData) {
+        this.currency.currency.set(currencyData || []);
       }
-    })
 
-    setTimeout(() => {
-      this.loadingDisplay.set('none');
-    }, 2000)
+      const CurrentGoodsData = this.goods.goods.value();
+      if (CurrentGoodsData) {
+        this.goods.currentGoods.set(CurrentGoodsData || []);
+      }
 
+      const commentsData = this.goods._comments.value();
+      if (commentsData) {
+        this.goods.comments.set(commentsData || []);
+      }
 
-    if (!localStorage.getItem('goods')) {
-      localStorage.clear();
-      localStorage.setItem('goods', JSON.stringify(this.goods.goods));
-      localStorage.setItem('comments', '[]');
-      localStorage.setItem('cart', '[]');
-    } else {
-      this.goods.currentGoods.set(JSON.parse(localStorage.getItem('goods')!));
-      this.goods.comments.set(JSON.parse(localStorage.getItem('comments')!));
-      // this.goods.cartGoods.set(JSON.parse(localStorage.getItem('cart')!));
-    }
+      const cartGoodsData = this.goods._cartGoods.value();
+      if (cartGoodsData) {
+        this.goods.cartGoods.set(cartGoodsData || []);
+      }
+    });
   }
 }

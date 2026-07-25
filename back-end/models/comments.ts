@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 const commentsSchema = new Schema({
   id: {
     type: String,
-    require: true,
+    required: true,
     immutable: true,
   },
   commentText: String,

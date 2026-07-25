@@ -18,6 +18,12 @@ export type CommentType = {
   userId: string,
 }
 
+export type CartGoodsType = {
+  id: string,
+  product: GoodsType,
+  quantity: number,
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -58,25 +64,34 @@ export class Goods {
         this._comments.reload();
       }
     })
-    this.cartGoods.update(goods => goods.filter(el => el.product.id !== id));
+    this.cartGoods.update(goods => goods?.filter(el => el.product.id !== id));
   }
 
 
+  // ------------ cart --------------
 
-  cartGoods = signal<{ id: string, product: GoodsType, number: number }[]>(JSON.parse(localStorage.getItem('cart')!) || []);
+  _cartGoods = this.request.getCartGoodsAll();
+  cartGoods = signal<CartGoodsType[]>(this._cartGoods.value()! || [])
 
   addProductToCart(item: GoodsType) {
     const itemIndex = this.cartGoods().findIndex(el => el.product.id === item.id)
 
-    if (itemIndex == -1) {
-      const cartItem = {
+    if (itemIndex === -1) {
+      const cartItem: CartGoodsType = {
         id: crypto.randomUUID(),
         product: item,
-        number: 1,
+        quantity: 1,
       }
 
-      this.cartGoods.update(arr => [...arr, cartItem]);
-      localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
+      this.request.addProductToCart(cartItem).subscribe({
+        next: () => {
+          this._cartGoods.reload();
+        }
+      });
+      console.log('add to cart')
+      console.log(cartItem);
+      // this.cartGoods.update(arr => [...arr, cartItem]);
+      // localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
     }
   }
 

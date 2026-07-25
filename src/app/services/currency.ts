@@ -15,7 +15,7 @@ export type CurrencyType = {
 export class Currency {
   request = inject(RequestApi);
 
-  // _currency = this.request.getCurrency();
+  _currency = this.request.getCurrency();
 
   currencyDenominations = {
     'UAH': '₴',
@@ -25,20 +25,20 @@ export class Currency {
 
   active_currency = signal('UAH');
 
-  _currency = <CurrencyType[]>[
-    {
-      base_ccy: "UAH",
-      buy: "50.70000",
-      ccy: "EUR",
-      sale: "51.54639",
-    },
-    {
-      base_ccy: "UAH",
-      buy: "44.45000",
-      ccy: "USD",
-      sale: "45.04505",
-    }
-  ];
+  // _currency = <CurrencyType[]>[
+  //   {
+  //     base_ccy: "UAH",
+  //     buy: "50.70000",
+  //     ccy: "EUR",
+  //     sale: "51.54639",
+  //   },
+  //   {
+  //     base_ccy: "UAH",
+  //     buy: "44.45000",
+  //     ccy: "USD",
+  //     sale: "45.04505",
+  //   }
+  // ];
 
-  currency = signal<CurrencyType[]>(this._currency);
+  currency = signal<CurrencyType[]>([]);
 }

@@ -1,6 +1,6 @@
 import { HttpClient, HttpContext, httpResource } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { CommentType, GoodsType } from './goods';
+import { CartGoodsType, CommentType, GoodsType } from './goods';
 import { CurrencyType } from './currency';
 
 @Injectable({
@@ -40,5 +40,13 @@ export class RequestApi {
 
   getCurrency() {
     return httpResource<CurrencyType[]>(() => `${this.SERVER_URI}/currency`);
+  }
+
+  getCartGoodsAll() {
+    return httpResource<CartGoodsType[]>(() => `${this.SERVER_URI}/cart`);
+  }
+
+  addProductToCart(cartProduct: CartGoodsType) {
+    return this.httpClient.post(`${this.SERVER_URI}/add_to_cart`, cartProduct);
   }
 }
