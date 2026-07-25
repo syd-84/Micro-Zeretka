@@ -38,10 +38,12 @@ export class AdminForm {
   addProduct() {
     let newGoods: GoodsType;
     let priceDefault = Number(this.adminFormControl.controls.price.value!);
+
     if (this.adminFormControl.controls.currency.value !== 'UAH') {
       const currencySelected = +(this.currency.currency().filter(el => el.ccy === this.adminFormControl.controls.currency.value)[0].sale);
       priceDefault = Math.round(priceDefault * currencySelected);
     }
+
     newGoods = {
       id: crypto.randomUUID(),
       name: this.adminFormControl.controls.name.value!,
@@ -51,6 +53,10 @@ export class AdminForm {
       category: this.adminFormControl.controls.category.value!
     };
     this.goods.currentGoods.update(good => [...good, newGoods])
-    localStorage.setItem('goods', JSON.stringify(this.goods.currentGoods()));
+    localStorage.setItem('goods', JSON.stringify(this.goods.currentGoods()))
+    this.adminFormControl.reset({
+      currency: this.adminFormControl.get('currency')?.value,
+      category: 'default'
+    })
   }
 }

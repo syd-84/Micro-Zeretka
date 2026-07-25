@@ -19,6 +19,6 @@ export class CurrencyPipe implements PipeTransform {
       res = +(value / Number(currencyValue)).toFixed(2);
     }
 
-    return `${res} ${this.denominations[this.currencyKey()]}`;
+    return `${String(res).replace(/\B(?=(\d{3})+(?!\d))(?<!\.\d*)/g, ' ')} ${this.denominations[this.currencyKey()]}`;
   }
 }
