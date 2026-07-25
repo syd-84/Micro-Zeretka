@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { imageUrlValidator } from '../../shared/image-url-validator.directive';
 import { Goods, GoodsType } from '../../services/goods';
 import { Button } from "../../button/button";
+import { Currency } from '../../services/currency';
 
 @Component({
   selector: 'app-admin-form',
@@ -30,19 +31,33 @@ export class AdminForm {
   })
 
   goods = inject(Goods);
-
   categoriesGoods = this.goods.categoriesGoods;
+
+  currency = inject(Currency);
 
   addProduct() {
     let newGoods: GoodsType;
+    let priceDefault = Number(this.adminFormControl.controls.price.value!);
+
+    if (this.adminFormControl.controls.currency.value !== 'UAH') {
+      const currencySelected = +(this.currency.currency().filter(el => el.ccy === this.adminFormControl.controls.currency.value)[0].sale);
+      priceDefault = Math.round(priceDefault * currencySelected);
+    }
+
     newGoods = {
       id: crypto.randomUUID(),
       name: this.adminFormControl.controls.name.value!,
       description: this.adminFormControl.controls.description.value!,
       imgSrc: this.adminFormControl.controls.imgSrc.value!,
-      price: Number(this.adminFormControl.controls.price.value!),
+      price: priceDefault,
       category: this.adminFormControl.controls.category.value!
     };
-    this.goods.addGoods(newGoods);
+
+    this.goods.currentGoods.update(good => [...good, newGoods])
+    localStorage.setItem('goods', JSON.stringify(this.goods.currentGoods()))
+    this.adminFormControl.reset({
+      currency: this.adminFormControl.get('currency')?.value,
+      category: 'default'
+    })
   }
 }

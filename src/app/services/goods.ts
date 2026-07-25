@@ -63,18 +63,20 @@ export class Goods {
 
 
 
-  cartGoods = signal<{ id: string, product: GoodsType }[]>([]);
+  cartGoods = signal<{ id: string, product: GoodsType, number: number }[]>(JSON.parse(localStorage.getItem('cart')!) || []);
 
   addProductToCart(item: GoodsType) {
-    const itemIndex = this.cartGoods().findIndex(el => el.product === item)
+    const itemIndex = this.cartGoods().findIndex(el => el.product.id === item.id)
 
     if (itemIndex == -1) {
       const cartItem = {
         id: crypto.randomUUID(),
         product: item,
+        number: 1,
       }
 
       this.cartGoods.update(arr => [...arr, cartItem]);
+      localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
     }
   }
 

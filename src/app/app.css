@@ -3,3 +3,7 @@
   width: 100%;
   margin: 0 auto;
 }
+
+app-loading-screen {
+  animation: 2s delLoading forwards;
+}

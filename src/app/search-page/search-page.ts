@@ -21,7 +21,7 @@ export class SearchPage {
 
   searchGoods = computed(() => {
     const searchText = this.text().toLowerCase();
-    return this.currentGoods().filter(el => el.name.includes(searchText))
+    return this.currentGoods().filter(el => el.name.toLocaleLowerCase().includes(searchText))
   })
 
   goToMainPage() {

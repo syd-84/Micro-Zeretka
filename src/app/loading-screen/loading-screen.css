@@ -1,0 +1,52 @@
+.bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--text-muted);
+  z-index: 997;
+}
+
+.elem {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  top: calc((100% - 70px) / 2);
+  left: calc((100% - 70px) / 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-image: conic-gradient(var(--bg-main), var(--color-primary));
+  animation: 1.5s rotateAround infinite linear;
+  transform: rotateZ(-90deg);
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.logo svg {
+  width: 50px;
+  height: 50px;
+}
+
+@keyframes rotateAround {
+  from {
+    transform: rotateZ(-90deg);
+  }
+
+  to {
+    transform: rotateZ(270deg);
+  }
+}

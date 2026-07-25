@@ -1,6 +1,6 @@
-:host {}
-
 .data {
+  padding: 16px;
+  box-sizing: border-box;
   width: 80%;
   max-width: 1200px;
   margin: 0 auto 16px auto;
@@ -29,9 +29,117 @@ h3 {
   text-align: center;
 }
 
+.price_block {
+  margin-top: 16px;
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background-color: var(--bg-card);
+}
+
+.price_block svg {
+  width: 18px;
+  height: 18px;
+  transform: translateY(3px);
+}
+
+.vendor {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.zeretka {
+  font-weight: 600;
+}
+
+.present {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
 .price {
   font-weight: 600;
   font-size: 18px;
+}
+
+.discounts {
+  display: flex;
+  justify-content: space-around;
+  cursor: pointer;
+}
+
+.pickup {
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.pickup>span:first-child {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pickup>span:nth-child(2) {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.discounts img {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.payment {
+  padding: 16px;
+  box-sizing: border-box;
+  background-color: var(--bg-card);
+  border: 2px solid var(--text-secondary);
+  border-radius: 16px;
+}
+
+.payment-item {
+  display: flex;
+  gap: 8px;
+}
+
+.payment-item-svg {
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.payment-item-svg svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--text-secondary);
+}
+
+.payment-item-text {
+  height: 54px;
+  overflow: hidden;
+  padding: 8px;
+  box-sizing: border-box;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  transition: height 0.5s ease-in-out;
+}
+
+.payment-item-text:hover {
+  display: block;
+  -webkit-line-clamp: unset;
+}
+
+.payment hr {
+  height: 2px;
+  border: none;
+  background-color: var(--text-secondary);
+}
+
+.payment span {
+  font-weight: 600;
 }
 
 .description {
@@ -41,6 +149,7 @@ h3 {
   padding: 16px;
   box-sizing: border-box;
   border-radius: 16px;
+  border: 1px solid var(--text-secondary);
   display: flex;
   gap: 16px;
   background-color: var(--bg-card);

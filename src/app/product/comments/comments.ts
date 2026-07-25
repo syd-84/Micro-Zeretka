@@ -32,4 +32,12 @@ export class Comments {
       this.goods.addComment(this.commentControl.controls.comment.value, this.productId())
     }
   }
+
+  addCommentOnKey(e: KeyboardEvent) {
+    if (e.code === 'Enter') {
+      this.addComment();
+      this.commentControl.reset();
+    }
+
+  }
 }
