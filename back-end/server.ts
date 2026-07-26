@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import open from "open";
 import { goodsModel } from "./models/goods";
 import { commentsModel } from "./models/comments";
 import { cartGoodsModel } from "./models/cart";
@@ -17,6 +18,7 @@ export type GoodsType = {
 }
 
 const app = express();
+const HOST = process.env.HOST;
 const PORT = process.env.PORT || 3000;
 const DB_CONNECTION = process.env.MONGODB_URI!;
 
@@ -190,7 +192,9 @@ const connection = async () => {
     await mongoose.connect(DB_CONNECTION);
     console.log("connected");
     app.listen(PORT, () => {
-      console.log('server started: ', `http://localhost:${PORT}`);
+      const url = `${HOST}:${PORT}`;
+      console.log('server started: ', `${url}`);
+      // open(url);
     });
 
   } catch (error) {
