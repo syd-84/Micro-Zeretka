@@ -34,16 +34,21 @@ export class Search {
   }
 
   onInput() {
-    this.hideSearchList = true;
-    if (this.inputControl.value! === '') {
+    const query = this.inputControl.value?.trim();
+    if (!query) {
       this.hideSearchList = true;
+      clearTimeout(this.timer);
+      return;
     }
+
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
-      this.searchedGoods.set(this.searchGoods(this.inputControl.value));
-      this.searchedGoods().length === 0 ? this.hideSearchList = true : this.hideSearchList = false;
-    }, 1000)
+      const results = this.searchGoods(query);
+      this.searchedGoods.set(results);
+      this.hideSearchList = results.length === 0;
+    }, 500);
   }
+
 
   onBgClick() {
     this.hideSearchList = true;
