@@ -13,7 +13,7 @@ export const routes: Routes = [
     component: Login
   },
   {
-    path: "item/:id",
+    path: "product/:id",
     component: Product,
     canActivate: [productExistsGuard],
   },
