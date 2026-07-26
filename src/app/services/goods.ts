@@ -88,10 +88,6 @@ export class Goods {
           this._cartGoods.reload();
         }
       });
-      console.log('add to cart')
-      console.log(cartItem);
-      // this.cartGoods.update(arr => [...arr, cartItem]);
-      // localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
     }
   }
 

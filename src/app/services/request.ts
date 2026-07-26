@@ -19,11 +19,11 @@ export class RequestApi {
   }
 
   addGoods(product: GoodsType) {
-    return this.httpClient.post(`${this.SERVER_URI}/add_goods`, product);
+    return this.httpClient.post(`${this.SERVER_URI}/goods`, product);
   }
 
   deleteGoodsById(id: string) {
-    return this.httpClient.delete(`${this.SERVER_URI}/delete_goods/${id}`);
+    return this.httpClient.delete(`${this.SERVER_URI}/goods/${id}`);
   }
 
   getCommentsAll() {
@@ -31,11 +31,11 @@ export class RequestApi {
   }
 
   addComment(comment: CommentType) {
-    return this.httpClient.post(`${this.SERVER_URI}/add_comment`, comment);
+    return this.httpClient.post(`${this.SERVER_URI}/comments`, comment);
   }
 
   deleteCommentsByProductId(id: string) {
-    return this.httpClient.delete(`${this.SERVER_URI}/delete_comments/${id}`);
+    return this.httpClient.delete(`${this.SERVER_URI}/comments/${id}`);
   }
 
   getCurrency() {
@@ -47,6 +47,6 @@ export class RequestApi {
   }
 
   addProductToCart(cartProduct: CartGoodsType) {
-    return this.httpClient.post(`${this.SERVER_URI}/add_to_cart`, cartProduct);
+    return this.httpClient.post(`${this.SERVER_URI}/cart`, cartProduct);
   }
 }

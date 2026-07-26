@@ -18,7 +18,6 @@ export class App {
   loadingDisplay = signal('block');
 
   onClick() {
-    console.log(this.goods.cartGoods())
     console.log('OK');
   }
 

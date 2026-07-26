@@ -32,53 +32,114 @@ app.use((req, res, next) => {
 app.use(express.static("../front-end"));
 
 app.get('/goods', async (req, res) => {
-  const searchRes = await goodsModel.find({}).select("-_id -createdAt -updatedAt -__v");
-  res.end(JSON.stringify(searchRes));
-})
+  try {
+    const searchRes = await goodsModel.find({}).select("-_id -createdAt -updatedAt -__v");
+    res.json(searchRes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Database error",
+    });
+  }
+});
 
 app.get('/goods/:id', async (req, res) => {
-  const goodsId = req.params.id;
-  const searchRes = await goodsModel.where('id').equals(goodsId).select("-_id -createdAt -updatedAt -__v");
-  res.end(JSON.stringify(searchRes));
-})
-
-app.post('/add_goods', jsonParser, async (req, res) => {
   try {
-    const productData = req.body;
-    const product = new goodsModel(productData);
-    await product.save();
-    res.end();
+    const searchRes = await goodsModel.findOne({ id: req.params.id }).select("-_id -createdAt -updatedAt -__v");
+
+    if (!searchRes) {
+      return res.status(404).json({
+        message: "Product not found"
+      });
+    }
+
+    res.json(searchRes);
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    res.status(500).json({
+      message: "Database error",
+    });
   }
 })
 
-app.delete('/delete_goods/:id', async (req, res) => {
-  const goodsId = req.params.id;
-  const result = await goodsModel.findOneAndDelete({ id: goodsId });
-  res.end();
-})
+app.post('/goods', jsonParser, async (req, res) => {
+  try {
+    const product = new goodsModel(req.body);
+    await product.save();
+    res.status(201).json({
+      message: "Product added successfully"
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Database error"
+    });
+  }
+});
+
+app.delete('/goods/:id', async (req, res) => {
+  try {
+    const result = await goodsModel.findOneAndDelete({ id: req.params.id });
+    if (!result) {
+      return res.status(404).json({
+        message: "Product not found"
+      });
+    }
+    res.json({
+      message: "Product deleted successfully"
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Database error"
+    });
+  }
+});
 
 app.get('/comments', async (req, res) => {
-  const searchRes = await commentsModel.find({}).select("-_id -createdAt -updatedAt -__v");
-  res.end(JSON.stringify(searchRes));
+  try {
+    const searchRes = await commentsModel.find({}).select("-_id -createdAt -updatedAt -__v");
+    res.json(searchRes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Database error",
+    });
+  }
 })
 
-app.post('/add_comment', jsonParser, async (req, res) => {
+app.post('/comments', jsonParser, async (req, res) => {
   try {
     const commentData = req.body;
     const comment = new commentsModel(commentData);
     await comment.save();
-    res.end();
-  } catch (error) {
-    console.log(error);
+    res.status(201).json({
+      message: "Comment added successfully"
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Database error"
+    });
   }
 })
 
-app.delete('/delete_comments/:id', async (req, res) => {
-  const goodsId = req.params.id;
-  const result = await commentsModel.deleteMany({ productId: goodsId });
-  res.end();
+app.delete('/comments/:id', async (req, res) => {
+  try {
+    const result = await commentsModel.deleteMany({ productId: req.params.id });
+    if (result.deletedCount === 0) {
+      res.status(404).json({ message: "Comments not found" });
+      return;
+    }
+    res.json({
+      message: "Comments deleted successfully"
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Database error"
+    });
+  }
 })
 
 app.get('/currency', async (req, res) => {
@@ -87,25 +148,38 @@ app.get('/currency', async (req, res) => {
     const data = await response.json();
     res.json(data);
   } catch (error) {
-    console.error('Помилка завантаження валют:', error);
-    res.status(500).json({ error: 'Не вдалося отримати дані про курс валют' });
+    console.error(error);
+    res.status(500).json({
+      message: "External API error",
+    });
   }
 });
 
 app.get('/cart', async (req, res) => {
-  const searchRes = await cartGoodsModel.find({}).select("-_id -createdAt -updatedAt -__v");
-  res.end(JSON.stringify(searchRes));
+  try {
+    const searchRes = await cartGoodsModel.find({}).select("-_id -createdAt -updatedAt -__v");
+    res.json(searchRes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Database error",
+    });
+  }
 })
 
-app.post('/add_to_cart', jsonParser, async (req, res) => {
+app.post('/cart', jsonParser, async (req, res) => {
   try {
     const cartData = req.body;
-    console.log(req.body);
     const cartProduct = new cartGoodsModel(cartData);
     await cartProduct.save();
-    res.end();
-  } catch (error) {
-    console.log(error);
+    res.status(201).json({
+      message: "Product added to cart"
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Database error"
+    });
   }
 })
 
