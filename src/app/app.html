@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header />
 <div class="wrapper">
   <router-outlet></router-outlet>
 </div>
@@ -8,5 +8,6 @@
 @for(item of goods.currentGoods(); track $index){
 <p>{{item.name}}</p>
 }
+<app-footer />
 
 <!-- <app-loading-screen [style.display]="loadingDisplay()"></app-loading-screen> -->

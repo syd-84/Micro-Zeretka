@@ -67,11 +67,21 @@ export class Goods {
     this.cartGoods.update(goods => goods?.filter(el => el.product.id !== id));
   }
 
+  // delGoods(id: string | undefined) {
+  //   this.currentGoods.update(goods => goods.filter(el => el.id !== id));
+  //   this.cartGoods.update(goods => goods.filter(el => el.product.id !== id));
+  //   this.comments.update(comments => comments.filter(comment => comment.productId !== id));
+  //   localStorage.setItem('goods', JSON.stringify(this.currentGoods()));
+  //   localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
+  //   localStorage.setItem('comments', JSON.stringify(this.comments()));
+  // }
+
 
   // ------------ cart --------------
 
   _cartGoods = this.request.getCartGoodsAll();
   cartGoods = signal<CartGoodsType[]>(this._cartGoods.value()! || [])
+  // cartGoods = signal<CartGoodsType[]>(JSON.parse(localStorage.getItem('cart')!) || []);
 
   addProductToCart(item: GoodsType) {
     const itemIndex = this.cartGoods().findIndex(el => el.product.id === item.id)
@@ -91,6 +101,20 @@ export class Goods {
     }
   }
 
+  deleteCartGoodsById(id: string) {
+    this.cartGoods.update(goods => goods.filter(el => el.product.id !== id));
+    localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
+  }
+
+  clearCart() {
+    this.cartGoods.set([])
+    localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
+  }
+
+  placeOrder() {
+    this.clearCart();
+    console.log('order done');
+  }
 
   // ------------ comments --------------
   _comments = this.request.getCommentsAll();

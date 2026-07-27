@@ -4,10 +4,11 @@ import { Goods } from './services/goods';
 import { HeaderComponent } from './header/header';
 import { Currency } from './services/currency';
 import { LoadingScreen } from "./loading-screen/loading-screen";
+import { FooterComponent } from "./footer/footer";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, LoadingScreen],
+  imports: [RouterOutlet, HeaderComponent, LoadingScreen, FooterComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -45,4 +46,28 @@ export class App {
       }
     });
   }
+  // constructor() {
+  //   effect(() => {
+  //     const data = this.currency._currency;
+  //     if (data) {
+  //       this.currency.currency.set(data);
+  //     }
+  //   })
+
+  //   setTimeout(() => {
+  //     this.loadingDisplay.set('none');
+  //   }, 2000)
+
+
+  //   if (!localStorage.getItem('goods')) {
+  //     localStorage.clear();
+  //     localStorage.setItem('goods', JSON.stringify(this.goods.goods));
+  //     localStorage.setItem('comments', '[]');
+  //     localStorage.setItem('cart', '[]');
+  //   } else {
+  //     this.goods.currentGoods.set(JSON.parse(localStorage.getItem('goods')!));
+  //     this.goods.comments.set(JSON.parse(localStorage.getItem('comments')!));
+  //     this.goods.cartGoods.set(JSON.parse(localStorage.getItem('cart')!));
+  //   }
+  // }
 }

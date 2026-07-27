@@ -34,7 +34,7 @@
       <app-exchange></app-exchange>
       <button class="action-icon" (click)="goToLogin()">👤</button>
       <button class="action-icon">⚖️</button>
-      <button class="action-icon cart ">
+      <button class="action-icon cart " (click)="goToCart()">
         🛒
         <div [class.hidden]="numberOfPurchases()===0">
           {{numberOfPurchases()}}

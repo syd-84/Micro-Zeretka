@@ -6,6 +6,7 @@ import { productExistsGuard } from './guards/product-exists-guard';
 import { SearchPage } from './search-page/search-page';
 import { Login } from './login/login';
 import { passGuard } from './guards/password-guard';
+import { Cart } from './cart/cart';
 
 export const routes: Routes = [
   {
@@ -13,13 +14,17 @@ export const routes: Routes = [
     component: Login
   },
   {
-    path: "item/:id",
+    path: "product/:id",
     component: Product,
     canActivate: [productExistsGuard],
   },
   {
     path: "search",
     component: SearchPage,
+  },
+  {
+    path: "cart",
+    component: Cart,
   },
   {
     path: "login",
