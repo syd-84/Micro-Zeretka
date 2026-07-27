@@ -1,0 +1,20 @@
+<h3>Кошик</h3>
+
+<div class="list">
+  @for(item of goodsService.cartGoods(); track item.product.id){
+  <div>
+    <app-cart-item [data]="item"></app-cart-item>
+  </div>
+  }
+</div>
+
+<div class="total">
+  <div class="buttons">
+    <app-button (click)="goToMainPage()">Продовжити покупки</app-button>
+    <app-button>Очистити кошик</app-button>
+  </div>
+  <div class="totalPrice">
+    <div class="price">{{totalPrice() | currencyPipe}}</div>
+    <app-button>Здійснити замовлення</app-button>
+  </div>
+</div>

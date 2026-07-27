@@ -4,10 +4,11 @@ import { Goods } from './services/goods';
 import { HeaderComponent } from './header/header';
 import { Currency } from './services/currency';
 import { LoadingScreen } from "./loading-screen/loading-screen";
+import { Cart } from "./cart/cart";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, LoadingScreen],
+  imports: [RouterOutlet, HeaderComponent, LoadingScreen, Cart],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -38,7 +39,7 @@ export class App {
     } else {
       this.goods.currentGoods.set(JSON.parse(localStorage.getItem('goods')!));
       this.goods.comments.set(JSON.parse(localStorage.getItem('comments')!));
-      // this.goods.cartGoods.set(JSON.parse(localStorage.getItem('cart')!));
+      this.goods.cartGoods.set(JSON.parse(localStorage.getItem('cart')!));
     }
   }
 

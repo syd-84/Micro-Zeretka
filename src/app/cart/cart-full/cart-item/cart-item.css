@@ -1,0 +1,84 @@
+.cart-item-wrapper {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  background-color: var(--bg-card);
+  border-radius: 8px;
+  box-shadow: 0 0 4px var(--text-secondary);
+}
+
+.image {
+  width: 60px;
+}
+
+img {
+  width: 100%;
+}
+
+.data {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.quantity {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
+
+.quantity svg,
+.quantity div {
+  width: 24px;
+  height: 24px;
+}
+
+.quantity svg {
+  fill: var(--color-info);
+}
+
+div.hiddenMinus>svg {
+  fill: var(--text-secondary);
+}
+
+.quantity div:nth-child(2) {
+  width: 32px;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--text-muted);
+  border-radius: 4px;
+}
+
+.price {
+  width: 120px;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.subMenu {
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subMenu svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--text-secondary);
+}

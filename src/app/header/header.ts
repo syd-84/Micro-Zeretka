@@ -28,4 +28,8 @@ export class HeaderComponent {
   goToLogin() {
     this.router.navigate(['login'])
   }
+
+  goToCart() {
+    this.router.navigate(['cart'])
+  }
 }
