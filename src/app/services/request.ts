@@ -49,4 +49,12 @@ export class RequestApi {
   addProductToCart(cartProduct: CartGoodsType) {
     return this.httpClient.post(`${this.SERVER_URI}/cart`, cartProduct);
   }
+
+  deleteCartGoodsById(id: string) {
+    return this.httpClient.delete(`${this.SERVER_URI}/cart/${id}`);
+  }
+
+  clearCartGoods() {
+    return this.httpClient.delete(`${this.SERVER_URI}/cart`);
+  }
 }

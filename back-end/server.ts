@@ -185,6 +185,46 @@ app.post('/cart', jsonParser, async (req, res) => {
   }
 })
 
+app.delete('/cart/:id', async (req, res) => {
+  try {
+    const result = await cartGoodsModel.findOneAndDelete({ id: req.params.id });
+    if (!result) {
+      return res.status(404).json({
+        message: "Product not found"
+      });
+    }
+    res.json({
+      message: "Product deleted successfully"
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Database error"
+    });
+  }
+});
+
+app.delete('/cart', async (req, res) => {
+  try {
+    const result = await cartGoodsModel.deleteMany({});
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({
+        message: "Cart is already empty"
+      });
+    }
+
+    res.json({
+      message: "Products deleted successfully",
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Database error"
+    });
+  }
+})
+
 
 const connection = async () => {
   try {

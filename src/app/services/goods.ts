@@ -67,21 +67,10 @@ export class Goods {
     this.cartGoods.update(goods => goods?.filter(el => el.product.id !== id));
   }
 
-  // delGoods(id: string | undefined) {
-  //   this.currentGoods.update(goods => goods.filter(el => el.id !== id));
-  //   this.cartGoods.update(goods => goods.filter(el => el.product.id !== id));
-  //   this.comments.update(comments => comments.filter(comment => comment.productId !== id));
-  //   localStorage.setItem('goods', JSON.stringify(this.currentGoods()));
-  //   localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
-  //   localStorage.setItem('comments', JSON.stringify(this.comments()));
-  // }
-
-
   // ------------ cart --------------
 
   _cartGoods = this.request.getCartGoodsAll();
   cartGoods = signal<CartGoodsType[]>(this._cartGoods.value()! || [])
-  // cartGoods = signal<CartGoodsType[]>(JSON.parse(localStorage.getItem('cart')!) || []);
 
   addProductToCart(item: GoodsType) {
     const itemIndex = this.cartGoods().findIndex(el => el.product.id === item.id)
@@ -101,14 +90,21 @@ export class Goods {
     }
   }
 
-  deleteCartGoodsById(id: string) {
-    this.cartGoods.update(goods => goods.filter(el => el.product.id !== id));
-    localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
+  deleteCartGoodsProductById(id: string) {
+    const cartId = this.cartGoods().find(el => el.product.id === id)?.id;
+    const delCartGoods = this.request.deleteCartGoodsById(cartId!).subscribe({
+      next: () => {
+        this._cartGoods.reload();
+      }
+    })
   }
 
   clearCart() {
-    this.cartGoods.set([])
-    localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
+    this.request.clearCartGoods().subscribe({
+      next: () => {
+        this._cartGoods.reload();
+      }
+    })
   }
 
   placeOrder() {
