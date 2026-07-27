@@ -4,10 +4,11 @@ import { Goods } from './services/goods';
 import { HeaderComponent } from './header/header';
 import { Currency } from './services/currency';
 import { LoadingScreen } from "./loading-screen/loading-screen";
+import { FooterComponent } from "./footer/footer";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, LoadingScreen],
+  imports: [RouterOutlet, HeaderComponent, LoadingScreen, FooterComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
