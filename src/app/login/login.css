@@ -43,5 +43,10 @@ input {
   box-sizing: border-box;
   margin-bottom: 8px;
   outline: none;
+}
 
+svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--text-primary);
 }

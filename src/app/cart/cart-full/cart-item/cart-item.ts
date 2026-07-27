@@ -1,10 +1,11 @@
-import { Component, effect, inject, input, signal } from '@angular/core';
+import { Component, effect, inject, input, signal, viewChild } from '@angular/core';
 import { CartGoodsType, Goods } from '../../../services/goods';
 import { CurrencyPipe } from '../../../pipes/currency-pipe-pipe';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-cart-item',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterLink],
   templateUrl: './cart-item.html',
   styleUrl: './cart-item.css',
 })
@@ -13,13 +14,6 @@ export class CartItem {
   goodsService = inject(Goods);
   data = input<CartGoodsType>();
   quantity = signal<number | undefined>(undefined);
-
-  onClick() {
-    const s = this.goodsService.cartGoods().reduce((prevS, el) => {
-      return prevS + el.quantity * el.product.price
-    }, 0)
-    console.log(s)
-  }
 
   changeQuantity(value: number | undefined) {
     return this.goodsService.cartGoods.update(arr =>
@@ -36,6 +30,10 @@ export class CartItem {
       this.quantity.update(v => v! - 1);
       this.changeQuantity(this.quantity());
     }
+  }
+
+  deleteItem() {
+    console.log(this.data()?.product.id);
   }
 
   constructor() {

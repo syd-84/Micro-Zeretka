@@ -154,9 +154,24 @@ export class Goods {
     this.cartGoods.update(goods => goods.filter(el => el.product.id !== id));
     this.comments.update(comments => comments.filter(comment => comment.productId !== id));
     localStorage.setItem('goods', JSON.stringify(this.currentGoods()));
+    localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
     localStorage.setItem('comments', JSON.stringify(this.comments()));
   }
 
+  deleteCartGoodsById(id: string) {
+    this.cartGoods.update(goods => goods.filter(el => el.product.id !== id));
+    localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
+  }
+
+  clearCart() {
+    this.cartGoods.set([])
+    localStorage.setItem('cart', JSON.stringify(this.cartGoods()))
+  }
+
+  placeOrder() {
+    this.clearCart();
+    console.log('order done');
+  }
 
   // ------------ comments --------------
   comments = signal<CommentType[]>([]);
