@@ -1,23 +1,40 @@
 <div class="client-page">
 
-    <app-category></app-category>
+    <app-category
+        (selectedCategory)="changeCategory($event)">
+    </app-category>
 
     <div class="content">
 
-        <app-slider
-            title="Популярні"
-            [products]="firstSlider">
-        </app-slider>
+        @if(selectedCategory === 'Усі'){
 
-        <app-slider
-            title="Новинки"
-            [products]="secondSlider">
-        </app-slider>
+            <app-slider
+                title="Новинки"
+                [products]="newestProducts">
+            </app-slider>
 
-        <app-slider
-            title="Усі товари"
-            [products]="thirdSlider">
-        </app-slider>
+            <app-slider
+                title="Усі товари"
+                [products]="oldestProducts">
+            </app-slider>
+
+        }
+
+        @else {
+
+            <div class="products-grid">
+
+                @for(product of filteredProducts; track product.id){
+
+                    <app-product-card
+                        [product]="product">
+                    </app-product-card>
+
+                }
+
+            </div>
+
+        }
 
     </div>
 

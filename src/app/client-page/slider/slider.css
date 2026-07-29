@@ -1,49 +1,79 @@
 .slider{
 
+    width:100%;
+
+}
+
+.title{
+
+    margin-bottom:20px;
+
+}
+
+.slider-body{
+
     display:flex;
+
     align-items:center;
-    justify-content:center;
+
     gap:20px;
+
     width:100%;
 
 }
 
 .cards{
 
-    display:flex;
-    gap:20px;
-    overflow:hidden;
     flex:1;
-    justify-content: center;
-
-}
-
-.left,
-.right{
-
-    width:45px;
-    height:45px;
-    border:none;
-    border-radius:50%;
-    cursor:pointer;
-    font-size:24px;
-    margin: 10px;
-
-}
-
-
-
-.viewport{
-
-    overflow:hidden;
-    width:720px; 
-
-}
-
-.track{
 
     display:flex;
+
+    justify-content:space-between;
+
     gap:20px;
-    transition:transform .4s ease;
+
+    overflow:hidden;
+
+}
+
+.cards app-product-card{
+
+    flex:0 0 220px;
+
+}
+
+.arrow{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    cursor:pointer;
+
+    font-size:26px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+    flex-shrink:0;
+
+}
+
+.arrow:hover{
+
+    transform:scale(1.05);
+
+}
+
+.arrow:disabled{
+
+    opacity:.35;
+
+    cursor:default;
 
 }

@@ -1,67 +1,54 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { GoodsType } from '../../services/goods';
 import { ProductCard } from '../product-card/product-card';
 
 @Component({
   selector: 'app-slider',
-  imports: [
-    ProductCard
-  ],
+  standalone: true,
+  imports: [ProductCard],
   templateUrl: './slider.html',
   styleUrl: './slider.css'
 })
 export class SliderComponent {
 
-  title = input("");
-    products = input.required<GoodsType[]>();
+  @Input() title = '';
 
-    currentIndex = signal(0);
+  @Input() products: GoodsType[] = [];
 
-    visibleCount = 3;
-    cardWidth = 300;
+  visibleCount = 5;
 
-    offset = computed(() => {
-         return this.currentIndex() * this.cardWidth;
-    });
-    visibleProducts = computed(() => {
+  startIndex = 0;
 
-    return this.products().slice(
+  get visibleProducts(): GoodsType[] {
 
-        this.currentIndex(),
-
-        this.currentIndex() + this.visibleCount
-
+    return this.products.slice(
+      this.startIndex,
+      this.startIndex + this.visibleCount
     );
 
-});
+  }
 
-    next(){
+  next() {
 
-    if(
+    if (
+      this.startIndex <
+      this.products.length - this.visibleCount
+    ) {
 
-        this.currentIndex()
-
-        <
-
-        this.products().length - this.visibleCount
-
-    ){
-
-        this.currentIndex.update(v=>v+1);
+      this.startIndex++;
 
     }
 
-}
+  }
 
-    previous(){
+  prev() {
 
-    if(this.currentIndex()>0){
+    if (this.startIndex > 0) {
 
-        this.currentIndex.update(v=>v-1);
+      this.startIndex--;
 
     }
 
-}
-
+  }
 
 }

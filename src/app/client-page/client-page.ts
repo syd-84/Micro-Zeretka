@@ -3,7 +3,7 @@ import { Goods } from '../services/goods';
 import { HeaderComponent } from '../header/header';
 import { CategoryComponent } from './category/category';
 import { SliderComponent } from './slider/slider';
-
+import { ProductCard } from './product-card/product-card';
 
 @Component({
   selector: 'app-client',
@@ -11,20 +11,41 @@ import { SliderComponent } from './slider/slider';
   imports: [
     HeaderComponent,
     CategoryComponent,
-    SliderComponent
-
+    SliderComponent,
+    ProductCard
   ],
   templateUrl: './client-page.html',
   styleUrl: './client-page.css'
 })
 export class ClientPage {
+
   goods = inject(Goods);
 
-products = this.goods.currentGoods();
+  products = this.goods.currentGoods();
 
-firstSlider = this.products.slice(0,5);
+  newestProducts = [...this.products].reverse();
 
-secondSlider = this.products.slice(5,10);
+  oldestProducts = [...this.products];
 
-thirdSlider = this.products.slice(10);
+  filteredProducts = this.products;
+
+  selectedCategory = 'Усі';
+
+  changeCategory(category: string) {
+
+    this.selectedCategory = category;
+
+    if (category === 'Усі') {
+
+      this.filteredProducts = this.products;
+      return;
+
+    }
+
+    this.filteredProducts = this.products.filter(
+      product => product.category === category
+    );
+
+  }
+
 }
