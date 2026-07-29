@@ -1,10 +1,10 @@
-<a [routerLink]="['/item', data()?.id]">
+<a [routerLink]="['/product', data()?.id]">
   <div>
     <img [src]="data()?.imgSrc" alt="image">
   </div>
 
   <div>
     <p>{{data()?.name}}</p>
-    <p>{{data()?.price}}</p>
+    <p>{{data()?.price! | currencyPipe}}</p>
   </div>
 </a>

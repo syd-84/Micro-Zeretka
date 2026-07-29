@@ -14,7 +14,7 @@ export const routes: Routes = [
     component: ClientPage
   },
   {
-    path: "item/:id",
+    path: "product/:id",
     component: Product,
     canActivate: [productExistsGuard],
   },

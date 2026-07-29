@@ -17,7 +17,7 @@
       Написати відгук
     </h4>
     <div class="addComment">
-      <textarea formControlName="comment"></textarea>
+      <textarea formControlName="comment" (keyup)="addCommentOnKey($event)"></textarea>
       @if(commentControl.invalid && commentControl.touched){
       <p class="inform">Обов'язкове поле</p>
       }

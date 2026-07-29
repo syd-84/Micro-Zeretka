@@ -5,10 +5,64 @@
 
   <div>
     <h3>{{product?.name}}</h3>
-    <div>
-      <p class="price">Ціна: {{product?.price}} ₴</p>
-      <app-button (click)="addToCart(product!)">{{goods.cartGoods().some(el=>el.product===product)?'Додано до кошика':'Купити'}}</app-button>
+
+    <div class="price_block">
+      <p><span class="vendor">Продавець: </span>
+        <svg>
+          <use href="icons.svg#logo"></use>
+        </svg>
+        <span class="zeretka"> ZERETKA </span>
+      </p>
+      <hr>
+      <p class="present">Є в наявності</p>
+      <p class="price"> {{product!.price | currencyPipe}}</p>
+      <app-button (click)="addToCart(product!)">
+        {{goods.cartGoods().some(el=>el.product.id===product?.id)?'Додано до кошика':'Купити'}}
+      </app-button>
       <app-button (click)="goToMainPage()">Назад</app-button>
+
+      <hr>
+      <div class="discounts">
+        <img src="/655528244.png" alt="image">
+        <img src="/655529733.png" alt="image">
+        <img src="/655530247.png" alt="image">
+        <img src="/658927522.png" alt="image">
+        <img src="/662437064.png" alt="image">
+        <img src="/655527195.png" alt="image">
+      </div>
+      <hr>
+    </div>
+
+    <div class="pickup">
+      <span>Самовивіз з магазинів Zeretka &mdash; </span> <span>Безкоштовно</span>
+    </div>
+
+    <div class="payment">
+      <div class="payment-item">
+        <div class="payment-item-svg">
+          <svg>
+            <use href="icons.svg#icon-wallet"></use>
+          </svg>
+        </div>
+        <div class="payment-item-text" (mouseenter)="changeHeight($event)" (mouseleave)="changeHeightBack($event)">
+          <span>Оплата.</span> Оплата під час отримання товару, Оплатити зараз Карткою Rozetka, Карткою онлайн, Apple
+          Pay, Google Pay, Безготівковими для юридичних осіб, Оплата карткою державної
+          допомоги «Пакунок малюка» або «Допомога до року 7000 грн», Безготівковий для фізичних осіб, Visa, Mastercard
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="payment-item">
+        <div class="payment-item-svg">
+          <svg>
+            <use href="icons.svg#icon-warranty"></use>
+          </svg>
+        </div>
+        <div class="payment-item-text" (mouseenter)="changeHeight($event)" (mouseleave)="changeHeightBack($event)">
+          <span>Гарантія.</span> 12 місяців офіційної гарантії від виробника. Обмін/повернення товару впродовж 14 днів.
+        </div>
+      </div>
     </div>
   </div>
 </div>
