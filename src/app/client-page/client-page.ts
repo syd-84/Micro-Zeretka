@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { Goods } from '../services/goods';
-import { HeaderComponent } from '../header/header';
 import { CategoryComponent } from './category/category';
 import { SliderComponent } from './slider/slider';
 import { ProductCard } from './product-card/product-card';
@@ -9,7 +8,6 @@ import { ProductCard } from './product-card/product-card';
   selector: 'app-client',
   standalone: true,
   imports: [
-    HeaderComponent,
     CategoryComponent,
     SliderComponent,
     ProductCard

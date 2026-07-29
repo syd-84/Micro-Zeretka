@@ -31,11 +31,10 @@ export class SliderComponent {
   next() {
 
     if (
-      this.startIndex <
-      this.products.length - this.visibleCount
+      this.startIndex < this.products.length - this.visibleCount
     ) {
 
-      this.startIndex++;
+      this.startIndex += 5;
 
     }
 
@@ -45,7 +44,7 @@ export class SliderComponent {
 
     if (this.startIndex > 0) {
 
-      this.startIndex--;
+      this.startIndex -= 5;
 
     }
 

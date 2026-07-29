@@ -1,17 +1,47 @@
-<div class="card" (click)="openProduct()">
+<div class="card">
+    <div (click)="openProduct()">
+        <img [src]="product().imgSrc" [alt]="product().name">
 
-    <img
-        [src]="product().imgSrc"
-        [alt]="product().name">
+        <h3>
+            {{product().name}}
+        </h3>
+    </div>
 
-    <h3>
-        {{product().name}}
-    </h3>
 
-    <p class="price">
 
-        {{product().price}} ₴
+    <div class="stars">
+        <svg>
+            <use href="icons.svg#star-icon"></use>
+        </svg>
+        <svg>
+            <use href="icons.svg#star-icon"></use>
+        </svg>
+        <svg>
+            <use href="icons.svg#star-icon"></use>
+        </svg>
+        <svg>
+            <use href="icons.svg#star-icon"></use>
+        </svg>
+        <svg>
+            <use href="icons.svg#star-icon"></use>
+        </svg>
+    </div>
 
-    </p>
+    <p class="readyToSend">Готовий до відправлення</p>
 
+    <div class="price-section">
+        <p class="price">
+            {{product().price | currencyPipe}}
+        </p>
+        <div class="cart" (click)="goodsService.addProductToCart(product())">
+            <svg>
+                <use href="icons.svg#icon-basket" />
+            </svg>
+            <div [class]="`cart-filled ${inCart()?'':'hidden'}`">
+                <svg>
+                    <use href="icons.svg#icon-basket-filled"></use>
+                </svg>
+            </div>
+        </div>
+    </div>
 </div>

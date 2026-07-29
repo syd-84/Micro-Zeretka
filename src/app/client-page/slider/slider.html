@@ -1,37 +1,28 @@
-<div class="slider">
+<div class="slider" #slider>
 
     <h2 class="title">{{title}}</h2>
 
     <div class="slider-body">
 
-        <button
-            class="arrow"
-            (click)="prev()"
-            [disabled]="startIndex===0">
 
-            ❮
-
-        </button>
 
         <div class="cards">
 
             @for(product of visibleProducts; track product.id){
 
-                <app-product-card
-                    [product]="product">
-                </app-product-card>
+            <app-product-card [product]="product">
+            </app-product-card>
 
             }
 
         </div>
 
-        <button
-            class="arrow"
-            (click)="next()"
-            [disabled]="startIndex>=products.length-visibleCount">
+        <button class="arrow left" (click)="prev()" [disabled]="startIndex===0">
+            ❮
+        </button>
 
+        <button class="arrow right" (click)="next()" [disabled]="startIndex>=products.length-visibleCount">
             ❯
-
         </button>
 
     </div>
