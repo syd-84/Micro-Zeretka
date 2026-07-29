@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Goods } from '../../services/goods';
 
 @Component({
   selector: 'app-category',
@@ -14,32 +15,8 @@ export class CategoryComponent {
 
   currentCategory = 'Усі';
 
-  categories = [
-    {
-      title: 'Усі',
-      value: 'Усі'
-    },
-    {
-      title: 'Техніка',
-      value: 'technics'
-    },
-    {
-      title: 'Одяг',
-      value: 'clothes'
-    },
-    {
-      title: 'Їжа',
-      value: 'food'
-    },
-    {
-      title: 'Зоотовари',
-      value: 'pet supplies'
-    },
-    {
-      title: 'Побутова хімія',
-      value: 'household chemicals'
-    }
-  ];
+  goodsService = inject(Goods);
+  categories = this.goodsService.categoriesGoods;
 
   selectCategory(category: string) {
 

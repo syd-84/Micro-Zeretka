@@ -18,6 +18,7 @@ import { ProductCard } from './product-card/product-card';
 export class ClientPage {
 
   goods = inject(Goods);
+  categoryGoods = this.goods.categoriesGoods;
 
   products = this.goods.currentGoods();
 
@@ -28,22 +29,23 @@ export class ClientPage {
   filteredProducts = this.products;
 
   selectedCategory = 'Усі';
+  nameCategory = 'Усі';
 
   changeCategory(category: string) {
 
     this.selectedCategory = category;
 
     if (category === 'Усі') {
-
       this.filteredProducts = this.products;
       return;
 
+    } else {
+      this.nameCategory = this.categoryGoods.find(el => el.category === this.selectedCategory)!.name
     }
 
     this.filteredProducts = this.products.filter(
       product => product.category === category
     );
-
   }
 
 }

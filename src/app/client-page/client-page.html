@@ -10,26 +10,18 @@
         <app-slider title="Новинки" [products]="newestProducts">
         </app-slider>
 
-        <app-slider title="Усі товари" [products]="oldestProducts">
-        </app-slider>
-
         }
 
         @else {
 
-        <div class="products-grid">
-
-            @for(product of filteredProducts; track product.id){
-
-            <app-product-card [product]="product">
-            </app-product-card>
-
-            }
-
-        </div>
+        <app-slider title="{{nameCategory}}" [products]="filteredProducts"></app-slider>
 
         }
 
     </div>
 
+</div>
+
+<div class="allProducts">
+    <app-slider title="Усі товари" [products]="oldestProducts"></app-slider>
 </div>

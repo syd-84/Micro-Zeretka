@@ -12,7 +12,6 @@
   --color-warning: #FFA800;
   /* Посилання, інфо-повідомлення */
   --color-info: #3E77AA;
-
   /* Головний текст */
   --text-primary: #211F1F;
   /* Другорядний текст */
@@ -30,6 +29,8 @@
   --border-light: #E5E5E5;
   /* Сірий напівпрозорий фон */
   --bg-gray-translucent: #79787879;
+
+  --bg-green-soft: #e5f5ec;
 
   /* Шрифти */
   --rz-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;

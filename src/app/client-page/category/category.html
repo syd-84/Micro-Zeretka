@@ -2,16 +2,24 @@
 
     <h2>Категорії</h2>
 
-    @for(category of categories; track category.value){
+    <div class="category-item" [class.active]="currentCategory==='Усі'" (click)="selectCategory('Усі')">
+        <svg>
+            <use [attr.href]="'icons.svg#icon-delivery-shop'" />
+        </svg> Усі товари
 
-        <div
-            class="category-item"
-            [class.active]="currentCategory===category.value"
-            (click)="selectCategory(category.value)">
+    </div>
 
-            {{category.title}}
 
-        </div>
+    @for(category of categories; track category.category){
+
+    <div class="category-item" [class.active]="currentCategory===category.category"
+        (click)="selectCategory(category.category)">
+        <svg>
+            <use [attr.href]="`icons.svg#${category.category}`" />
+        </svg>
+        {{category.name}}
+
+    </div>
 
     }
 

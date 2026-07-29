@@ -88,7 +88,7 @@ export class Goods {
       description: "Versele-Laga Prestige Вudgies ВЕРСЕЛЕ-ЛАГА ПРЕСТИЖ ПАПУЖКА — це традиційне повноцінне харчування для хвилястих та інших маленьких папужок.",
       imgSrc: "https://content1.rozetka.com.ua/goods/images/big/10694243.jpg",
       price: 225,
-      category: "pet supplies"
+      category: "pet-supplies"
     },
     {
       id: crypto.randomUUID(),
@@ -96,7 +96,7 @@ export class Goods {
       description: "Зручна пластикова переноска MP Bergamo Gipsy XS smal для транспортування котів і невеликих собак. Дає змогу легко та з мінімальним стресом перевозити улюбленця, водночас убезпечивши його від можливих травм чи втечі.",
       imgSrc: "https://content1.rozetka.com.ua/goods/images/big/442561151.jpg",
       price: 387,
-      category: "pet supplies"
+      category: "pet-supplies"
     },
     {
       id: crypto.randomUUID(),
@@ -104,7 +104,7 @@ export class Goods {
       description: "Гелеві капсули для прання Persil - трикамерні капсули з дозованою кількістю концентрованого засобу. Капсули Universal використовують для прання білих та світлих речей. ",
       imgSrc: "https://content1.rozetka.com.ua/goods/images/big/567968795.jpg",
       price: 938,
-      category: "household chemicals"
+      category: "household-chemicals"
     },
     {
       id: crypto.randomUUID(),
@@ -112,7 +112,7 @@ export class Goods {
       description: "Виготовлені з сировини з переважанням хвойної целюлози, що надає паперовим рушникам усі необхідні якості: добре вбирають рідину, міцні, не прилипає до харчових продуктів.",
       imgSrc: "https://content.rozetka.com.ua/goods/images/big/279976798.jpg",
       price: 159,
-      category: "household chemicals"
+      category: "household-chemicals"
     },
   ]
 
@@ -120,8 +120,8 @@ export class Goods {
     { category: 'technics', name: 'Техніка та інструменти' },
     { category: 'clothes', name: 'Одяг та взуття' },
     { category: 'food', name: 'Їжа та напої' },
-    { category: 'pet supplies', name: 'Зоотовари' },
-    { category: 'household chemicals', name: 'Побутова хімія' }
+    { category: 'pet-supplies', name: 'Зоотовари' },
+    { category: 'household-chemicals', name: 'Побутова хімія' }
   ]
 
   currentGoods = signal(this.goods);

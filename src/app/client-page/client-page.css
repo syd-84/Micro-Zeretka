@@ -44,3 +44,8 @@ app-category {
     width: 100%;
 
 }
+
+.allProducts {
+    padding: 24px;
+    box-sizing: border-box;
+}
