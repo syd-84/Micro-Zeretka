@@ -8,7 +8,7 @@
 
         <div class="cards" [style.transform]="`translate(-${translateX()}px)`">
 
-            @for(product of products; track product.id){
+            @for(product of products(); track product.id){
 
             <app-product-card [product]="product">
             </app-product-card>

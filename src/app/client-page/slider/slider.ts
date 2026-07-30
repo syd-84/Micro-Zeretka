@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, effect, ElementRef, inject, Input, signal, viewChild } from '@angular/core';
+import { Component, computed, DestroyRef, effect, ElementRef, inject, input, Input, signal, viewChild } from '@angular/core';
 import { GoodsType } from '../../services/goods';
 import { ProductCard } from '../product-card/product-card';
 
@@ -12,8 +12,9 @@ import { ProductCard } from '../product-card/product-card';
 export class SliderComponent {
 
   @Input() title = '';
+  products = input<GoodsType[]>([]);
+  // @Input() products: GoodsType[] = [];
 
-  @Input() products: GoodsType[] = [];
   slice_tag = viewChild<ElementRef<HTMLDivElement>>('slider');
   destroyRef = inject(DestroyRef);
 
@@ -41,7 +42,7 @@ export class SliderComponent {
 
   constructor() {
     effect(() => {
-      if (this.products) this.numberOfProducts = this.products.length;
+      if (this.products()) this.numberOfProducts = this.products().length;
       this.maxSlides = Math.floor(this.numberOfProducts / 5);
       this.slideWidth.set(this.slice_tag()!.nativeElement.offsetWidth);
 
