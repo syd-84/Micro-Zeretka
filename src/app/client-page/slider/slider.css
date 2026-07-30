@@ -1,0 +1,82 @@
+.slider {
+
+    width: 100%;
+    position: relative;
+
+}
+
+.title {
+
+    margin-bottom: 20px;
+    margin-left: 8px;
+
+}
+
+.slider-body {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    width: 100%;
+    overflow: hidden;
+
+}
+
+.cards {
+
+    width: 100%;
+
+    display: flex;
+
+    transform: translateX(0px);
+    transition: transform 1s ease;
+
+}
+
+.arrow {
+
+    width: 48px;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    font-size: 26px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+
+    flex-shrink: 0;
+    position: absolute;
+
+}
+
+.arrow:hover {
+
+    transform: scale(1.05);
+
+}
+
+.arrow:disabled {
+
+    opacity: .35;
+
+    cursor: default;
+
+}
+
+.right {
+    right: 0;
+}
+
+.left {
+    left: 0;
+}

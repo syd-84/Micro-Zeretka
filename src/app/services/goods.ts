@@ -38,8 +38,8 @@ export class Goods {
     { category: 'technics', name: 'Техніка та інструменти' },
     { category: 'clothes', name: 'Одяг та взуття' },
     { category: 'food', name: 'Їжа та напої' },
-    { category: 'pet supplies', name: 'Зоотовари' },
-    { category: 'household chemicals', name: 'Побутова хімія' }
+    { category: 'pet-supplies', name: 'Зоотовари' },
+    { category: 'household-chemicals', name: 'Побутова хімія' }
   ]
 
   goods = this.request.getGoodsAll();

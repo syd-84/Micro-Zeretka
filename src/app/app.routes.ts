@@ -7,11 +7,12 @@ import { SearchPage } from './search-page/search-page';
 import { Login } from './login/login';
 import { passGuard } from './guards/password-guard';
 import { Cart } from './cart/cart';
+import { ClientPage } from './client-page/client-page';
 
 export const routes: Routes = [
   {
     path: "",
-    component: Login
+    component: ClientPage
   },
   {
     path: "product/:id",
@@ -42,5 +43,5 @@ export const routes: Routes = [
   {
     path: "**",
     component: Page404
-  }
+  },
 ];

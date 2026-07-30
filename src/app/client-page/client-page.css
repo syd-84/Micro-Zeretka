@@ -1,0 +1,51 @@
+.client-page {
+
+    display: flex;
+    align-items: flex-start;
+
+    padding: 24px;
+    box-sizing: border-box;
+    gap: 16px;
+
+}
+
+app-category {
+
+    width: 240px;
+    min-width: 240px;
+
+    flex-shrink: 0;
+
+}
+
+.content {
+
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 50px;
+
+}
+
+.products-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(220px, 220px));
+
+    justify-content: flex-start;
+
+    gap: 24px;
+
+    width: 100%;
+
+}
+
+.allProducts {
+    padding: 24px;
+    box-sizing: border-box;
+}
