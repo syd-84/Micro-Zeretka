@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { Goods } from '../services/goods';
 import { CategoryComponent } from './category/category';
 import { SliderComponent } from './slider/slider';
-import { ProductCard } from './product-card/product-card';
 
 @Component({
   selector: 'app-client',
@@ -10,7 +9,6 @@ import { ProductCard } from './product-card/product-card';
   imports: [
     CategoryComponent,
     SliderComponent,
-    ProductCard
   ],
   templateUrl: './client-page.html',
   styleUrl: './client-page.css'

@@ -2,13 +2,13 @@
 
     <h2 class="title">{{title}}</h2>
 
-    <div class="slider-body">
+    <div class="slider-body" #slider>
 
 
 
-        <div class="cards">
+        <div class="cards" [style.transform]="`translate(-${translateX()}px)`">
 
-            @for(product of visibleProducts; track product.id){
+            @for(product of products; track product.id){
 
             <app-product-card [product]="product">
             </app-product-card>
@@ -17,11 +17,11 @@
 
         </div>
 
-        <button class="arrow left" (click)="prev()" [disabled]="startIndex===0">
+        <button class="arrow left" (click)="prev()" [disabled]="startIndex()===0">
             ❮
         </button>
 
-        <button class="arrow right" (click)="next()" [disabled]="startIndex>=products.length-visibleCount">
+        <button class="arrow right" (click)="next()" [disabled]="startIndex()>=maxSlides">
             ❯
         </button>
 
