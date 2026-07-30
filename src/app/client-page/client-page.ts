@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Goods } from '../services/goods';
+import { Component, computed, inject, signal } from '@angular/core';
+import { Goods, GoodsType } from '../services/goods';
 import { CategoryComponent } from './category/category';
 import { SliderComponent } from './slider/slider';
 
@@ -18,13 +18,21 @@ export class ClientPage {
   goods = inject(Goods);
   categoryGoods = this.goods.categoriesGoods;
 
-  products = this.goods.currentGoods();
+  products = computed(() => {
+    return this.goods.currentGoods();
+  });
 
-  newestProducts = [...this.products].reverse();
+  newestProducts = computed(() => {
+    return this.products() ? [...this.products()!].reverse() : [];
+  });
 
-  oldestProducts = [...this.products];
+  oldestProducts = computed(() => {
+    return this.products();
+  });
 
-  filteredProducts = this.products;
+
+  filteredProducts = signal<GoodsType[]>([])
+
 
   selectedCategory = 'Усі';
   nameCategory = 'Усі';
@@ -34,16 +42,16 @@ export class ClientPage {
     this.selectedCategory = category;
 
     if (category === 'Усі') {
-      this.filteredProducts = this.products;
+      this.filteredProducts.set(this.products());
       return;
 
     } else {
       this.nameCategory = this.categoryGoods.find(el => el.category === this.selectedCategory)!.name
     }
 
-    this.filteredProducts = this.products.filter(
+    this.filteredProducts.set(this.products().filter(
       product => product.category === category
-    );
+    ));
   }
 
 }

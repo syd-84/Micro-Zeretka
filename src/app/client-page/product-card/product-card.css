@@ -7,15 +7,13 @@
 
 .card {
 
-    /* width: 220px; */
     height: 100%;
     padding: 15px;
     box-sizing: border-box;
     border-radius: 8px;
-    box-shadow: 0 0 4px var(--text-secondary);
+    box-shadow: 0 0 4px var(--border-shadow);
     transition: .2s;
     background: white;
-    /* border: 1px solid var(--text-secondary); */
 
 }
 

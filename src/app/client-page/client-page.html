@@ -7,14 +7,14 @@
 
         @if(selectedCategory === 'Усі'){
 
-        <app-slider title="Новинки" [products]="newestProducts">
+        <app-slider title="Новинки" [products]="newestProducts()">
         </app-slider>
 
         }
 
         @else {
 
-        <app-slider title="{{nameCategory}}" [products]="filteredProducts"></app-slider>
+        <app-slider title="{{nameCategory}}" [products]="filteredProducts()"></app-slider>
 
         }
 
@@ -23,5 +23,5 @@
 </div>
 
 <div class="allProducts">
-    <app-slider title="Усі товари" [products]="oldestProducts"></app-slider>
+    <app-slider title="Усі товари" [products]="oldestProducts()"></app-slider>
 </div>

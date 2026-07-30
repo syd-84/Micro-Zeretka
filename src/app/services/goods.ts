@@ -45,6 +45,10 @@ export class Goods {
   goods = this.request.getGoodsAll();
   currentGoods = signal<GoodsType[]>(this.goods.value()!);
 
+  getAllGoods() {
+    this.goods.reload();
+  }
+
   addGoods(product: GoodsType) {
     const req = this.request.addGoods(product).subscribe({
       next: () => {

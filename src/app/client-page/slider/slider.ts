@@ -41,7 +41,7 @@ export class SliderComponent {
 
   constructor() {
     effect(() => {
-      this.numberOfProducts = this.products.length;
+      if (this.products) this.numberOfProducts = this.products.length;
       this.maxSlides = Math.floor(this.numberOfProducts / 5);
       this.slideWidth.set(this.slice_tag()!.nativeElement.offsetWidth);
 
