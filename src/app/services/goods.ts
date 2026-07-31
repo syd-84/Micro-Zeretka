@@ -65,7 +65,7 @@ export class Goods {
       }
     })
     this.deleteCommentsByProductId(id!);
-    this.deleteCartGoodsProductById(id!);
+    this.deleteCartGoodsByProductId(id!);
   }
 
   // ------------ cart --------------
@@ -91,7 +91,7 @@ export class Goods {
     }
   }
 
-  deleteCartGoodsProductById(id: string) {
+  deleteCartGoodsByProductId(id: string) {
     const cartId = this.cartGoods().find(el => el.product.id === id)?.id;
     if (cartId) {
       this.request.deleteCartGoodsById(cartId!).pipe(take(1)).subscribe({

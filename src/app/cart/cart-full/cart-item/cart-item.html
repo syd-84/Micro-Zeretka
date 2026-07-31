@@ -41,7 +41,7 @@
 
     <div>
       <div class="subSubMenu" #subSubMenu
-        (click)="goodsService.deleteCartGoodsProductById(data()!.product.id); subSubMenu.style.display='none'; backdrop.style.display='none'; $event.stopPropagation()">
+        (click)="goodsService.deleteCartGoodsByProductId(data()!.product.id); subSubMenu.style.display='none'; backdrop.style.display='none'; $event.stopPropagation()">
         <svg>
           <use href="icons.svg#icon-trash" />
         </svg>
