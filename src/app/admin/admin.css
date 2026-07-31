@@ -1,4 +1,4 @@
-:host {
+div {
   display: flex;
   width: 100%;
   padding: 16px;
@@ -6,6 +6,11 @@
   justify-content: center;
   align-items: flex-start;
   gap: 24px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 0;
 }
 
 app-admin-form,
