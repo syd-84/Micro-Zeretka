@@ -32,10 +32,6 @@ export class CartItem {
     }
   }
 
-  deleteItem() {
-    console.log(this.data()?.product.id);
-  }
-
   constructor() {
     effect(() => {
       this.quantity.set(this.data()?.quantity)

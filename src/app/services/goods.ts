@@ -50,7 +50,7 @@ export class Goods {
   }
 
   addGoods(product: GoodsType) {
-    const req = this.request.addGoods(product).subscribe({
+    this.request.addGoods(product).subscribe({
       next: () => {
         this.goods.reload();
       }
@@ -58,17 +58,13 @@ export class Goods {
   }
 
   delGoods(id: string | undefined) {
-    const delGoods = this.request.deleteGoodsById(id!).subscribe({
+    this.request.deleteGoodsById(id!).subscribe({
       next: () => {
         this.goods.reload();
       }
     })
-    const delComments = this.request.deleteCommentsByProductId(id!).subscribe({
-      next: () => {
-        this._comments.reload();
-      }
-    })
-    this.cartGoods.update(goods => goods?.filter(el => el.product.id !== id));
+    this.deleteCommentsByProductId(id!);
+    this.deleteCartGoodsProductById(id!);
   }
 
   // ------------ cart --------------
@@ -96,11 +92,13 @@ export class Goods {
 
   deleteCartGoodsProductById(id: string) {
     const cartId = this.cartGoods().find(el => el.product.id === id)?.id;
-    const delCartGoods = this.request.deleteCartGoodsById(cartId!).subscribe({
-      next: () => {
-        this._cartGoods.reload();
-      }
-    })
+    if (cartId) {
+      this.request.deleteCartGoodsById(cartId!).subscribe({
+        next: () => {
+          this._cartGoods.reload();
+        }
+      })
+    }
   }
 
   clearCart() {
@@ -134,5 +132,15 @@ export class Goods {
         this._comments.reload();
       }
     })
+  }
+
+  deleteCommentsByProductId(id: string) {
+    if (this.comments().some(el => el.productId === id)) {
+      this.request.deleteCommentsByProductId(id).subscribe({
+        next: () => {
+          this._comments.reload();
+        }
+      })
+    }
   }
 }
