@@ -1,5 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { RequestApi } from './request';
+import { take } from 'rxjs';
 
 export type GoodsType = {
   id: string,
@@ -50,7 +51,7 @@ export class Goods {
   }
 
   addGoods(product: GoodsType) {
-    this.request.addGoods(product).subscribe({
+    this.request.addGoods(product).pipe(take(1)).subscribe({
       next: () => {
         this.goods.reload();
       }
@@ -58,7 +59,7 @@ export class Goods {
   }
 
   delGoods(id: string | undefined) {
-    this.request.deleteGoodsById(id!).subscribe({
+    this.request.deleteGoodsById(id!).pipe(take(1)).subscribe({
       next: () => {
         this.goods.reload();
       }
@@ -82,7 +83,7 @@ export class Goods {
         quantity: 1,
       }
 
-      this.request.addProductToCart(cartItem).subscribe({
+      this.request.addProductToCart(cartItem).pipe(take(1)).subscribe({
         next: () => {
           this._cartGoods.reload();
         }
@@ -93,7 +94,7 @@ export class Goods {
   deleteCartGoodsProductById(id: string) {
     const cartId = this.cartGoods().find(el => el.product.id === id)?.id;
     if (cartId) {
-      this.request.deleteCartGoodsById(cartId!).subscribe({
+      this.request.deleteCartGoodsById(cartId!).pipe(take(1)).subscribe({
         next: () => {
           this._cartGoods.reload();
         }
@@ -102,7 +103,7 @@ export class Goods {
   }
 
   clearCart() {
-    this.request.clearCartGoods().subscribe({
+    this.request.clearCartGoods().pipe(take(1)).subscribe({
       next: () => {
         this._cartGoods.reload();
       }
@@ -127,7 +128,7 @@ export class Goods {
       productId: productId,
       userId: "User",
     }
-    this.request.addComment(commmentObj).subscribe({
+    this.request.addComment(commmentObj).pipe(take(1)).subscribe({
       next: () => {
         this._comments.reload();
       }
@@ -136,7 +137,7 @@ export class Goods {
 
   deleteCommentsByProductId(id: string) {
     if (this.comments().some(el => el.productId === id)) {
-      this.request.deleteCommentsByProductId(id).subscribe({
+      this.request.deleteCommentsByProductId(id).pipe(take(1)).subscribe({
         next: () => {
           this._comments.reload();
         }
