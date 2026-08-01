@@ -185,7 +185,7 @@ app.post('/cart', jsonParser, async (req, res) => {
   }
 })
 
-app.delete('/cart/:id', async (req, res) => {
+app.delete('/cart/product/:id', async (req, res) => {
   try {
     const result = await cartGoodsModel.findOneAndDelete({ id: req.params.id });
     if (!result) {

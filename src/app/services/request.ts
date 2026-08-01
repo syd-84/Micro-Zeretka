@@ -50,8 +50,8 @@ export class RequestApi {
     return this.httpClient.post(`${this.SERVER_URI}/cart`, cartProduct);
   }
 
-  deleteCartGoodsById(id: string) {
-    return this.httpClient.delete(`${this.SERVER_URI}/cart/${id}`);
+  deleteCartGoodsByProductId(id: string) {
+    return this.httpClient.delete(`${this.SERVER_URI}/cart/product/${id}`);
   }
 
   clearCartGoods() {

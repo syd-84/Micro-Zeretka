@@ -94,7 +94,7 @@ export class Goods {
   deleteCartGoodsByProductId(id: string) {
     const cartId = this.cartGoods().find(el => el.product.id === id)?.id;
     if (cartId) {
-      this.request.deleteCartGoodsById(cartId!).pipe(take(1)).subscribe({
+      this.request.deleteCartGoodsByProductId(cartId!).pipe(take(1)).subscribe({
         next: () => {
           this._cartGoods.reload();
         }
