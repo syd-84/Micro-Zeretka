@@ -33,7 +33,7 @@
         <p class="price">
             {{product().price | currencyPipe}}
         </p>
-        <div class="cart" (click)="goodsService.addProductToCart(product())">
+        <div class="cart" (click)="addToCartProduct(product())">
             <svg>
                 <use href="icons.svg#icon-basket" />
             </svg>

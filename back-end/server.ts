@@ -225,6 +225,34 @@ app.delete('/cart', async (req, res) => {
   }
 })
 
+app.post('/cart/:id', jsonParser, async (req, res) => {
+  try {
+    const cartId = req.params.id;
+    const cartData = req.body;
+
+    const cartProduct = await cartGoodsModel.findOneAndUpdate(
+      { id: cartId },
+      { $set: { product: cartData.product, quantity: cartData.quantity } },
+      { returnDocument: 'after', runValidators: true }
+    );
+
+    if (!cartProduct) {
+      return res.status(404).json({
+        message: "Product not found in cart"
+      });
+    }
+
+    res.status(200).json({
+      message: "Product updated in cart"
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Database error"
+    });
+  }
+})
+
 
 const connection = async () => {
   try {

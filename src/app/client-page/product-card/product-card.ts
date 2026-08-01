@@ -22,4 +22,15 @@ export class ProductCard {
   openProduct() {
     this.router.navigate(['/product', this.product().id]);
   }
+
+  addToCartProduct(prod: GoodsType) {
+    this.goodsService.addProductToCart(prod);
+    if (this.goodsService.cartGoods().some(el => el.product!)) {
+      const prodId = prod.id;
+      const cart = this.goodsService.cartGoods().find(el => el.product.id === prodId);
+      const cartId = cart?.id
+      const quantity = cart?.quantity! + 1;
+      this.goodsService.updateQuantityByIdCart(cartId!, quantity)
+    }
+  }
 }

@@ -16,7 +16,7 @@
       <hr>
       <p class="present">Є в наявності</p>
       <p class="price"> {{product!.price | currencyPipe}}</p>
-      <app-button (click)="addToCart(product!)">
+      <app-button (click)="addToCartProduct(product!)">
         {{goods.cartGoods().some(el=>el.product.id===product?.id)?'Додано до кошика':'Купити'}}
       </app-button>
       <app-button (click)="goToMainPage()">Назад</app-button>

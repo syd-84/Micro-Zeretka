@@ -110,6 +110,19 @@ export class Goods {
     })
   }
 
+  updateQuantityByIdCart(cartId: string, value: number) {
+    const cartProductToUpdate: CartGoodsType | undefined = this.cartGoods().find(el => el.id === cartId);
+    if (!cartProductToUpdate) return;
+    cartProductToUpdate!.quantity = value;
+    this.request.updateCartById(cartId, cartProductToUpdate!).pipe(take(1)).subscribe({
+      next: () => {
+        this._cartGoods.update(currentGoods => currentGoods?.map(el =>
+          el.id === cartId ? cartProductToUpdate : el
+        ));
+      }
+    });
+  }
+
   placeOrder() {
     this.clearCart();
     console.log('order done');

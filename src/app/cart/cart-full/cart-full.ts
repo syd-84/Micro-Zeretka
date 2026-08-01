@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Button } from "../../button/button";
 import { CurrencyPipe } from '../../pipes/currency-pipe-pipe';
 import { Goods } from '../../services/goods';
@@ -16,11 +16,11 @@ export class CartFull {
   goodsService = inject(Goods);
   router = inject(Router);
 
-  totalPrice() {
+  totalPrice = computed(() => {
     return this.goodsService.cartGoods().reduce((prevS, el) => {
       return prevS + el.quantity * el.product.price
     }, 0)
-  }
+  })
 
   goToMainPage() {
     this.router.navigate(['']);

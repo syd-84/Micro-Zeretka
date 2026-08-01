@@ -57,4 +57,8 @@ export class RequestApi {
   clearCartGoods() {
     return this.httpClient.delete(`${this.SERVER_URI}/cart`);
   }
+
+  updateCartById(id: string, cartProduct: CartGoodsType) {
+    return this.httpClient.post(`${this.SERVER_URI}/cart/${id}`, cartProduct)
+  }
 }

@@ -22,8 +22,15 @@ export class Product {
     this.router.navigate([''])
   }
 
-  addToCart(prod: GoodsType) {
-    this.goods.addProductToCart(prod)
+  addToCartProduct(prod: GoodsType) {
+    this.goods.addProductToCart(prod);
+    if (this.goods.cartGoods().some(el => el.product!)) {
+      const prodId = prod.id;
+      const cart = this.goods.cartGoods().find(el => el.product.id === prodId);
+      const cartId = cart?.id
+      const quantity = cart?.quantity! + 1;
+      this.goods.updateQuantityByIdCart(cartId!, quantity)
+    }
   }
 
   changeHeight(e: MouseEvent) {
