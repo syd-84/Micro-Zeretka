@@ -1,0 +1,19 @@
+<div class="cart-footer">
+  <div class="cart-footer__left">
+    <button class="cart-footer__continue" (click)="continueShopping.emit()">
+      Продовжити покупки
+    </button>
+
+    <button class="cart-footer__clear" (click)="clearCart.emit()">Очистити кошик</button>
+  </div>
+
+  <div class="cart-footer__right">
+    <div class="cart-footer__total">
+      <span class="cart-footer__label"> Разом </span>
+
+      <span class="cart-footer__price"> {{ total() }} ₴ </span>
+    </div>
+
+    <button class="cart-footer__checkout" (click)="checkout.emit()">Оформити замовлення</button>
+  </div>
+</div>
