@@ -8,7 +8,7 @@ export const productExistsGuard: CanActivateFn = (route, state) => {
 
   const id = route.paramMap.get('id');
 
-  if (productService.currentGoods().some(el => el.id === id)) {
+  if (productService.currentGoods()?.some(el => el.id === id)) {
     return true;
   }
 

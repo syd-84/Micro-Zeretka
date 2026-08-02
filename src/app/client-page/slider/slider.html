@@ -6,11 +6,12 @@
 
 
 
-        <div class="cards" [style.transform]="`translate(-${translateX()}px)`">
+        <div class="cards" [class.no-animation]="isResizing" [style.transform]="`translate(-${translateX()}px)`"
+            (window:resize)="onResize($event)">
 
             @for(product of products(); track product.id){
 
-            <app-product-card [product]="product">
+            <app-product-card [product]="product" style.width.%="{{100/visibleCount}}">
             </app-product-card>
 
             }

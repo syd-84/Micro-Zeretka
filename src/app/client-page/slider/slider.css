@@ -80,3 +80,8 @@
 .left {
     left: 0;
 }
+
+.no-animation {
+    animation: none !important;
+    transition: none !important;
+}

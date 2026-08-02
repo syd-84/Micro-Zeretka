@@ -71,7 +71,7 @@ export class Goods {
   // ------------ cart --------------
 
   _cartGoods = this.request.getCartGoodsAll();
-  cartGoods = signal<CartGoodsType[]>(this._cartGoods.value()! || [])
+  cartGoods = signal<CartGoodsType[]>(this._cartGoods.value() || [])
 
   addProductToCart(item: GoodsType) {
     const itemIndex = this.cartGoods().findIndex(el => el.product.id === item.id)

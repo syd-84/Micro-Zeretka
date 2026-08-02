@@ -35,7 +35,7 @@ app.use(express.static("../front-end"));
 
 app.get('/goods', async (req, res) => {
   try {
-    const searchRes = await goodsModel.find({}).select("-_id -createdAt -updatedAt -__v");
+    const searchRes = await goodsModel.find({}).sort({ _id: -1 }).select("-_id -createdAt -updatedAt -__v");
     res.json(searchRes);
   } catch (error) {
     console.error(error);

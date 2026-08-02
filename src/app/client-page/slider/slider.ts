@@ -13,20 +13,20 @@ export class SliderComponent {
 
   @Input() title = '';
   products = input<GoodsType[]>([]);
-  // @Input() products: GoodsType[] = [];
 
-  slice_tag = viewChild<ElementRef<HTMLDivElement>>('slider');
+  slide_tag = viewChild<ElementRef<HTMLDivElement>>('slider');
   destroyRef = inject(DestroyRef);
 
   visibleCount = 5;
-
   startIndex = signal(0);
-
   numberOfProducts = 0;
   slideWidth = signal(0);
   numberOfVisibleSlide = 0;
   maxSlides = 0;
   translateX = computed(() => this.startIndex() * this.slideWidth());
+
+  isResizing = false;
+  timeoutResize = 0;
 
   next() {
     if (this.startIndex() < this.maxSlides) {
@@ -40,27 +40,22 @@ export class SliderComponent {
     }
   }
 
+  onResize(e: UIEvent) {
+    this.isResizing = true;
+    clearTimeout(this.timeoutResize);
+    this.timeoutResize = setTimeout(() => {
+      this.isResizing = false;
+    }, 300);
+
+    const element = this.slide_tag()?.nativeElement;
+    this.slideWidth.set(element!.clientWidth)
+  }
+
   constructor() {
     effect(() => {
       if (this.products()) this.numberOfProducts = this.products().length;
-      this.maxSlides = Math.ceil(this.numberOfProducts / 5 - 1);
-      this.slideWidth.set(this.slice_tag()!.nativeElement.offsetWidth);
-
-      const element = this.slice_tag()?.nativeElement;
-      if (!this.slice_tag()?.nativeElement) return;
-
-      const resizeObserver = new ResizeObserver((entries) => {
-        for (let entry of entries) {
-          const { width } = entry.contentRect;
-          this.slideWidth.set(width);
-        }
-      });
-
-      resizeObserver.observe(element!);
-
-      this.destroyRef.onDestroy(() => {
-        resizeObserver.disconnect();
-      });
+      this.maxSlides = Math.ceil(this.numberOfProducts / this.visibleCount - 1);
+      this.slideWidth.set(this.slide_tag()!.nativeElement.offsetWidth);
     })
   }
 }

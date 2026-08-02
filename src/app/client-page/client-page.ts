@@ -23,11 +23,11 @@ export class ClientPage {
   });
 
   newestProducts = computed(() => {
-    return this.products() ? [...this.products()!].reverse() : [];
+    return this.products();
   });
 
   oldestProducts = computed(() => {
-    return this.products();
+    return this.products() ? [...this.products()!].reverse() : [];
   });
 
 
