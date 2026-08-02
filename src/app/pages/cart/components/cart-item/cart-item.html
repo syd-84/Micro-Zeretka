@@ -20,11 +20,7 @@
   <div class="cart-item__right">
     <p class="cart-item__price">{{ item().product.price | currencyPipe }}</p>
 
-    <app-quantity-control
-      [quantity]="item().number"
-      (increase)="increase.emit()"
-      (decrease)="decrease.emit()"
-    >
+    <app-quantity-control [quantity]="item().quantity" (increase)="increase.emit()" (decrease)="decrease.emit()">
     </app-quantity-control>
 
     <button class="cart-item__remove" (click)="remove.emit()">Прибрати</button>

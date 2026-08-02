@@ -17,6 +17,12 @@ export type CommentType = {
   userId: string;
 };
 
+export type CartGoodsType = {
+  id: string,
+  product: GoodsType,
+  quantity: number,
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -135,7 +141,7 @@ export class Goods {
 
   currentGoods = signal(this.goods);
 
-  cartGoods = signal<{ id: string; product: GoodsType; number: number }[]>(
+  cartGoods = signal<CartGoodsType[]>(
     JSON.parse(localStorage.getItem('cart')!) || [],
   );
 
@@ -146,7 +152,7 @@ export class Goods {
       const cartItem = {
         id: crypto.randomUUID(),
         product: item,
-        number: 1,
+        quantity: 1,
       };
 
       this.cartGoods.update((arr) => [...arr, cartItem]);

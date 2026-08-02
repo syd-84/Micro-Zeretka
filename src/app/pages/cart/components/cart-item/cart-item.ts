@@ -2,7 +2,7 @@ import { Component, input, output } from '@angular/core';
 
 import { AdditionalServices } from '../additional-services/additional-services';
 import { QuantityControl } from '../quantity-control/quantity-control';
-import { GoodsType } from '../../../../services/goods';
+import { CartGoodsType, GoodsType } from '../../../../services/goods';
 import { CurrencyPipe } from '../../../../pipes/currency-pipe-pipe';
 
 @Component({
@@ -12,11 +12,7 @@ import { CurrencyPipe } from '../../../../pipes/currency-pipe-pipe';
   styleUrl: './cart-item.css',
 })
 export class CartItem {
-  item = input.required<{
-    id: string;
-    product: GoodsType;
-    number: number;
-  }>();
+  item = input.required<CartGoodsType>();
 
   increase = output<void>();
 

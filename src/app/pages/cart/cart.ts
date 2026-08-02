@@ -18,14 +18,14 @@ export class Cart {
 
   get total(): number {
     return this.goods.cartGoods().reduce((sum, item) => {
-      return sum + item.product.price * item.number;
+      return sum + item.product.price * item.quantity;
     }, 0);
   }
 
   increaseQuantity(index: number): void {
     const cart = [...this.goods.cartGoods()];
 
-    cart[index].number++;
+    cart[index].quantity++;
 
     this.goods.cartGoods.set(cart);
 
@@ -35,10 +35,10 @@ export class Cart {
   decreaseQuantity(index: number): void {
     const cart = [...this.goods.cartGoods()];
 
-    if (cart[index].number === 1) {
+    if (cart[index].quantity === 1) {
       //cart.(index, 1);
     } else {
-      cart[index].number--;
+      cart[index].quantity--;
     }
 
     this.goods.cartGoods.set(cart);
