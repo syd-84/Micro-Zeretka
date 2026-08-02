@@ -1,6 +1,5 @@
 <header class="rozetka-header">
   <div class="header-container">
-
     <button class="burger-btn" (click)="toggleMenu()">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -18,35 +17,30 @@
         </span>
         <span class="logo-text">Micro-ZERETKA</span>
       </a>
-
     </div>
 
-
-
-    <button class="catalog-btn">
-
-      <span class="catalog-icon">☰</span> Каталог
-    </button>
+    <button class="catalog-btn"><span class="catalog-icon">☰</span> Каталог</button>
 
     <div class="search-wrapper">
       <app-search></app-search>
     </div>
 
-
     <div class="header-actions">
       <app-exchange></app-exchange>
       <button class="action-icon" (click)="goToLogin()">👤</button>
       <button class="action-icon">⚖️</button>
-      <button class="action-icon cart " (click)="goToCart()">
+      <button class="action-icon cart" (click)="cartModal.open()">
         🛒
-        <div [class.hidden]="numberOfPurchases()===0">
-          {{numberOfPurchases()}}
+        <div [class.hidden]="numberOfPurchases() === 0">
+          {{ numberOfPurchases() }}
         </div>
       </button>
     </div>
-
   </div>
 </header>
+@if (cartModal.isOpen()) {
+<app-cart></app-cart>
+}
 
 <div class="sidebar-backdrop" *ngIf="isMenuOpen" (click)="toggleMenu()"></div>
 

@@ -3,21 +3,21 @@ import { RequestApi } from './request';
 import { take } from 'rxjs';
 
 export type GoodsType = {
-  id: string,
-  name: string,
-  description: string,
-  imgSrc: string,
-  price: number,
-  category: string,
-}
+  id: string;
+  name: string;
+  description: string;
+  imgSrc: string;
+  price: number;
+  category: string;
+};
 
 export type CommentType = {
-  id: string,
-  commentText: string | null,
-  date: number,
-  productId: string | undefined,
-  userId: string,
-}
+  id: string;
+  commentText: string | null;
+  date: number;
+  productId: string | undefined;
+  userId: string;
+};
 
 export type CartGoodsType = {
   id: string,
@@ -28,9 +28,7 @@ export type CartGoodsType = {
 @Injectable({
   providedIn: 'root',
 })
-
 export class Goods {
-
   // -------------- goods -------------------
 
   request = inject(RequestApi);
@@ -40,8 +38,8 @@ export class Goods {
     { category: 'clothes', name: 'Одяг та взуття' },
     { category: 'food', name: 'Їжа та напої' },
     { category: 'pet-supplies', name: 'Зоотовари' },
-    { category: 'household-chemicals', name: 'Побутова хімія' }
-  ]
+    { category: 'household-chemicals', name: 'Побутова хімія' },
+  ];
 
   goods = this.request.getGoodsAll();
   currentGoods = signal<GoodsType[]>(this.goods.value()!);
@@ -74,20 +72,17 @@ export class Goods {
   cartGoods = signal<CartGoodsType[]>(this._cartGoods.value() || [])
 
   addProductToCart(item: GoodsType) {
-    const itemIndex = this.cartGoods().findIndex(el => el.product.id === item.id)
+    const itemIndex = this.cartGoods().findIndex((el) => el.product.id === item.id);
 
     if (itemIndex === -1) {
       const cartItem: CartGoodsType = {
         id: crypto.randomUUID(),
         product: item,
         quantity: 1,
-      }
+      };
 
-      this.request.addProductToCart(cartItem).pipe(take(1)).subscribe({
-        next: () => {
-          this._cartGoods.reload();
-        }
-      });
+      this.cartGoods.update((arr) => [...arr, cartItem]);
+      localStorage.setItem('cart', JSON.stringify(this.cartGoods()));
     }
   }
 
@@ -102,12 +97,20 @@ export class Goods {
     }
   }
 
-  clearCart() {
-    this.request.clearCartGoods().pipe(take(1)).subscribe({
-      next: () => {
-        this._cartGoods.reload();
-      }
-    })
+  removeCardItem(index: number): void {
+    const cart = [...this.cartGoods()];
+
+    cart.splice(index, 1);
+
+    this.cartGoods.set(cart);
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  clearCart(): void {
+    this.cartGoods.set([]);
+
+    localStorage.setItem('cart', JSON.stringify([]));
   }
 
   updateQuantityByIdCart(cartId: string, value: number) {
@@ -121,11 +124,6 @@ export class Goods {
         ));
       }
     });
-  }
-
-  placeOrder() {
-    this.clearCart();
-    console.log('order done');
   }
 
   // ------------ comments --------------

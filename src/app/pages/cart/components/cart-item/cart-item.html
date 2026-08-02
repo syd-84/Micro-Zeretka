@@ -1,0 +1,28 @@
+<div class="cart-item">
+  <div class="cart-item__left">
+    <input class="cart-item__checkbox" type="checkbox" checked />
+
+    <div class="cart-item__image">
+      <img [src]="item().product.imgSrc" [alt]="item().product.name" />
+    </div>
+
+    <div class="cart-item__info">
+      <h3 class="cart-item__title">
+        {{ item().product.name }}
+      </h3>
+
+      <p class="cart-item__seller">Продавець: Rozetka</p>
+
+      <app-additional-services></app-additional-services>
+    </div>
+  </div>
+
+  <div class="cart-item__right">
+    <p class="cart-item__price">{{ item().product.price | currencyPipe }}</p>
+
+    <app-quantity-control [quantity]="item().quantity" (increase)="increase.emit()" (decrease)="decrease.emit()">
+    </app-quantity-control>
+
+    <button class="cart-item__remove" (click)="remove.emit()">Прибрати</button>
+  </div>
+</div>

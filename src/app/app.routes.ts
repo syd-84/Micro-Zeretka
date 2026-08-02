@@ -7,36 +7,37 @@ import { SearchPage } from './search-page/search-page';
 import { Login } from './login/login';
 import { passGuard } from './guards/password-guard';
 import { ClientPage } from './client-page/client-page';
+import { Cart } from './pages/cart/cart';
 
 export const routes: Routes = [
   {
-    path: "",
-    component: ClientPage
+    path: '',
+    component: ClientPage,
   },
   {
-    path: "product/:id",
+    path: 'product/:id',
     component: Product,
     canActivate: [productExistsGuard],
   },
   {
-    path: "search",
+    path: 'search',
     component: SearchPage,
   },
   {
-    path: "login",
+    path: 'login',
     component: Login,
   },
   {
-    path: "admin",
+    path: 'admin',
     component: Admin,
     canActivate: [passGuard],
   },
   {
-    path: "page-404",
-    component: Page404
+    path: 'page-404',
+    component: Page404,
   },
   {
-    path: "**",
-    component: Page404
+    path: '**',
+    component: Page404,
   },
 ];

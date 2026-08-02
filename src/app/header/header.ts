@@ -2,22 +2,25 @@ import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Search } from '../search/search';
-import { Router, RouterLink } from "@angular/router";
-import { Exchange } from "../exchange/exchange";
+import { Router, RouterLink } from '@angular/router';
+import { Exchange } from '../exchange/exchange';
 import { Goods } from '../services/goods';
+import { CartModal } from '../services/cart-modal';
+import { Cart } from '../pages/cart/cart';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, FormsModule, Search, Exchange, RouterLink],
+  imports: [CommonModule, FormsModule, Search, Exchange, RouterLink, Cart],
   templateUrl: './header.html',
-  styleUrls: ['./header.css']
+  styleUrls: ['./header.css'],
 })
 export class HeaderComponent {
   isMenuOpen: boolean = false;
   searchQuery: string = '';
   router = inject(Router);
   goodsService = inject(Goods);
+  cartModal = inject(CartModal);
 
   numberOfPurchases = computed(() => this.goodsService.cartGoods().length);
 
@@ -26,10 +29,6 @@ export class HeaderComponent {
   }
 
   goToLogin() {
-    this.router.navigate(['login'])
-  }
-
-  goToCart() {
-    this.router.navigate(['cart'])
+    this.router.navigate(['login']);
   }
 }

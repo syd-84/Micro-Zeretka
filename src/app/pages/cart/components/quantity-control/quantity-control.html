@@ -1,0 +1,9 @@
+<div class="quantity-control">
+  <button class="quantity-control__button" (click)="decrease.emit()">−</button>
+
+  <div class="quantity-control__value">
+    {{ quantity() }}
+  </div>
+
+  <button class="quantity-control__button" (click)="increase.emit()">+</button>
+</div>

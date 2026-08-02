@@ -1,0 +1,25 @@
+<div class="additional-services">
+  <button class="additional-services__header" (click)="toggle()">
+    <span class="additional-services__arrow">
+      {{ isOpen ? '▲' : '▼' }}
+    </span>
+
+    <span class="additional-services__title"> Додаткові послуги </span>
+  </button>
+
+  @if (isOpen) {
+    <div class="additional-services__content">
+      <label class="additional-services__item">
+        <input type="checkbox" />
+
+        <span>Гарантія +1 рік</span>
+      </label>
+
+      <label class="additional-services__item">
+        <input type="checkbox" />
+
+        <span>Послуга налаштування</span>
+      </label>
+    </div>
+  }
+</div>

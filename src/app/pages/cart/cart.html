@@ -1,0 +1,42 @@
+<div class="cart-overlay" (click)="cartModal.close()">
+  <div class="cart" (click)="$event.stopPropagation()">
+    <div class="cart__header">
+      <h1>Кошик</h1>
+
+      <button class="cart__close" (click)="cartModal.close()">✕</button>
+    </div>
+
+    <div class="cart__toolbar">
+      <div class="cart__selected">
+        <input type="checkbox" checked />
+
+        <span> Вибрано {{ goods.cartGoods().length }} з {{ goods.cartGoods().length }} </span>
+      </div>
+    </div>
+
+    <div class="cart__body">
+      @if (goods.cartGoods().length === 0) {
+      <div class="cart-empty">
+        <div class="cart-empty__icon">🛒</div>
+
+        <h2 class="cart-empty__title">Кошик порожній</h2>
+
+        <p class="cart-empty__text">Додайте товари до кошика, щоб оформити замовлення.</p>
+
+        <button class="cart-empty__button" (click)="cartModal.close()">Продовжити покупки</button>
+      </div>
+      } @else {
+      <div class="cart__items">
+        @for (item of goods.cartGoods(); track item.id) {
+        <app-cart-item [item]="item" (increase)="increaseQuantity($index)" (decrease)="decreaseQuantity($index)"
+          (remove)="removeItem($index)">
+        </app-cart-item>
+        }
+      </div>
+      }
+    </div>
+    <app-cart-footer [total]="total" (checkout)="checkout()" (continueShopping)="cartModal.close()"
+      (clearCart)="clearCart()">
+    </app-cart-footer>
+  </div>
+</div>

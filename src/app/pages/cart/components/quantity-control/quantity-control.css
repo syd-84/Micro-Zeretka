@@ -1,0 +1,47 @@
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+}
+
+.quantity-control__button {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--color-info);
+
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: color 0.2s;
+}
+
+.quantity-control__button:hover {
+  color: var(--color-primary);
+}
+
+.quantity-control__value {
+  width: 54px;
+  height: 38px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+
+  background: var(--bg-card);
+
+  font-size: 18px;
+  color: var(--text-primary);
+}
