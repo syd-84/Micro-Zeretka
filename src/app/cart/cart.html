@@ -28,8 +28,7 @@
       } @else {
       <div class="cart__items">
         @for (item of goods.cartGoods(); track item.id) {
-        <app-cart-item [item]="item" (increase)="increaseQuantity($index)" (decrease)="decreaseQuantity($index)"
-          (remove)="removeItem($index)">
+        <app-cart-item [item]="item">
         </app-cart-item>
         }
       </div>

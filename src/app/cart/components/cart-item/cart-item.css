@@ -111,3 +111,17 @@
 
   transition: 0.2s;
 }
+
+a {
+  text-decoration: none;
+}
+
+h3 {
+  color: var(--text-primary);
+  transition: 0.15s;
+}
+
+h3:hover {
+  color: var(--color-primary);
+  transition: 0.15s;
+}

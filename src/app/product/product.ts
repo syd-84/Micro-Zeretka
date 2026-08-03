@@ -23,14 +23,8 @@ export class Product {
   }
 
   addToCartProduct(prod: GoodsType) {
-    this.goods.addProductToCart(prod);
-    if (this.goods.cartGoods().some(el => el.product!)) {
-      const prodId = prod.id;
-      const cart = this.goods.cartGoods().find(el => el.product.id === prodId);
-      const cartId = cart?.id
-      const quantity = cart?.quantity! + 1;
-      this.goods.updateQuantityByIdCart(cartId!, quantity)
-    }
+    const id = prod.id;
+    this.goods.addToCartByProductId(id);
   }
 
   changeHeight(e: MouseEvent) {

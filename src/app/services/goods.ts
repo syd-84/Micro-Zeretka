@@ -32,6 +32,9 @@ export class Goods {
   // -------------- goods -------------------
 
   request = inject(RequestApi);
+  timerDebounce: any = null;
+  quantity = 0;
+
 
   categoriesGoods = [
     { category: 'technics', name: 'Техніка та інструменти' },
@@ -86,6 +89,31 @@ export class Goods {
           this._cartGoods.reload();
         }
       })
+    }
+  }
+
+
+  addToCartByProductId(prodId: string) {
+    const product = this.currentGoods().find(el => el.id === prodId);
+    const cartProduct = this.cartGoods().find(el => el.product.id === prodId);
+
+    if (!cartProduct) {
+      this.addProductToCart(product!);
+      this.quantity = 1;
+    } else {
+      const cartId = cartProduct.id;
+
+      if (!this.timerDebounce) {
+        this.quantity = cartProduct.quantity;
+      }
+
+      this.quantity!++;
+
+      clearTimeout(this.timerDebounce);
+      this.timerDebounce = setTimeout(() => {
+        this.updateQuantityByIdCart(cartId, this.quantity!);
+        this.timerDebounce = null;
+      }, 300)
     }
   }
 

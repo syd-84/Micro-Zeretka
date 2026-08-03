@@ -14,7 +14,7 @@ export class SearchPageItem {
   data = input<GoodsType>();
   goods = inject(Goods);
 
-  addToCart(data?: GoodsType) {
-    this.goods.addProductToCart(data!);
+  addToCart(data: GoodsType) {
+    this.goods.addToCartByProductId(data.id);
   }
 }

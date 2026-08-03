@@ -1,9 +1,9 @@
 <div class="quantity-control">
-  <button class="quantity-control__button" (click)="decrease.emit()">−</button>
+  <button class="quantity-control__button" (click)="decrease()">−</button>
 
   <div class="quantity-control__value">
-    {{ quantity() }}
+    {{ counter() }}
   </div>
 
-  <button class="quantity-control__button" (click)="increase.emit()">+</button>
+  <button class="quantity-control__button" (click)="increase()">+</button>
 </div>

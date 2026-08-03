@@ -7,9 +7,11 @@
     </div>
 
     <div class="cart-item__info">
-      <h3 class="cart-item__title">
-        {{ item().product.name }}
-      </h3>
+      <a [routerLink]="['/product',item().product.id]" (click)="cartModal.close()">
+        <h3 class="cart-item__title">
+          {{ item().product.name }}
+        </h3>
+      </a>
 
       <p class="cart-item__seller">Продавець: Rozetka</p>
 
@@ -18,9 +20,9 @@
   </div>
 
   <div class="cart-item__right">
-    <p class="cart-item__price">{{ item().product.price | currencyPipe }}</p>
+    <p class="cart-item__price">{{ item().product.price*item().quantity| currencyPipe }}</p>
 
-    <app-quantity-control [quantity]="item().quantity" (increase)="increase.emit()" (decrease)="decrease.emit()">
+    <app-quantity-control [cartItemID]="item().id">
     </app-quantity-control>
 
     <button class="cart-item__remove" (click)="remove.emit()">Прибрати</button>
