@@ -11,7 +11,6 @@ export class CartModal {
   }
 
   close(): void {
-    console.log('CLOSE');
     this.isOpen.set(false);
   }
 }

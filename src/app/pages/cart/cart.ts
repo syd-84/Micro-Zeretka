@@ -35,9 +35,7 @@ export class Cart {
   decreaseQuantity(index: number): void {
     const cart = [...this.goods.cartGoods()];
 
-    if (cart[index].quantity === 1) {
-      //cart.(index, 1);
-    } else {
+    if (cart[index].quantity !== 1) {
       cart[index].quantity--;
     }
 
@@ -47,17 +45,13 @@ export class Cart {
   }
 
   removeItem(index: number): void {
-    const cart = [...this.goods.cartGoods()];
-
-    this.goods.removeCardItem(index);
+    const productId = this.goods.cartGoods()[index].product.id;
+    this.goods.deleteCartGoodsByProductId(productId);
   }
 
   checkout(): void {
-    this.goods.cartGoods.set([]);
-
-    localStorage.setItem('cart', JSON.stringify([]));
-
-    this.cartModal.close();
+    this.goods.clearCart();
+    console.log('order done');
   }
 
   clearCart(): void {

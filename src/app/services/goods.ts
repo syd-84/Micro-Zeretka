@@ -81,15 +81,7 @@ export class Goods {
         quantity: 1,
       };
 
-      this.cartGoods.update((arr) => [...arr, cartItem]);
-      localStorage.setItem('cart', JSON.stringify(this.cartGoods()));
-    }
-  }
-
-  deleteCartGoodsByProductId(id: string) {
-    const cartId = this.cartGoods().find(el => el.product.id === id)?.id;
-    if (cartId) {
-      this.request.deleteCartGoodsByProductId(cartId!).pipe(take(1)).subscribe({
+      this.request.addProductToCart(cartItem).pipe(take(1)).subscribe({
         next: () => {
           this._cartGoods.reload();
         }
@@ -97,20 +89,23 @@ export class Goods {
     }
   }
 
-  removeCardItem(index: number): void {
-    const cart = [...this.cartGoods()];
-
-    cart.splice(index, 1);
-
-    this.cartGoods.set(cart);
-
-    localStorage.setItem('cart', JSON.stringify(cart));
+  deleteCartGoodsByProductId(id: string) {
+    const cartId = this.cartGoods().find(el => el.product.id === id)?.id;
+    if (cartId) {
+      this.request.deleteCartGoodsByProductId(cartId).pipe(take(1)).subscribe({
+        next: () => {
+          this._cartGoods.reload();
+        }
+      })
+    }
   }
 
   clearCart(): void {
-    this.cartGoods.set([]);
-
-    localStorage.setItem('cart', JSON.stringify([]));
+    this.request.clearCartGoods().pipe(take(1)).subscribe({
+      next: () => {
+        this._cartGoods.reload();
+      }
+    })
   }
 
   updateQuantityByIdCart(cartId: string, value: number) {

@@ -11,7 +11,7 @@
     <div class="cart-footer__total">
       <span class="cart-footer__label"> Разом </span>
 
-      <span class="cart-footer__price"> {{ total() }} ₴ </span>
+      <span class="cart-footer__price"> {{ total() | currencyPipe}} </span>
     </div>
 
     <button class="cart-footer__checkout" (click)="checkout.emit()">Оформити замовлення</button>

@@ -1,8 +1,9 @@
 import { Component, input, output } from '@angular/core';
+import { CurrencyPipe } from '../../../../pipes/currency-pipe-pipe';
 
 @Component({
   selector: 'app-cart-footer',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './cart-footer.html',
   styleUrl: './cart-footer.css',
 })
