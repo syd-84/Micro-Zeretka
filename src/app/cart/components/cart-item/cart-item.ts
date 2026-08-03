@@ -2,8 +2,8 @@ import { Component, input, output } from '@angular/core';
 
 import { AdditionalServices } from '../additional-services/additional-services';
 import { QuantityControl } from '../quantity-control/quantity-control';
-import { CartGoodsType, GoodsType } from '../../../../services/goods';
-import { CurrencyPipe } from '../../../../pipes/currency-pipe-pipe';
+import { CartGoodsType, GoodsType } from '../../../services/goods';
+import { CurrencyPipe } from '../../../pipes/currency-pipe-pipe';
 
 @Component({
   selector: 'app-cart-item',

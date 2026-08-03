@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 
-import { Goods } from '../../services/goods';
-import { CartModal } from '../../services/cart-modal';
+import { Goods } from '../services/goods';
+import { CartModal } from '../services/cart-modal';
 
 import { CartItem } from './components/cart-item/cart-item';
 import { CartFooter } from './components/cart-footer/cart-footer';

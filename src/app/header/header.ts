@@ -6,7 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Exchange } from '../exchange/exchange';
 import { Goods } from '../services/goods';
 import { CartModal } from '../services/cart-modal';
-import { Cart } from '../pages/cart/cart';
+import { Cart } from '../cart/cart';
 
 @Component({
   selector: 'app-header',

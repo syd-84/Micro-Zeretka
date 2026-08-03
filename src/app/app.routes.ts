@@ -7,7 +7,6 @@ import { SearchPage } from './search-page/search-page';
 import { Login } from './login/login';
 import { passGuard } from './guards/password-guard';
 import { ClientPage } from './client-page/client-page';
-import { Cart } from './pages/cart/cart';
 
 export const routes: Routes = [
   {
