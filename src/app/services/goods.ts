@@ -99,7 +99,6 @@ export class Goods {
 
     if (!cartProduct) {
       this.addProductToCart(product!);
-      this.quantity = 1;
     } else {
       const cartId = cartProduct.id;
 
