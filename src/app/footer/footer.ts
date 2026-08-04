@@ -36,7 +36,7 @@ export class FooterComponent {
 
   readonly serviceLinks: FooterLink[] = [
     { title: 'Бонусна програма', url: '#bonus' },
-    { title: 'Rozetka Premium', url: '#premium' },
+    { title: 'Zeretka Premium', url: '#premium' },
     { title: 'Подарункові карти', url: '#gift-cards' },
     { title: 'Корпоративним клієнтам', url: '#corporate' }
   ];

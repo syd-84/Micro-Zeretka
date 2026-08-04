@@ -6,14 +6,6 @@
       <button class="cart__close" (click)="cartModal.close()">✕</button>
     </div>
 
-    <div class="cart__toolbar">
-      <div class="cart__selected">
-        <input type="checkbox" checked />
-
-        <span> Вибрано {{ goods.cartGoods().length }} з {{ goods.cartGoods().length }} </span>
-      </div>
-    </div>
-
     <div class="cart__body">
       @if (goods.cartGoods().length === 0) {
       <div class="cart-empty">

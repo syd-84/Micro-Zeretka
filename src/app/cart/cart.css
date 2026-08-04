@@ -67,28 +67,6 @@
   color: var(--text-primary);
 }
 
-.cart__toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 18px 28px;
-
-  border-bottom: 1px solid var(--border-light);
-
-  flex-shrink: 0;
-}
-
-.cart__selected {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.cart__selected input {
-  accent-color: var(--color-primary);
-}
-
 .cart__body {
   flex: 1;
 
