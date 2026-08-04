@@ -1,7 +1,7 @@
 import { Component, inject, input, output } from '@angular/core';
 import { AdditionalServices } from '../additional-services/additional-services';
 import { QuantityControl } from '../quantity-control/quantity-control';
-import { CartGoodsType, GoodsType } from '../../../services/goods';
+import { CartGoodsType, Goods, GoodsType } from '../../../services/goods';
 import { CurrencyPipe } from '../../../pipes/currency-pipe-pipe';
 import { RouterLink } from "@angular/router";
 import { CartModal } from '../../../services/cart-modal';
@@ -15,6 +15,9 @@ import { CartModal } from '../../../services/cart-modal';
 export class CartItem {
   item = input.required<CartGoodsType>();
   cartModal = inject(CartModal);
+  goodsService = inject(Goods);
 
-  remove = output<void>();
+  remove() {
+    this.goodsService.deleteCartGoodsByProductId(this.item().product.id);
+  };
 }

@@ -118,10 +118,10 @@ a {
 
 h3 {
   color: var(--text-primary);
-  transition: 0.15s;
+  transition: 0.2s;
 }
 
-h3:hover {
+.cart-item:hover h3 {
   color: var(--color-primary);
-  transition: 0.15s;
+  transition: 0.2s;
 }

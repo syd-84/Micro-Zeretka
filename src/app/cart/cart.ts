@@ -22,39 +22,16 @@ export class Cart {
     }, 0);
   }
 
-  increaseQuantity(index: number): void {
-    const cart = [...this.goods.cartGoods()];
-
-    cart[index].quantity++;
-
-    this.goods.cartGoods.set(cart);
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }
-
-  decreaseQuantity(index: number): void {
-    const cart = [...this.goods.cartGoods()];
-
-    if (cart[index].quantity !== 1) {
-      cart[index].quantity--;
-    }
-
-    this.goods.cartGoods.set(cart);
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }
-
-  removeItem(index: number): void {
-    const productId = this.goods.cartGoods()[index].product.id;
-    this.goods.deleteCartGoodsByProductId(productId);
-  }
-
   checkout(): void {
-    this.goods.clearCart();
-    console.log('order done');
+    if (this.goods.cartGoods().length) {
+      this.goods.clearCart();
+      console.log('order done');
+    }
   }
 
   clearCart(): void {
-    this.goods.clearCart();
+    if (this.goods.cartGoods().length) {
+      this.goods.clearCart();
+    }
   }
 }
