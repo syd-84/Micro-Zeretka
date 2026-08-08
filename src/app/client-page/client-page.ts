@@ -16,7 +16,7 @@ import { SliderComponent } from './slider/slider';
 export class ClientPage {
 
   goods = inject(Goods);
-  categoryGoods = this.goods.categoriesGoods;
+  categoryGoods = this.goods.categoriesGoods();
 
   products = computed(() => {
     return this.goods.currentGoods();
@@ -46,7 +46,8 @@ export class ClientPage {
       return;
 
     } else {
-      this.nameCategory = this.categoryGoods.find(el => el.category === this.selectedCategory)!.name
+      if (this.categoryGoods)
+        this.nameCategory = this.categoryGoods.find(el => el.category === this.selectedCategory)!.name
     }
 
     this.filteredProducts.set(this.products().filter(

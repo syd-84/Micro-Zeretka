@@ -35,14 +35,8 @@ export class Goods {
   timerDebounce: any = null;
   quantity = 0;
 
-
-  categoriesGoods = [
-    { category: 'technics', name: 'Техніка та інструменти' },
-    { category: 'clothes', name: 'Одяг та взуття' },
-    { category: 'food', name: 'Їжа та напої' },
-    { category: 'pet-supplies', name: 'Зоотовари' },
-    { category: 'household-chemicals', name: 'Побутова хімія' },
-  ];
+  _categoriesGoods = this.request.getGoodsCategoriesAll();
+  categoriesGoods = signal(this._categoriesGoods.value());
 
   goods = this.request.getGoodsAll();
   currentGoods = signal<GoodsType[]>(this.goods.value()!);

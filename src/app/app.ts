@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header';
 import { Currency } from './services/currency';
 import { LoadingScreen } from "./loading-screen/loading-screen";
 import { FooterComponent } from "./footer/footer";
+import { RequestApi } from './services/request';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +18,12 @@ export class App {
   goods = inject(Goods);
   currency = inject(Currency);
   loadingDisplay = signal('block');
+  request = inject(RequestApi);
 
   onClick() {
-    console.log('OK');
+    console.log('OK')
   }
+
 
   constructor() {
     setTimeout(() => {
@@ -28,6 +31,11 @@ export class App {
     }, 2000)
 
     effect(() => {
+      const categories = this.goods._categoriesGoods.value();
+      if (categories) {
+        this.goods.categoriesGoods.set(categories || [])
+      }
+
       const currencyData = this.currency._currency.value();
       if (currencyData) {
         this.currency.currency.set(currencyData || []);

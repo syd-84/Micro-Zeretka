@@ -5,6 +5,7 @@ import open from "open";
 import { goodsModel } from "./models/goods";
 import { commentsModel } from "./models/comments";
 import { cartGoodsModel } from "./models/cart";
+import { categoriesModel } from "./models/categories";
 
 dotenv.config();
 
@@ -32,6 +33,20 @@ app.use((req, res, next) => {
 });
 
 app.use(express.static("../front-end"));
+
+
+
+app.get('/goods/categories', async (req, res) => {
+  try {
+    const searchRes = await categoriesModel.find({});
+    res.json(searchRes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Database error",
+    });
+  }
+});
 
 app.get('/goods', async (req, res) => {
   try {

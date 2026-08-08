@@ -10,7 +10,7 @@
     </div>
 
 
-    @for(category of categories; track category.category){
+    @for(category of categories(); track category.category){
 
     <div class="category-item" [class.active]="currentCategory===category.category"
         (click)="selectCategory(category.category)">

@@ -10,6 +10,10 @@ export class RequestApi {
   SERVER_URI = 'http://localhost:3000';
   httpClient = inject(HttpClient);
 
+  getGoodsCategoriesAll() {
+    return httpResource<GoodsType[]>(() => `${this.SERVER_URI}/goods/categories`);
+  }
+
   getGoodsAll() {
     return httpResource<GoodsType[]>(() => `${this.SERVER_URI}/goods`);
   }

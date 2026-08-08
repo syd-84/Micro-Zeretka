@@ -57,7 +57,7 @@
     <div>
       <select name="type" formControlName="category">
         <option value="default" hidden selected>Виберіть категорію</option>
-        @for (item of categoriesGoods; track $index) {
+        @for (item of categoriesGoods(); track $index) {
         <option value="{{item.category}}"> {{item.name}}</option>
         }
       </select>
