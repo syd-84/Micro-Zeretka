@@ -15,7 +15,7 @@
 }
 
 .header-container {
-  max-width: 1400px;
+  max-width: 1550px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -39,23 +39,11 @@
   font-size: 20px;
 }
 
-.catalog-btn {
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-}
-
 .search-wrapper {
   flex: 1 1 0;
   display: flex;
   border-radius: 4px;
+  max-width: 600px;
 }
 
 .header-actions {
@@ -187,6 +175,16 @@
 .menu-list li:hover,
 .menu-sublist li:hover {
   color: #00a046;
+}
+
+.not-active {
+  color: #666;
+}
+
+
+.menu-list li:hover.not-active,
+.menu-sublist li:hover.not-active {
+  color: #666;
 }
 
 .logo-icon>svg {
