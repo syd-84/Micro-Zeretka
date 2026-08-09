@@ -6,10 +6,12 @@ import { Currency } from './services/currency';
 import { LoadingScreen } from "./loading-screen/loading-screen";
 import { FooterComponent } from "./footer/footer";
 import { RequestApi } from './services/request';
+import { Login } from "./login/login";
+import { Authentication } from "./login/authentication/authentication";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, LoadingScreen, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, LoadingScreen, FooterComponent, Login, Authentication],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -1,16 +1,14 @@
-<div class="wrapper">
-  <div class="head">
-    <h3>Вхід</h3>
-    <svg (click)="router.navigate([''])">
-      <use href="icons.svg#icon-cross" />
-    </svg>
+<form action="" class="forms">
+  <input type="radio" id="auth" value="auth" name="login" checked>
+  <input type="radio" id="register" value="register" name="login">
+
+  <div class="inset">
+    <label for="auth" class="tab-btn auth-tab">Автентифікація</label>
+    <label for="register" class="tab-btn register-tab">Реєстрація</label>
   </div>
 
-  <hr>
-
-  <div>
-    <p>Пароль</p>
-    <input type="password" [formControl]="passwordControl" (keydown)="onKeyDown($event)">
-    <app-button (click)="enter()" [disabled]=passwordControl.valid?false:true> Увійти </app-button>
+  <div class="body">
+    <div class="content-auth"><app-authentication /></div>
+    <div class="content-register"><app-registration /></div>
   </div>
-</div>
+</form>

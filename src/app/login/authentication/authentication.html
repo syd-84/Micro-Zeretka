@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="head">
+    <h3>Вхід</h3>
+    <svg (click)="router.navigate([''])">
+      <use href="icons.svg#icon-cross" />
+    </svg>
+  </div>
+
+  <hr>
+
+  <div>
+    <form [formGroup]="formControl">
+      <p>E-mail</p>
+      <input type="text" formControlName="emailControl" (keydown)="onKeyDown($event)">
+      @if(formControl.controls.emailControl.invalid && formControl.controls.emailControl.touched){
+      <p class="info">Введіть коректний e-mail</p>
+      }
+      <p>Пароль</p>
+      <input type="password" formControlName="passwordControl" (keydown)="onKeyDown($event)">
+      @if(formControl.controls.passwordControl.invalid && formControl.controls.passwordControl.touched){
+      <p class="info">Заповніть поле</p>
+      }
+      <app-button (click)="enter()" [disabled]=formControl.invalid> Увійти </app-button>
+    </form>
+  </div>
+</div>

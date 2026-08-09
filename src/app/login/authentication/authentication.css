@@ -1,0 +1,46 @@
+.wrapper {
+  width: 400px;
+  background-color: var(--bg-card);
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 0px 8px 8px 8px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h3 {
+  font-size: 24px;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  font-size: 16px;
+}
+
+input {
+  width: 100%;
+  height: 36px;
+  padding: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--text-secondary);
+  box-sizing: border-box;
+  margin-bottom: 8px;
+  outline: none;
+}
+
+svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--text-primary);
+}
+
+.info {
+  font-size: 14px;
+  color: var(--color-danger);
+  margin-top: -8px;
+}

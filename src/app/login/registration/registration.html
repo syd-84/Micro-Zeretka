@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <div class="head">
+    <h3>Реєстрація</h3>
+    <svg (click)="router.navigate([''])">
+      <use href="icons.svg#icon-cross" />
+    </svg>
+  </div>
+
+  <hr>
+
+  <div>
+    <form [formGroup]="formControl">
+      <p>Ім'я</p>
+      <input type="text" formControlName="firstNameControl" (keydown)="onKeyDown($event)">
+      @if(formControl.controls.firstNameControl.invalid && formControl.controls.firstNameControl.touched){
+      <p class="info">Заповніть поле</p>
+      }
+      <p>Прізвище</p>
+      <input type="text" formControlName="lastNameControl" (keydown)="onKeyDown($event)">
+      @if(formControl.controls.lastNameControl.invalid && formControl.controls.lastNameControl.touched){
+      <p class="info">Заповніть поле</p>
+      }
+      <p>E-mail</p>
+      <input type="text" formControlName="emailControl" (keydown)="onKeyDown($event)">
+      @if(formControl.controls.emailControl.invalid && formControl.controls.emailControl.touched){
+      <p class="info">Введіть коректний e-mail</p>
+      }
+      <p>Пароль</p>
+      <input type="password" formControlName="passwordControl" (keydown)="onKeyDown($event)">
+      @if(formControl.controls.passwordControl.invalid && formControl.controls.passwordControl.touched){
+      <p class="info">Придумайте надійний пароль: мінімум 8 символів, хоча б одна велика літера, одна мала та одна
+        цифра.
+      </p>
+      }
+      <app-button (click)="enter()" [disabled]=formControl.invalid> Увійти </app-button>
+    </form>
+  </div>
+</div>
