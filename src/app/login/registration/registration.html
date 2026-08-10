@@ -21,9 +21,12 @@
       <p class="info">Заповніть поле</p>
       }
       <p>E-mail</p>
-      <input type="text" formControlName="emailControl" (keydown)="onKeyDown($event)">
+      <input type="text" formControlName="emailControl" (keydown)="onKeyDown($event)" (input)="checkEmail($event)">
       @if(formControl.controls.emailControl.invalid && formControl.controls.emailControl.touched){
       <p class="info">Введіть коректний e-mail</p>
+      }
+      @if(usersService.existEmail()){
+      <p class="info">Такий email вже зайнятий</p>
       }
       <p>Пароль</p>
       <input type="password" formControlName="passwordControl" (keydown)="onKeyDown($event)">
@@ -32,7 +35,9 @@
         цифра.
       </p>
       }
-      <app-button (click)="enter()" [disabled]=formControl.invalid> Увійти </app-button>
+
+      <app-button (click)="send()" [disabled]=formControl.invalid||usersService.existEmail()> Зареєструватись
+      </app-button>
     </form>
   </div>
 </div>

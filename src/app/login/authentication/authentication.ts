@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { ConfirmPassword } from '../../services/confirm-password';
 import { Button } from "../../button/button";
+import { Users } from '../../services/users';
 
 @Component({
   selector: 'app-authentication',
@@ -13,6 +14,7 @@ import { Button } from "../../button/button";
 export class Authentication {
   router = inject(Router);
   password = inject(ConfirmPassword);
+  usersService = inject(Users);
 
   formControl = new FormGroup({
     emailControl: new FormControl('', [
@@ -24,22 +26,18 @@ export class Authentication {
     ])
   })
 
-  enter() {
-    if (this.formControl.controls.passwordControl.value === 'admin' && this.formControl.controls.emailControl.value === 'admin') {
-      this.password.password.set(this.formControl.controls.passwordControl.value);
-      this.router.navigate(['admin']);
-      console.log('admin');
-    } else {
-      console.log('e-mail: ', this.formControl.controls.emailControl.value)
-      console.log('password: ', this.formControl.controls.passwordControl.value)
-    }
+  auth() {
+    const email = this.formControl.controls.emailControl.value!;
+    const password = this.formControl.controls.passwordControl.value!;
+    const authData = { email, password };
+    this.usersService.authentication(authData);
 
-    this.formControl.controls.passwordControl.reset();
+    // this.formControl.reset();
   }
 
   onKeyDown(event: KeyboardEvent) {
     if (event.code === 'Enter')
-      this.enter();
+      this.auth();
   }
 
 }

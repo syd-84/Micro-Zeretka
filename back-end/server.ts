@@ -1,11 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import session from "express-session";
+import bcrypt from "bcryptjs";
 import open from "open";
 import { goodsModel } from "./models/goods";
 import { commentsModel } from "./models/comments";
 import { cartGoodsModel } from "./models/cart";
 import { categoriesModel } from "./models/categories";
+import { usersModel } from "./models/users";
 
 dotenv.config();
 
@@ -268,6 +271,86 @@ app.post('/cart/:id', jsonParser, async (req, res) => {
   }
 })
 
+app.post('/registration', jsonParser, async (req, res) => {
+  try {
+    const userData = req.body;
+    const existUser = await usersModel.findOne({ email: userData.email });
+
+    if (existUser) {
+      return res.status(409).json({
+        message: "User with this email already exists"
+      });
+    }
+
+    userData.password = await bcrypt.hash(userData.password, 10);
+    const user = new usersModel(userData);
+    await user.save();
+    res.status(201).json({
+      message: "Registration was successful"
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Database error"
+    });
+  }
+});
+
+app.post('/auth', jsonParser, async (req, res) => {
+  try {
+    const authData = req.body;
+    const dataDB = await usersModel.findOne({ email: authData.email });
+    const match = await bcrypt.compare(authData.password, dataDB!.password)
+
+    if (!match) {
+      return res.status(401).json({ message: "Incorrect email or password" });
+    }
+
+    res.status(200).json({
+      message: "Successful authorization",
+      user: {
+        id: dataDB?._id,
+        email: dataDB?.email,
+        firstName: dataDB?.firstName,
+        lastName: dataDB?.lastName,
+      }
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Database error"
+    });
+  }
+});
+
+app.post('/email', jsonParser, async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ message: "Email is required" });
+    }
+
+    const emailDB = await usersModel.findOne({ email: email });
+
+    if (emailDB) {
+      return res.status(409).json({
+        exists: true,
+        message: "This email is already registered."
+      });
+    }
+
+    res.status(200).json({
+      exists: false,
+      message: "Email is available for registration",
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Database error",
+    });
+  }
+});
 
 const connection = async () => {
   try {

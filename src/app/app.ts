@@ -6,12 +6,12 @@ import { Currency } from './services/currency';
 import { LoadingScreen } from "./loading-screen/loading-screen";
 import { FooterComponent } from "./footer/footer";
 import { RequestApi } from './services/request';
-import { Login } from "./login/login";
-import { Authentication } from "./login/authentication/authentication";
+import bcrypt from 'bcryptjs';
+import { Users } from './services/users';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, LoadingScreen, FooterComponent, Login, Authentication],
+  imports: [RouterOutlet, HeaderComponent, LoadingScreen, FooterComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -21,9 +21,11 @@ export class App {
   currency = inject(Currency);
   loadingDisplay = signal('block');
   request = inject(RequestApi);
+  temp = inject(Users);
+
 
   onClick() {
-    console.log('OK')
+    console.log('ok')
   }
 
 

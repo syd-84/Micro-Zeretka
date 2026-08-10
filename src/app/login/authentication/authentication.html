@@ -20,7 +20,10 @@
       @if(formControl.controls.passwordControl.invalid && formControl.controls.passwordControl.touched){
       <p class="info">Заповніть поле</p>
       }
-      <app-button (click)="enter()" [disabled]=formControl.invalid> Увійти </app-button>
+      @if(usersService.wrongPass()){
+      <p class="info">Неправильний логін або пароль</p>
+      }
+      <app-button (click)="auth()" [disabled]=formControl.invalid> Увійти </app-button>
     </form>
   </div>
 </div>

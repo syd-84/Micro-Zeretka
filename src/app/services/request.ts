@@ -2,6 +2,7 @@ import { HttpClient, HttpContext, httpResource } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { CartGoodsType, CommentType, GoodsType } from './goods';
 import { CurrencyType } from './currency';
+import { UserType } from './users';
 
 @Injectable({
   providedIn: 'root',
@@ -64,5 +65,18 @@ export class RequestApi {
 
   updateCartById(id: string, cartProduct: CartGoodsType) {
     return this.httpClient.post(`${this.SERVER_URI}/cart/${id}`, cartProduct)
+  }
+
+  addNewUser(user: UserType) {
+    return this.httpClient.post(`${this.SERVER_URI}/registration`, user);
+  }
+
+  authentication(authData: { email: string, password: string }) {
+    return this.httpClient.post(`${this.SERVER_URI}/auth`, authData);
+  }
+
+  checkEmail(email: string) {
+    const data = { email: email }
+    return this.httpClient.post(`${this.SERVER_URI}/email`, data);
   }
 }

@@ -42,5 +42,5 @@ svg {
 .info {
   font-size: 14px;
   color: var(--color-danger);
-  margin-top: -8px;
+  transform: translateY(-8px);
 }
