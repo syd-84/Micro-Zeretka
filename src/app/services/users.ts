@@ -1,6 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { RequestApi } from './request';
 import { take } from 'rxjs';
+import { AuthService } from './auth';
 
 export type UserType = {
   email: string,
@@ -18,6 +19,7 @@ export class Users {
   request = inject(RequestApi);
   existEmail = signal(false);
   wrongPass = signal(false);
+  authService = inject(AuthService)
 
   addNewUser(user: UserType) {
     this.request.addNewUser(user).pipe(take(1)).subscribe({
@@ -30,8 +32,8 @@ export class Users {
   authentication(authData: { email: string, password: string }) {
     this.request.authentication(authData).pipe(take(1)).subscribe({
       next: (response) => {
-        const res = response;
-        console.log('res: ', res)
+        this.authService.saveToken(response.token);
+        console.log('res: ', response.token)
       },
       error: () => {
         this.wrongPass.set(true);

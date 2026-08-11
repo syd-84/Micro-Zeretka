@@ -3,12 +3,14 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import session from "express-session";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken"
 import open from "open";
 import { goodsModel } from "./models/goods";
 import { commentsModel } from "./models/comments";
 import { cartGoodsModel } from "./models/cart";
 import { categoriesModel } from "./models/categories";
 import { usersModel } from "./models/users";
+import { verifyToken, isAdmin } from "./middlewares/auth.middleware.js"
 
 dotenv.config();
 
@@ -25,6 +27,7 @@ const app = express();
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 3000;
 const DB_CONNECTION = process.env.MONGODB_URI!;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const jsonParser = express.json();
 
@@ -82,7 +85,7 @@ app.get('/goods/:id', async (req, res) => {
   }
 })
 
-app.post('/goods', jsonParser, async (req, res) => {
+app.post('/goods', verifyToken, isAdmin, jsonParser, async (req, res) => {
   try {
     const product = new goodsModel(req.body);
     await product.save();
@@ -97,7 +100,7 @@ app.post('/goods', jsonParser, async (req, res) => {
   }
 });
 
-app.delete('/goods/:id', async (req, res) => {
+app.delete('/goods/:id', verifyToken, isAdmin, async (req, res) => {
   try {
     const result = await goodsModel.findOneAndDelete({ id: req.params.id });
     if (!result) {
@@ -144,7 +147,7 @@ app.post('/comments', jsonParser, async (req, res) => {
   }
 })
 
-app.delete('/comments/:id', async (req, res) => {
+app.delete('/comments/:id', verifyToken, isAdmin, async (req, res) => {
   try {
     const result = await commentsModel.deleteMany({ productId: req.params.id });
     if (result.deletedCount === 0) {
@@ -175,7 +178,7 @@ app.get('/currency', async (req, res) => {
   }
 });
 
-app.get('/cart', async (req, res) => {
+app.get('/cart', verifyToken, async (req, res) => {
   try {
     const searchRes = await cartGoodsModel.find({}).select("-_id -createdAt -updatedAt -__v");
     res.json(searchRes);
@@ -187,7 +190,7 @@ app.get('/cart', async (req, res) => {
   }
 })
 
-app.post('/cart', jsonParser, async (req, res) => {
+app.post('/cart', verifyToken, jsonParser, async (req, res) => {
   try {
     const cartData = req.body;
     const cartProduct = new cartGoodsModel(cartData);
@@ -203,7 +206,7 @@ app.post('/cart', jsonParser, async (req, res) => {
   }
 })
 
-app.delete('/cart/product/:id', async (req, res) => {
+app.delete('/cart/product/:id', verifyToken, async (req, res) => {
   try {
     const result = await cartGoodsModel.findOneAndDelete({ id: req.params.id });
     if (!result) {
@@ -222,7 +225,7 @@ app.delete('/cart/product/:id', async (req, res) => {
   }
 });
 
-app.delete('/cart', async (req, res) => {
+app.delete('/cart', verifyToken, async (req, res) => {
   try {
     const result = await cartGoodsModel.deleteMany({});
 
@@ -243,7 +246,7 @@ app.delete('/cart', async (req, res) => {
   }
 })
 
-app.post('/cart/:id', jsonParser, async (req, res) => {
+app.post('/cart/:id', verifyToken, jsonParser, async (req, res) => {
   try {
     const cartId = req.params.id;
     const cartData = req.body;
@@ -309,8 +312,17 @@ app.post('/auth', jsonParser, async (req, res) => {
       return res.status(401).json({ message: "Incorrect email or password" });
     }
 
+    const tokenPayload = {
+      id: user._id,
+      email: user.email,
+      role: user.role,
+    };
+
+    const token = jwt.sign(tokenPayload, JWT_SECRET!, { expiresIn: '1h' });
+
     res.status(200).json({
       message: "Successful authorization",
+      token: token,
       user: {
         id: user?._id,
         email: user?.email,

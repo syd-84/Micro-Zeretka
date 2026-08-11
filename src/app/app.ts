@@ -7,6 +7,7 @@ import { LoadingScreen } from "./loading-screen/loading-screen";
 import { FooterComponent } from "./footer/footer";
 import { RequestApi } from './services/request';
 import { Users } from './services/users';
+import { AuthService } from './services/auth';
 
 @Component({
   selector: 'app-root',
@@ -21,9 +22,11 @@ export class App {
   loadingDisplay = signal('block');
   request = inject(RequestApi);
   temp = inject(Users);
+  authService = inject(AuthService);
 
 
   onClick() {
+    this.authService.logout();
     console.log('ok')
   }
 

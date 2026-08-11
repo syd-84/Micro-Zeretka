@@ -72,7 +72,7 @@ export class RequestApi {
   }
 
   authentication(authData: { email: string, password: string }) {
-    return this.httpClient.post(`${this.SERVER_URI}/auth`, authData);
+    return this.httpClient.post<{ message: string, user: UserType, token: string }>(`${this.SERVER_URI}/auth`, authData);
   }
 
   checkEmail(email: string) {
