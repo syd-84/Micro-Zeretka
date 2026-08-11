@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Button } from "../../button/button";
@@ -49,14 +49,22 @@ export class Registration {
 
   checkEmail(e: Event) {
     const target = e.target as HTMLInputElement;
-    clearTimeout(this.debounceTimer);
-    this.debounceTimer = setTimeout(() => {
-      this.usersService.checkEmail(target.value);
-    }, 500)
+    if (this.formControl.controls.emailControl.valid) {
+      clearTimeout(this.debounceTimer);
+      this.debounceTimer = setTimeout(() => {
+        this.usersService.checkEmail(target.value);
+      }, 500)
+    }
   }
 
   onKeyDown(event: KeyboardEvent) {
     if (event.code === 'Enter')
       this.send();
+  }
+
+  constructor() {
+    effect(() => {
+      this.usersService.existEmail.set(false)
+    })
   }
 }

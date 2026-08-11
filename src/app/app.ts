@@ -6,7 +6,6 @@ import { Currency } from './services/currency';
 import { LoadingScreen } from "./loading-screen/loading-screen";
 import { FooterComponent } from "./footer/footer";
 import { RequestApi } from './services/request';
-import bcrypt from 'bcryptjs';
 import { Users } from './services/users';
 
 @Component({

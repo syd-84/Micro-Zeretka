@@ -298,10 +298,13 @@ app.post('/registration', jsonParser, async (req, res) => {
 
 app.post('/auth', jsonParser, async (req, res) => {
   try {
-    const authData = req.body;
-    const dataDB = await usersModel.findOne({ email: authData.email });
-    const match = await bcrypt.compare(authData.password, dataDB!.password)
+    const { email, password } = req.body;
+    const user = await usersModel.findOne({ email: email });
+    if (!user) {
+      return res.status(401).json({ message: "Incorrect email or password" });
+    }
 
+    const match = await bcrypt.compare(password, user!.password)
     if (!match) {
       return res.status(401).json({ message: "Incorrect email or password" });
     }
@@ -309,10 +312,12 @@ app.post('/auth', jsonParser, async (req, res) => {
     res.status(200).json({
       message: "Successful authorization",
       user: {
-        id: dataDB?._id,
-        email: dataDB?.email,
-        firstName: dataDB?.firstName,
-        lastName: dataDB?.lastName,
+        id: user?._id,
+        email: user?.email,
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        cart: user.cart,
+        role: user.role,
       }
     });
   } catch (err) {
