@@ -4,11 +4,12 @@ import dotenv from "dotenv";
 import session from "express-session";
 import bcrypt from "bcryptjs";
 import open from "open";
-import { goodsModel } from "./models/goods";
-import { commentsModel } from "./models/comments";
-import { cartGoodsModel } from "./models/cart";
-import { categoriesModel } from "./models/categories";
-import { usersModel } from "./models/users";
+import { goodsModel } from "./models/goods.js";
+import { commentsModel } from "./models/comments.js";
+import { cartGoodsModel } from "./models/cart.js";
+import { categoriesModel } from "./models/categories.js";
+import { usersModel } from "./models/users.js";
+import { checkAuth } from './middleware/auth.middleware.js';
 
 dotenv.config();
 
@@ -25,15 +26,32 @@ const app = express();
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 3000;
 const DB_CONNECTION = process.env.MONGODB_URI!;
+const SESSION_KEY = process.env.SESSION_KEY;
 
-const jsonParser = express.json();
+app.use(express.json());
+
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    sameSite: 'lax'
+  }
+}));
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  res.header("Access-Control-Allow-Methods", "*")
+  res.header("Access-Control-Allow-Origin", `${HOST}:4200`);
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
   next();
 });
+
 
 app.use(express.static("../front-end"));
 
@@ -82,7 +100,7 @@ app.get('/goods/:id', async (req, res) => {
   }
 })
 
-app.post('/goods', jsonParser, async (req, res) => {
+app.post('/goods', async (req, res) => {
   try {
     const product = new goodsModel(req.body);
     await product.save();
@@ -128,7 +146,7 @@ app.get('/comments', async (req, res) => {
   }
 })
 
-app.post('/comments', jsonParser, async (req, res) => {
+app.post('/comments', async (req, res) => {
   try {
     const commentData = req.body;
     const comment = new commentsModel(commentData);
@@ -187,7 +205,7 @@ app.get('/cart', async (req, res) => {
   }
 })
 
-app.post('/cart', jsonParser, async (req, res) => {
+app.post('/cart', async (req, res) => {
   try {
     const cartData = req.body;
     const cartProduct = new cartGoodsModel(cartData);
@@ -243,7 +261,7 @@ app.delete('/cart', async (req, res) => {
   }
 })
 
-app.post('/cart/:id', jsonParser, async (req, res) => {
+app.post('/cart/:id', async (req, res) => {
   try {
     const cartId = req.params.id;
     const cartData = req.body;
@@ -271,7 +289,7 @@ app.post('/cart/:id', jsonParser, async (req, res) => {
   }
 })
 
-app.post('/registration', jsonParser, async (req, res) => {
+app.post('/registration', async (req, res) => {
   try {
     const userData = req.body;
     const existUser = await usersModel.findOne({ email: userData.email });
@@ -296,7 +314,7 @@ app.post('/registration', jsonParser, async (req, res) => {
   }
 });
 
-app.post('/auth', jsonParser, async (req, res) => {
+app.post('/auth', async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await usersModel.findOne({ email: email });
@@ -304,18 +322,21 @@ app.post('/auth', jsonParser, async (req, res) => {
       return res.status(401).json({ message: "Incorrect email or password" });
     }
 
-    const match = await bcrypt.compare(password, user!.password)
+    const match = await bcrypt.compare(password, user.password)
     if (!match) {
       return res.status(401).json({ message: "Incorrect email or password" });
     }
 
+    req.session.userId = user._id.toString();
+    req.session.role = user.role;
+
     res.status(200).json({
       message: "Successful authorization",
       user: {
-        id: user?._id,
-        email: user?.email,
-        firstName: user?.firstName,
-        lastName: user?.lastName,
+        id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
         cart: user.cart,
         role: user.role,
       }
@@ -327,7 +348,51 @@ app.post('/auth', jsonParser, async (req, res) => {
   }
 });
 
-app.post('/email', jsonParser, async (req, res) => {
+app.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Could not log out" });
+    }
+
+    res.clearCookie('connect.sid');
+    return res.status(200).json({ message: "Successful logout" });
+  });
+});
+
+app.get('/me', checkAuth, async (req, res) => {
+  try {
+    const user = await usersModel.findById(req.session.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({
+      authenticated: true,
+      user: {
+        id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        cart: user.cart,
+        role: user.role,
+      }
+    });
+  } catch (err) {
+    return res.status(500).json({ message: "Server error" });
+  }
+});
+
+// app.get('/cart', checkAuth, async (req, res) => {
+//   try {
+//     const userCart = await cartModel.findOne({ userId: req.session.userId });
+//     return res.status(200).json(userCart);
+//   } catch (err) {
+//     return res.status(500).json({ message: "Database error" });
+//   }
+// });
+
+app.post('/email', async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -356,6 +421,17 @@ app.post('/email', jsonParser, async (req, res) => {
     });
   }
 });
+
+
+app.get('/test-secure', checkAuth, (req, res) => {
+  return res.json({
+    message: "Доступ дозволено!",
+    userId: req.session.userId
+  });
+});
+
+
+
 
 const connection = async () => {
   try {
