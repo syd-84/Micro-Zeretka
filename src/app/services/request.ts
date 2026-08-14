@@ -75,8 +75,20 @@ export class RequestApi {
     return this.httpClient.post(`${this.SERVER_URI}/auth`, authData);
   }
 
+  getMe() {
+    return this.httpClient.get<UserType>(`${this.SERVER_URI}/me`);
+  }
+
+  logOut() {
+    return this.httpClient.post(`${this.SERVER_URI}/logout`, {});
+  }
+
   checkEmail(email: string) {
     const data = { email: email }
     return this.httpClient.post(`${this.SERVER_URI}/email`, data);
+  }
+
+  test() {
+    return this.httpClient.get(`${this.SERVER_URI}/test-secure`);
   }
 }

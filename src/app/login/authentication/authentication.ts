@@ -27,12 +27,14 @@ export class Authentication {
   })
 
   auth() {
-    const email = this.formControl.controls.emailControl.value!;
-    const password = this.formControl.controls.passwordControl.value!;
-    const authData = { email, password };
-    this.usersService.authentication(authData);
-
-    // this.formControl.reset();
+    if (!this.usersService.user()) {
+      const email = this.formControl.controls.emailControl.value!;
+      const password = this.formControl.controls.passwordControl.value!;
+      const authData = { email, password };
+      this.usersService.authentication(authData);
+      this.formControl.reset();
+      this.router.navigate([''])
+    }
   }
 
   onKeyDown(event: KeyboardEvent) {

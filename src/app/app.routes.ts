@@ -7,6 +7,7 @@ import { SearchPage } from './search-page/search-page';
 import { Login } from './login/login';
 import { passGuard } from './guards/password-guard';
 import { ClientPage } from './client-page/client-page';
+import { NotReadyPage } from './not-ready-page/not-ready-page';
 
 export const routes: Routes = [
   {
@@ -29,11 +30,15 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: Admin,
-    canActivate: [passGuard],
+    // canActivate: [passGuard],
   },
   {
     path: 'page-404',
     component: Page404,
+  },
+  {
+    path: 'profile',
+    component: NotReadyPage,
   },
   {
     path: '**',

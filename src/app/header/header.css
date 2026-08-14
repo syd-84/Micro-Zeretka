@@ -163,6 +163,13 @@
   font-size: 16px;
   border-bottom: 1px solid #f0f0f0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.menu-list li:last-child {
+  border-bottom: none;
 }
 
 .menu-sublist li {
@@ -202,4 +209,18 @@
 a {
   text-decoration: none;
   color: var(--bg-main);
+}
+
+svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--text-secondary)
+}
+
+.menu-list li:hover svg {
+  fill: var(--color-primary);
+}
+
+.email {
+  color: var(--text-secondary);
 }

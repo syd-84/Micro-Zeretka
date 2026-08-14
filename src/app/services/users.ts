@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { RequestApi } from './request';
-import { take } from 'rxjs';
+import { catchError, of, take } from 'rxjs';
 
 export type UserType = {
   email: string,
@@ -18,6 +18,7 @@ export class Users {
   request = inject(RequestApi);
   existEmail = signal(false);
   wrongPass = signal(false);
+  user = signal<UserType | null>(null);
 
   addNewUser(user: UserType) {
     this.request.addNewUser(user).pipe(take(1)).subscribe({
@@ -29,16 +30,34 @@ export class Users {
 
   authentication(authData: { email: string, password: string }) {
     this.request.authentication(authData).pipe(take(1)).subscribe({
-      next: (response) => {
-        const res = response;
-        console.log('res: ', res)
+      next: (response: any) => {
+        this.user.set(response.user)
+        console.log('user: ', this.user())
       },
-      error: () => {
+      error: (err) => {
         this.wrongPass.set(true);
+        console.log(err.error)
         setTimeout(() => {
           this.wrongPass.set(false);
         }, 2000)
       }
+    });
+  }
+
+  getMe() {
+    this.request.getMe().pipe(take(1), catchError(() => of(null))).subscribe((user) => {
+      this.user.set(user);
+    })
+  }
+
+  logOut() {
+    this.request.logOut().pipe(take(1)).subscribe({
+      next: () => {
+        this.user.set(null);
+      },
+      error: (err) => {
+        console.log('error', err)
+      },
     });
   }
 

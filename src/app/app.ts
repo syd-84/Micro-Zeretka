@@ -1,5 +1,5 @@
 import { Component, effect, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Goods } from './services/goods';
 import { HeaderComponent } from './header/header';
 import { Currency } from './services/currency';
@@ -20,11 +20,13 @@ export class App {
   currency = inject(Currency);
   loadingDisplay = signal('block');
   request = inject(RequestApi);
-  temp = inject(Users);
+  router = inject(Router);
+  userService = inject(Users);
 
 
   onClick() {
-    console.log('ok')
+    this.userService.getMe();
+    console.log(this.userService.user());
   }
 
 
@@ -34,6 +36,8 @@ export class App {
     }, 2000)
 
     effect(() => {
+      const getMe = this.userService.getMe();
+
       const categories = this.goods._categoriesGoods.value();
       if (categories) {
         this.goods.categoriesGoods.set(categories || [])

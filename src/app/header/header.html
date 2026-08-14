@@ -27,7 +27,9 @@
 
     <div class="header-actions">
       <app-exchange></app-exchange>
+      @if(!userService.user()){
       <button class="action-icon" (click)="goToLogin()">👤</button>
+      }
       <button class="action-icon">⚖️</button>
       <button class="action-icon cart" (click)="cartModal.open()">
         🛒
@@ -68,6 +70,21 @@
 
     <ul class="menu-list">
       <li (click)="cartModal.open()">🛒 Кошик</li>
+
+      @if(userService.user()){
+      <li (click)="goToProfile()">
+        <svg>
+          <use href="icons.svg#icon-user-simple" />
+        </svg>
+        <div class="userData">
+          {{userService.user()?.firstName}} {{userService.user()?.lastName}} <br>
+          <div class="email">
+            {{userService.user()?.email}}
+          </div>
+        </div>
+      </li>
+      }
+
       <li class="not-active">⚖️ Списки порівнянь</li>
       <li class="not-active">📍 Київ</li>
       <li class="not-active">📞 Чат з ZERETKA</li>
@@ -82,5 +99,13 @@
       <li class="not-active">Умови використання сайту</li>
       <li class="not-active">Контакти</li>
     </ul>
+
+    <hr>
+
+    @if(userService.user()){
+    <ul class="menu-sublist">
+      <li (click)="logOut()">Вийти з аккаунта</li>
+    </ul>
+    }
   </div>
 </div>

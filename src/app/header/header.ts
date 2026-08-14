@@ -7,6 +7,7 @@ import { Exchange } from '../exchange/exchange';
 import { Goods } from '../services/goods';
 import { CartModal } from '../services/cart-modal';
 import { Cart } from '../cart/cart';
+import { Users } from '../services/users';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,7 @@ export class HeaderComponent {
   router = inject(Router);
   goodsService = inject(Goods);
   cartModal = inject(CartModal);
+  userService = inject(Users);
 
   numberOfPurchases = computed(() => this.goodsService.cartGoods().length);
 
@@ -30,5 +32,16 @@ export class HeaderComponent {
 
   goToLogin() {
     this.router.navigate(['login']);
+  }
+
+  goToProfile() {
+    this.router.navigate(['/profile']);
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  logOut() {
+    this.userService.logOut();
+    this.isMenuOpen = !this.isMenuOpen;
+    this.router.navigate(['']);
   }
 }

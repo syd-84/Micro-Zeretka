@@ -37,7 +37,8 @@ app.use(session({
   cookie: {
     secure: false,
     httpOnly: true,
-    sameSite: 'lax'
+    sameSite: 'lax',
+    maxAge: 60 * 60 * 1000,
   }
 }));
 
@@ -368,15 +369,12 @@ app.get('/me', checkAuth, async (req, res) => {
     }
 
     return res.status(200).json({
-      authenticated: true,
-      user: {
-        id: user._id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        cart: user.cart,
-        role: user.role,
-      }
+      id: user._id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      role: user.role,
+      cart: user.cart
     });
   } catch (err) {
     return res.status(500).json({ message: "Server error" });
