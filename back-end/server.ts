@@ -2,12 +2,18 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import open from "open";
+dotenv.config();
+
 import { goodsModel } from "./models/goods";
 import { commentsModel } from "./models/comments";
 import { cartGoodsModel } from "./models/cart";
 import { categoriesModel } from "./models/categories";
+import {Telegraf} from 'telegraf'; 
 
-dotenv.config();
+const botToken = process.env.BOT_TOKEN || '';
+
+const bot = new Telegraf(botToken);
+
 
 export type GoodsType = {
   id: string,
@@ -34,7 +40,15 @@ app.use((req, res, next) => {
 
 app.use(express.static("../front-end"));
 
+app.post('/api/checkout',async (req,res)=>{
+  try{
+    await bot.telegram.sendMessage(process.env.CHAT_ID!,'HELLO FROM BACK END')
+  res.json({success:true})
 
+  }catch(err){
+    console.log(err)
+  }
+})
 
 app.get('/goods/categories', async (req, res) => {
   try {
@@ -277,7 +291,7 @@ const connection = async () => {
     app.listen(PORT, () => {
       const url = `${HOST}:${PORT}`;
       console.log('server started: ', `${url}`);
-      // open(url);
+       open(url)
     });
 
   } catch (error) {

@@ -17,7 +17,10 @@
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
+    "express": "^5.2.1",
+    "mongoose": "^9.9.2",
     "rxjs": "~7.8.0",
+    "telegraf": "^4.16.3",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
