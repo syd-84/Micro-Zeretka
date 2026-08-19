@@ -24,6 +24,7 @@ const HOST = process.env.HOST;
 const PORT = process.env.PORT || 3000;
 const DB_CONNECTION = process.env.MONGODB_URI!;
 const BOT_TOKEN = process.env.BOT_TOKEN || '';
+const CHAT_ID = process.env.CHAT_ID || '';
 
 const bot = new Telegraf(BOT_TOKEN);
 
@@ -40,7 +41,7 @@ app.use(express.static("../front-end"));
 
 app.post('/api/checkout', jsonParser, async (req, res) => {
   try {
-    await bot.telegram.sendMessage(process.env.CHAT_ID!, req.body.message)
+    await bot.telegram.sendMessage(CHAT_ID, req.body.message)
     res.json({ success: true })
   } catch (err) {
     console.log(err)
