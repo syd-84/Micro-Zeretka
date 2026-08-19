@@ -1,11 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
 import { Goods } from '../services/goods';
 import { CartModal } from '../services/cart-modal';
-
 import { CartItem } from './components/cart-item/cart-item';
 import { CartFooter } from './components/cart-footer/cart-footer';
+import { TgBot } from '../services/tg-bot';
 
 @Component({
   selector: 'app-cart',
@@ -14,16 +12,9 @@ import { CartFooter } from './components/cart-footer/cart-footer';
   styleUrl: './cart.css',
 })
 export class Cart {
-  private http = inject(HttpClient)
   goods = inject(Goods);
   cartModal = inject(CartModal);
-
-sendOrder(){
-
-}
-
-
-
+  tgBot = inject(TgBot);
 
   get total(): number {
     return this.goods.cartGoods().reduce((sum, item) => {
@@ -31,20 +22,15 @@ sendOrder(){
     }, 0);
   }
 
-  checkout(): void {
+  checkout() {
     if (this.goods.cartGoods().length) {
-
- this.http.post('http://localhost:3000/api/checkout',{
-    items :this.goods.cartGoods(),
-    total:this.total
-  }).subscribe({
-    next:()=>{
-            this.goods.clearCart();console.log('order sent')},
-
-            error:(err)=>{ console.log(err)},
-  })
-
-      console.log('order done');
+      this.tgBot.sendOrder(this.goods.cartGoods(), this.total).subscribe({
+        next: () => {
+          console.log('message sended');
+          this.clearCart();
+        },
+        error: (err) => console.log(err)
+      })
     }
   }
 

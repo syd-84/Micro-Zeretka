@@ -65,4 +65,8 @@ export class RequestApi {
   updateCartById(id: string, cartProduct: CartGoodsType) {
     return this.httpClient.post(`${this.SERVER_URI}/cart/${id}`, cartProduct)
   }
+
+  sendMessage(message: { message: string }) {
+    return this.httpClient.post(`${this.SERVER_URI}/api/checkout`, message);
+  }
 }

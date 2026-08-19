@@ -2,18 +2,11 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import open from "open";
-dotenv.config();
-
 import { goodsModel } from "./models/goods";
 import { commentsModel } from "./models/comments";
 import { cartGoodsModel } from "./models/cart";
 import { categoriesModel } from "./models/categories";
-import {Telegraf} from 'telegraf'; 
-
-const botToken = process.env.BOT_TOKEN || '';
-
-const bot = new Telegraf(botToken);
-
+import { Telegraf } from 'telegraf';
 
 export type GoodsType = {
   id: string,
@@ -24,10 +17,15 @@ export type GoodsType = {
   category: string,
 }
 
+dotenv.config();
+
 const app = express();
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 3000;
 const DB_CONNECTION = process.env.MONGODB_URI!;
+const BOT_TOKEN = process.env.BOT_TOKEN || '';
+
+const bot = new Telegraf(BOT_TOKEN);
 
 const jsonParser = express.json();
 
@@ -40,13 +38,13 @@ app.use((req, res, next) => {
 
 app.use(express.static("../front-end"));
 
-app.post('/api/checkout',async (req,res)=>{
-  try{
-    await bot.telegram.sendMessage(process.env.CHAT_ID!,'HELLO FROM BACK END')
-  res.json({success:true})
-
-  }catch(err){
+app.post('/api/checkout', jsonParser, async (req, res) => {
+  try {
+    await bot.telegram.sendMessage(process.env.CHAT_ID!, req.body.message)
+    res.json({ success: true })
+  } catch (err) {
     console.log(err)
+    res.status(500).json({ success: false, error: err });
   }
 })
 
@@ -291,7 +289,7 @@ const connection = async () => {
     app.listen(PORT, () => {
       const url = `${HOST}:${PORT}`;
       console.log('server started: ', `${url}`);
-       open(url)
+      //  open(url)
     });
 
   } catch (error) {
