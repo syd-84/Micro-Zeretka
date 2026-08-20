@@ -34,6 +34,10 @@ export class HeaderComponent {
     this.router.navigate(['login']);
   }
 
+  goToAdmin() {
+    this.router.navigate(['admin']);
+  }
+
   goToProfile() {
     this.router.navigate(['/profile']);
     this.isMenuOpen = !this.isMenuOpen;

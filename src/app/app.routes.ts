@@ -5,9 +5,9 @@ import { Page404 } from './page404/page404';
 import { productExistsGuard } from './guards/product-exists-guard';
 import { SearchPage } from './search-page/search-page';
 import { Login } from './login/login';
-import { passGuard } from './guards/password-guard';
 import { ClientPage } from './client-page/client-page';
 import { NotReadyPage } from './not-ready-page/not-ready-page';
+import { adminGuard } from './guards/admin-guard';
 
 export const routes: Routes = [
   {
@@ -30,7 +30,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: Admin,
-    // canActivate: [passGuard],
+    canActivate: [adminGuard],
   },
   {
     path: 'page-404',

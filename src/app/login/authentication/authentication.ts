@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ConfirmPassword } from '../../services/confirm-password';
 import { Button } from "../../button/button";
 import { Users } from '../../services/users';
 
@@ -13,7 +12,6 @@ import { Users } from '../../services/users';
 })
 export class Authentication {
   router = inject(Router);
-  password = inject(ConfirmPassword);
   usersService = inject(Users);
 
   formControl = new FormGroup({

@@ -37,6 +37,9 @@
           {{ numberOfPurchases() }}
         </div>
       </button>
+      <button class="action-icon" [class.hidden]="userService.user()?.role!=='admin'" (click)="goToAdmin()">
+        🧑‍💻</button>
+      <button class="action-icon hidden">🌙☀️</button>
     </div>
   </div>
 </header>
